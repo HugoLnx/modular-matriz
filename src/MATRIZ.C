@@ -37,32 +37,61 @@
 *
 ***********************************************************************/
 
-   typedef struct tgNoArvore {
-
-         struct tgNoArvore * pNoPai ;
-               /* Ponteiro para pai
-               *
-               *$EED Assertivas estruturais
-               *   É NULL sse o nó é raiz
-               *   Se não for raiz, um de pNoEsq ou pNoDir de pNoPai do nó
-               *   corrente apontam para o nó corrente */
-
-         struct tgNoArvore * pNoEsq ;
+   typedef struct tgNoMatriz {
+         struct tgNoMatriz * pNorte;
                /* Ponteiro para filho à esquerda
                *
                *$EED Assertivas estruturais
                *   se pNoEsq do nó X != NULL então pNoPai de pNoEsq aponta para o nó X */
 
-         struct tgNoArvore * pNoDir ;
+         struct tgNoMatriz * pSul;
+               /* Ponteiro para filho à direita
+               *
+               *$EED Assertivas estruturais
+               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+		 
+		 struct tgNoMatriz * pEste;
+               /* Ponteiro para filho à direita
+               *
+               *$EED Assertivas estruturais
+               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+		 
+		 struct tgNoMatriz * pOeste;
+               /* Ponteiro para filho à direita
+               *
+               *$EED Assertivas estruturais
+               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+		 
+		 struct tgNoMatriz * pNordeste;
                /* Ponteiro para filho à direita
                *
                *$EED Assertivas estruturais
                *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
 
+		 
+		 struct tgNoMatriz * pSudeste;
+               /* Ponteiro para filho à direita
+               *
+               *$EED Assertivas estruturais
+               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+
+		 
+		 struct tgNoMatriz * pNoroeste;
+               /* Ponteiro para filho à direita
+               *
+               *$EED Assertivas estruturais
+               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+
+		 
+		 struct tgNoMatriz * pSudoeste;
+               /* Ponteiro para filho à direita
+               *
+               *$EED Assertivas estruturais
+               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
          char Valor ;
                /* Valor do nó */
 
-   } tpNoArvore ;
+   } tpNoMatriz ;
 
 /***********************************************************************
 *
@@ -77,28 +106,28 @@
 *
 ***********************************************************************/
 
-   typedef struct tgArvore {
+   typedef struct tgMatriz {
 
-         tpNoArvore * pNoRaiz ;
+         tpNoMatriz * pNoRaiz ;
                /* Ponteiro para a raiz da árvore */
 
-         tpNoArvore * pNoCorr ;
+         tpNoMatriz * pNoCorr ;
                /* Ponteiro para o nó corrente da árvore */
 
-   } tpArvore ;
+   } tpMatriz ;
 
 /*****  Dados encapsulados no módulo  *****/
 
-      static tpArvore * pArvore = NULL ;
+      static tpMatriz * pMatriz = NULL ;
             /* Ponteiro para a cabe‡a da árvore */
 
 /***** Protótipos das funções encapuladas no módulo *****/
 
-   static tpNoArvore * CriarNo( char ValorParm ) ;
+   static tpNoMatriz * CriarNo( char ValorParm ) ;
 
    static ARV_tpCondRet CriarNoRaiz( char ValorParm ) ;
 
-   static void DestroiArvore( tpNoArvore * pNo ) ;
+   static void DestroiMatriz( tpNoMatriz * pNo ) ;
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
