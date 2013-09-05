@@ -1,4 +1,4 @@
-// Script:    TesteArvore.script
+// Script:    TesteMatriz.script
 // Autor:     Arndt von Staa
 // Data:      20/fev/2006
 // Propósito: Ilustrar arquivo de script, 
@@ -69,7 +69,7 @@
 =irdir      0
 =obter      'c'   0
 
-== Destroi a arvore
+== Destroi a matriz
 =destruir   
 =irdir      4
 

@@ -1,4 +1,4 @@
-// Script:    TesteArvoreSimb.script
+// Script:    TesteMatrizSimb.script
 // Autor:     Arndt von Staa
 // Data:      20/fev/2006
 // Propósito: Ilustrar arquivo de script, 
@@ -10,7 +10,7 @@
 
 
 
-// Script:    TesteArvore.script
+// Script:    TesteMatriz.script
 // Autor:     Arndt von Staa
 // Data:      12/ago/2003
 // Propósito: Ilustrar arquivo de script, testar construção de árvore
@@ -22,7 +22,7 @@
 =declararparm  NaoRaiz      int 1 
 =declararparm  Estrutura    int 2
 =declararparm  NaoFolha     int 3
-=declararparm  NaoArvore    int 4
+=declararparm  NaoMatriz    int 4
 =declararparm  NaoCorr      int 5
 =declararparm  EhRaiz       int 6
 =declararparm  NaoFilho     int 7
@@ -36,14 +36,14 @@
 
 
 == Verificar assertivas de entrada de irdir
-=irdir      NaoArvore
+=irdir      NaoMatriz
 
 == Verificar comando recuperar
 =irdir      OK
 =recuperar 
 
 == Verificar ObterValorCorr relativo a árvore inexistente
-=obter      CharErro   NaoArvore
+=obter      CharErro   NaoMatriz
 
 == Verificar recuperar de ObterValorCorr relativo a árvore inexistente
 =obter      CharErro   NaoRaiz  
@@ -97,9 +97,9 @@
 =irdir      OK
 =obter      CharC   OK
 
-== Destroi a arvore
+== Destroi a matriz
 =destruir   
-=irdir      NaoArvore
+=irdir      NaoMatriz
 
 
 
