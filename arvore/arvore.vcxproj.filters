@@ -18,27 +18,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\ARVORE.C">
+    <ClCompile Include="..\src\MATRIZ.C">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\TESTARV.C">
+    <ClCompile Include="..\src\TESTMATRIZ.C">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\ARVORE.H">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\src\TesteArvoreSimb.script">
+    <None Include="..\src\TesteMatrix.script">
       <Filter>Script Files</Filter>
     </None>
-    <None Include="..\src\TesteArvore.script">
+    <None Include="..\src\TesteMatrixSimb.script">
       <Filter>Script Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\src\ArcaboucoTeste.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\MATRIZ.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

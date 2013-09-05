@@ -52,7 +52,7 @@
 #include    "generico.h"
 #include    "lerparm.h"
 
-#include    "arvore.h"
+#include    "matriz.h"
 
 /* Tabela dos nomes dos comandos de teste específicos */
 

@@ -11,15 +11,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\ARVORE.C" />
-    <ClCompile Include="..\src\TESTARV.C" />
+    <ClCompile Include="..\src\MATRIZ.C" />
+    <ClCompile Include="..\src\TESTMATRIZ.C" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\ARVORE.H" />
+    <ClInclude Include="..\src\MATRIZ.H" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\src\TesteArvore.script" />
-    <None Include="..\src\TesteArvoreSimb.script" />
+    <None Include="..\src\TesteMatrix.script" />
+    <None Include="..\src\TesteMatrixSimb.script" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\src\ArcaboucoTeste.lib" />
@@ -28,6 +28,7 @@
     <ProjectGuid>{DE57FC54-DEA2-4E20-A67E-6C992C397BCF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>arvore</RootNamespace>
+    <ProjectName>matriz</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
