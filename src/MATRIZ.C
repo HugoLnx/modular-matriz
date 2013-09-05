@@ -59,6 +59,59 @@
                *$EED Assertivas estruturais
                *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
 
+
+		 struct tgNoArvore * pNorte;
+               /* Ponteiro para filho à esquerda
+               *
+               *$EED Assertivas estruturais
+               *   se pNoEsq do nó X != NULL então pNoPai de pNoEsq aponta para o nó X */
+
+         struct tgNoArvore * pSul;
+               /* Ponteiro para filho à direita
+               *
+               *$EED Assertivas estruturais
+               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+
+		 struct tgNoArvore * pEste;
+               /* Ponteiro para filho à direita
+               *
+               *$EED Assertivas estruturais
+               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+
+		 struct tgNoArvore * pOeste;
+               /* Ponteiro para filho à direita
+               *
+               *$EED Assertivas estruturais
+               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+
+		 struct tgNoArvore * pNordeste;
+               /* Ponteiro para filho à direita
+               *
+               *$EED Assertivas estruturais
+               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+
+
+		 struct tgNoArvore * pSudeste;
+               /* Ponteiro para filho à direita
+               *
+               *$EED Assertivas estruturais
+               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+
+
+		 struct tgNoArvore * pNoroeste;
+               /* Ponteiro para filho à direita
+               *
+               *$EED Assertivas estruturais
+               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+
+
+		 struct tgNoArvore * pSudoeste;
+               /* Ponteiro para filho à direita
+               *
+               *$EED Assertivas estruturais
+               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+
+
          char Valor ;
                /* Valor do nó */
 
