@@ -104,6 +104,9 @@
 =destruir OK  
 =irdir      NaoMatriz
 
+== Verificar erro ao destruir árvore duas vezes seguidas
+=destruir NaoMatriz
+
 
 
 // fim

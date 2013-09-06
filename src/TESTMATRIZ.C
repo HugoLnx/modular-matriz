@@ -254,7 +254,7 @@
             CondRetObtido = MAT_DestruirMatriz( ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
-									"Não é possível destruir uma matriz que não foi criada.");
+									"Não é possível destruir uma matriz que não existe.");
 
          } /* fim ativa: Testar MAT Destruir árvore */
 
