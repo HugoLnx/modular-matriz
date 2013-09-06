@@ -143,10 +143,25 @@
    } tpMatriz ;
 
    typedef enum {
+	     NORTE = 1 ,
+		 
+		 SUL = 2 ,
+		 
+		 ESTE = 3 ,
 
-         ESQ = 1 ,
+		 OESTE = 4 ,
 
-         DIR = 2
+		 NORDESTE = 5 ,
+
+		 SUDESTE = 6 ,
+
+		 SUDOESTE = 7 ,
+
+		 NOROESTE = 8 ,
+
+         ESQ = 9 ,
+
+         DIR = 10
 
    } tpDirecao;
 
@@ -163,6 +178,8 @@
    void SetNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir );
 
    MAT_tpCondRet InserirGenerico( tpMatriz * pMatriz , char ValorParm , tpDirecao dir );
+   
+   tpDirecao DirecaoReversa( tpDirecao dir );
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -517,6 +534,20 @@
 
 	   if ( dir == DIR )
 			pNo->pNoDir = pNoNovo;
+   }
+
+   tpDirecao DirecaoReversa( tpDirecao dir )
+   {
+	   switch( dir )
+	   {
+			case NORTE: return SUL;
+			case SUL: return NORTE;
+			case ESTE: return OESTE;
+			case NORDESTE: return SUDOESTE;
+			case SUDESTE: return NOROESTE;
+			case SUDOESTE: return NORDESTE;
+			case NOROESTE: return SUDESTE;
+	   }
    }
 
 /********** Fim do módulo de implementação: Módulo árvore **********/
