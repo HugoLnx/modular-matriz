@@ -186,7 +186,7 @@
 *  Função: MAT Destruir árvore
 *  ****/
 
-   void MAT_DestruirMatriz( void )
+   MAT_tpCondRet MAT_DestruirMatriz( void )
    {
 
       if ( pMatriz != NULL )
@@ -197,8 +197,9 @@
          } /* if */
          free( pMatriz ) ;
          pMatriz = NULL ;
+		 return MAT_CondRetOK;
       } /* if */
-
+	  return MAT_CondRetMatrizNaoExiste;
    } /* Fim função: MAT Destruir árvore */
 
 /***************************************************************************

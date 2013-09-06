@@ -244,10 +244,17 @@
 
          else if ( strcmp( ComandoTeste , DESTROI_CMD ) == 0 )
          {
+			NumLidos = LER_LerParametros( "i" ,
+                               &CondRetEsperada ) ;
+            if ( NumLidos != 1 )
+            {
+               return TST_CondRetParm ;
+            } /* if */
 
-            MAT_DestruirMatriz( ) ;
+            CondRetObtido = MAT_DestruirMatriz( ) ;
 
-            return TST_CondRetOK ;
+            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
+									"Não é possível destruir uma matriz que não foi criada.");
 
          } /* fim ativa: Testar MAT Destruir árvore */
 

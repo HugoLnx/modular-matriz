@@ -40,7 +40,10 @@
 
 == Verificar comando recuperar
 =irdir      OK
-=recuperar 
+=recuperar
+
+== Verificar erro ao destruir árvore inexistente
+=destruir NaoMatriz
 
 == Verificar ObterValorCorr relativo a árvore inexistente
 =obter      CharErro   NaoMatriz
@@ -98,7 +101,7 @@
 =obter      CharC   OK
 
 == Destroi a matriz
-=destruir   
+=destruir OK  
 =irdir      NaoMatriz
 
 

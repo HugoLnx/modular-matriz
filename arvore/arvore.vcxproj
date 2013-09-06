@@ -18,8 +18,7 @@
     <ClInclude Include="..\src\MATRIZ.H" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\src\TesteMatrix.script" />
-    <None Include="..\src\TesteMatrixSimb.script" />
+    <None Include="..\src\TesteMatriz.script" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\src\ArcaboucoTeste.lib" />
