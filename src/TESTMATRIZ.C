@@ -67,6 +67,7 @@
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
+static tpMatriz * pMatriz = NULL;
 
 /***********************************************************************
 *
@@ -111,7 +112,7 @@
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MAT_CriarMatriz( ) ;
+            CondRetObtido = MAT_CriarMatriz( &pMatriz ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado ao criar árvore." );
@@ -130,7 +131,7 @@
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MAT_InserirDireita( ValorDado ) ;
+            CondRetObtido = MAT_InserirDireita( pMatriz , ValorDado ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado inserir àa direita." );
@@ -149,7 +150,7 @@
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MAT_InserirEsquerda( ValorDado ) ;
+            CondRetObtido = MAT_InserirEsquerda( pMatriz , ValorDado ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado ao inserir à esquerda." );
@@ -168,7 +169,7 @@
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MAT_IrPai( ) ;
+            CondRetObtido = MAT_IrPai( pMatriz ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado ao ir para pai." );
@@ -187,7 +188,7 @@
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MAT_IrNoEsquerda( ) ;
+            CondRetObtido = MAT_IrNoEsquerda( pMatriz ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado ao ir para esquerda." );
@@ -206,7 +207,7 @@
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MAT_IrNoDireita( ) ;
+            CondRetObtido = MAT_IrNoDireita( pMatriz ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado ao ir para direita." );
@@ -225,7 +226,7 @@
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MAT_ObterValorCorr( &ValorObtido ) ;
+            CondRetObtido = MAT_ObterValorCorr( pMatriz , &ValorObtido ) ;
 
             Ret = TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                    "Retorno errado ao obter valor corrente." );
@@ -251,7 +252,7 @@
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MAT_DestruirMatriz( ) ;
+            CondRetObtido = MAT_DestruirMatriz( &pMatriz ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
 									"Não é possível destruir uma matriz que não existe.");

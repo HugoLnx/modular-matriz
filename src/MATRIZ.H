@@ -40,6 +40,8 @@
    #define MATRIZ_EXT extern
 #endif
 
+typedef struct tgMatriz tpMatriz;
+
 
 /***********************************************************************
 *
@@ -94,7 +96,7 @@
 *
 ***********************************************************************/
 
-   MAT_tpCondRet MAT_CriarMatriz( void ) ;
+   MAT_tpCondRet MAT_CriarMatriz( tpMatriz ** ppMatriz ) ;
 
 
 /***********************************************************************
@@ -107,7 +109,7 @@
 *
 ***********************************************************************/
 
-   MAT_tpCondRet MAT_DestruirMatriz( void ) ;
+   MAT_tpCondRet MAT_DestruirMatriz( tpMatriz ** ppMatriz ) ;
 
 
 /***********************************************************************
@@ -125,7 +127,7 @@
 *
 ***********************************************************************/
 
-   MAT_tpCondRet MAT_InserirEsquerda( char ValorParm ) ;
+   MAT_tpCondRet MAT_InserirEsquerda( tpMatriz * pMatriz , char ValorParm ) ;
 
 
 /***********************************************************************
@@ -143,7 +145,7 @@
 *
 ***********************************************************************/
 
-   MAT_tpCondRet MAT_InserirDireita( char ValorParm ) ;
+   MAT_tpCondRet MAT_InserirDireita( tpMatriz * pMatriz , char ValorParm ) ;
 
 
 /***********************************************************************
@@ -158,7 +160,7 @@
 *
 ***********************************************************************/
 
-   MAT_tpCondRet MAT_IrPai( void ) ;
+   MAT_tpCondRet MAT_IrPai( tpMatriz * pMatriz ) ;
 
 
 /***********************************************************************
@@ -173,7 +175,7 @@
 *
 ***********************************************************************/
 
-   MAT_tpCondRet MAT_IrNoEsquerda( void ) ;
+   MAT_tpCondRet MAT_IrNoEsquerda( tpMatriz * pMatriz ) ;
 
 
 /***********************************************************************
@@ -188,7 +190,7 @@
 *
 ***********************************************************************/
 
-   MAT_tpCondRet MAT_IrNoDireita( void ) ;
+   MAT_tpCondRet MAT_IrNoDireita( tpMatriz * pMatriz ) ;
 
 
 /***********************************************************************
@@ -206,7 +208,7 @@
 *
 ***********************************************************************/
 
-   MAT_tpCondRet MAT_ObterValorCorr( char * ValorParm ) ;
+   MAT_tpCondRet MAT_ObterValorCorr( tpMatriz * pMatriz , char * ValorParm ) ;
 
 #undef MATRIZ_EXT
 

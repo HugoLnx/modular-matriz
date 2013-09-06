@@ -1,1 +1,3 @@
 Arrumar comentários dos atributos da struct MATRIZ.C
+Criar testes para criação de varias matrizes
+Revisar os comentários

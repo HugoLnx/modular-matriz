@@ -27,7 +27,9 @@
 #include "MATRIZ.H"
 #undef MATRIZ_OWN
 
-/***********************************************************************
+
+
+   /***********************************************************************
 *
 *  $TC Tipo de dados: MAT Descritor do nó da árvore
 *
@@ -140,16 +142,11 @@
 
    } tpMatriz ;
 
-/*****  Dados encapsulados no módulo  *****/
-
-      static tpMatriz * pMatriz = NULL ;
-            /* Ponteiro para a cabe‡a da árvore */
-
 /***** Protótipos das funções encapuladas no módulo *****/
 
    static tpNoMatriz * CriarNo( char ValorParm ) ;
 
-   static MAT_tpCondRet CriarNoRaiz( char ValorParm ) ;
+   static MAT_tpCondRet CriarNoRaiz( tpMatriz * pMatriz , char ValorParm ) ;
 
    static void DestroiMatriz( tpNoMatriz * pNo ) ;
 
@@ -160,22 +157,26 @@
 *  Função: MAT Criar árvore
 *  ****/
 
-   MAT_tpCondRet MAT_CriarMatriz( void )
+   MAT_tpCondRet MAT_CriarMatriz( tpMatriz ** ppMatriz )
    {
+	  tpMatriz * pMatriz;
 
-      if ( pMatriz != NULL )
+      if ( ppMatriz != NULL && *ppMatriz != NULL )
       {
-         MAT_DestruirMatriz( ) ;
+         MAT_DestruirMatriz( ppMatriz ) ;
       } /* if */
-
-      pMatriz = ( tpMatriz * ) malloc( sizeof( tpMatriz )) ;
+	  
+	  pMatriz = ( tpMatriz * ) malloc( sizeof( tpMatriz )) ;
       if ( pMatriz == NULL )
       {
          return MAT_CondRetFaltouMemoria ;
       } /* if */
 
+
       pMatriz->pNoRaiz = NULL ;
       pMatriz->pNoCorr = NULL ;
+
+	  *ppMatriz = pMatriz;
 
       return MAT_CondRetOK ;
 
@@ -186,17 +187,19 @@
 *  Função: MAT Destruir árvore
 *  ****/
 
-   MAT_tpCondRet MAT_DestruirMatriz( void )
+   MAT_tpCondRet MAT_DestruirMatriz( tpMatriz ** ppMatriz )
    {
+	  tpMatriz * pMatriz;
 
-      if ( pMatriz != NULL )
+      if ( ppMatriz != NULL && *ppMatriz != NULL )
       {
+		 pMatriz = *ppMatriz;
          if ( pMatriz->pNoRaiz != NULL )
          {
             DestroiMatriz( pMatriz->pNoRaiz ) ;
          } /* if */
          free( pMatriz ) ;
-         pMatriz = NULL ;
+         *ppMatriz = NULL ;
 		 return MAT_CondRetOK;
       } /* if */
 	  return MAT_CondRetMatrizNaoExiste;
@@ -207,7 +210,7 @@
 *  Função: MAT Adicionar filho à esquerda
 *  ****/
 
-   MAT_tpCondRet MAT_InserirEsquerda( char ValorParm )
+   MAT_tpCondRet MAT_InserirEsquerda( tpMatriz * pMatriz , char ValorParm )
    {
 
       MAT_tpCondRet CondRet ;
@@ -217,7 +220,7 @@
 
       /* Tratar vazio, esquerda */
 
-         CondRet = CriarNoRaiz( ValorParm ) ;
+         CondRet = CriarNoRaiz( pMatriz , ValorParm ) ;
          if ( CondRet != MAT_CondRetNaoCriouRaiz )
          {
             return CondRet ;
@@ -256,7 +259,7 @@
 *  Função: MAT Adicionar filho à direita
 *  ****/
 
-   MAT_tpCondRet MAT_InserirDireita( char ValorParm )
+   MAT_tpCondRet MAT_InserirDireita( tpMatriz * pMatriz , char ValorParm )
    {
 
       MAT_tpCondRet CondRet ;
@@ -266,7 +269,7 @@
 
       /* Tratar vazio, direita */
 
-         CondRet = CriarNoRaiz( ValorParm ) ;
+         CondRet = CriarNoRaiz( pMatriz , ValorParm ) ;
          if ( CondRet != MAT_CondRetNaoCriouRaiz )
          {
             return CondRet ;
@@ -305,7 +308,7 @@
 *  Função: MAT Ir para nó pai
 *  ****/
 
-   MAT_tpCondRet MAT_IrPai( void )
+   MAT_tpCondRet MAT_IrPai( tpMatriz * pMatriz )
    {
 
       if ( pMatriz == NULL )
@@ -332,7 +335,7 @@
 *  Função: MAT Ir para nó à esquerda
 *  ****/
 
-   MAT_tpCondRet MAT_IrNoEsquerda( void )
+   MAT_tpCondRet MAT_IrNoEsquerda( tpMatriz * pMatriz )
    {
 
       if ( pMatriz == NULL )
@@ -360,7 +363,7 @@
 *  Função: MAT Ir para nó à direita
 *  ****/
 
-   MAT_tpCondRet MAT_IrNoDireita( void )
+   MAT_tpCondRet MAT_IrNoDireita( tpMatriz * pMatriz )
    {
 
       if ( pMatriz == NULL )
@@ -388,7 +391,7 @@
 *  Função: MAT Obter valor corrente
 *  ****/
 
-   MAT_tpCondRet MAT_ObterValorCorr( char * ValorParm )
+   MAT_tpCondRet MAT_ObterValorCorr( tpMatriz * pMatriz , char * ValorParm )
    {
 
       if ( pMatriz == NULL )
@@ -452,7 +455,7 @@
 *
 ***********************************************************************/
 
-   MAT_tpCondRet CriarNoRaiz( char ValorParm )
+   MAT_tpCondRet CriarNoRaiz(tpMatriz * pMatriz , char ValorParm )
    {
 
       MAT_tpCondRet CondRet ;
@@ -460,7 +463,7 @@
 
       if ( pMatriz == NULL )
       {
-         CondRet = MAT_CriarMatriz( ) ;
+         CondRet = MAT_CriarMatriz( &pMatriz ) ;
 
          if ( CondRet != MAT_CondRetOK )
          {
