@@ -183,6 +183,41 @@
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
+    MAT_tpCondRet MAT_TestarLinhasMatriz( tpMatriz * pMatriz , int Linhas )
+	{
+		tpNoMatriz * pNo = pMatriz->pNoRaiz;
+		int i;
+
+		for( i = 1 ; i < Linhas ; i++ )
+		{
+			pNo = pNo->pSul;
+			if( pNo == NULL )
+			{
+				return MAT_CondRetErroEstrutura;
+			}
+		}
+		if( pNo->pSul != NULL)
+		{
+			return MAT_CondRetErroEstrutura;
+		}
+
+		for( i = 1 ; i < Linhas ; i++ )
+		{
+			pNo = pNo->pNorte;
+			if( pNo == NULL )
+			{
+				return MAT_CondRetErroEstrutura;
+			}
+		}
+		if( pNo->pNorte != NULL)
+		{
+			return MAT_CondRetErroEstrutura;
+		}
+
+
+		return MAT_CondRetOK;
+	}
+
 /***************************************************************************
 *
 *  Função: MAT Criar árvore

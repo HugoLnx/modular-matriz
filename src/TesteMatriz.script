@@ -34,7 +34,6 @@
 =declararparm  CharB        char  'b'
 =declararparm  CharC        char  'c'
 
-
 == Verificar assertivas de entrada de irdir
 =irdir      NaoMatriz
 
@@ -55,12 +54,16 @@
 == Verificar inicializar matriz inexistente
 =init 2 2 NaoMatriz
 
-== Criar árvore
+== Criar matriz
 =criar      OK
 =irdir      NaoCorr
 
+
 == Inicializar matriz
 =init 2 2 OK
+
+== Verificar navegacao ate ultimo no da primeira coluna
+=linha 2 OK
 
 == Destroi a matriz
 =destruir OK  

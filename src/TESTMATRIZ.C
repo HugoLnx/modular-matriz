@@ -65,6 +65,7 @@
 #define     IR_DIR_CMD          "=irdir"
 #define     OBTER_VAL_CMD       "=obter"
 #define     DESTROI_CMD         "=destruir"
+#define     LINHA_CMD         "=linha"
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -102,6 +103,8 @@ static tpMatriz * pMatriz = NULL;
       int  NumLidos = -1 ;
 
       TST_tpCondRet Ret ;
+
+
 
       /* Testar MAT Criar árvore */
 
@@ -278,6 +281,25 @@ static tpMatriz * pMatriz = NULL;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
 									"Erro ao inicializar matriz.");
+
+         } /* fim ativa: Testar MAT Inicializar matriz */
+
+		 
+      /* Testar MAT Linha Matriz */
+
+         else if ( strcmp( ComandoTeste , LINHA_CMD ) == 0 )
+         {
+			NumLidos = LER_LerParametros( "ii" ,
+                               &Linhas, &CondRetEsperada ) ;
+            if ( NumLidos != 2 )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+            CondRetObtido = MAT_TestarLinhasMatriz( pMatriz , Linhas) ;
+
+            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
+									"Navegacao de linhas da matriz nao funciona.");
 
          } /* fim ativa: Testar MAT Inicializar matriz */
 
