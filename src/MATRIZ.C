@@ -158,11 +158,11 @@
 
    static void DestroiMatriz( tpNoMatriz * pNo ) ;
 
-   tpNoMatriz * getVizinho( tpNoMatriz * pNo , tpDirecao dir );
+   tpNoMatriz * GetVizinho( tpNoMatriz * pNo , tpDirecao dir );
 
-   void setNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir );
+   void SetNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir );
 
-   MAT_tpCondRet inserirGenerico( tpMatriz * pMatriz , char ValorParm , tpDirecao dir );
+   MAT_tpCondRet InserirGenerico( tpMatriz * pMatriz , char ValorParm , tpDirecao dir );
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -226,7 +226,7 @@
 
    MAT_tpCondRet MAT_InserirEsquerda( tpMatriz * pMatriz , char ValorParm )
    {
-      return inserirGenerico(pMatriz, ValorParm, ESQ);
+      return InserirGenerico(pMatriz, ValorParm, ESQ);
    } /* Fim função: MAT Adicionar filho à esquerda */
 
 /***************************************************************************
@@ -236,7 +236,7 @@
 
    MAT_tpCondRet MAT_InserirDireita( tpMatriz * pMatriz , char ValorParm )
    {
-	   return inserirGenerico(pMatriz, ValorParm, DIR);
+	   return InserirGenerico(pMatriz, ValorParm, DIR);
    } /* Fim função: MAT Adicionar filho à direita */
 
 
@@ -455,7 +455,7 @@
    
    
    
-   MAT_tpCondRet inserirGenerico( tpMatriz * pMatriz , char ValorParm , tpDirecao dir )
+   MAT_tpCondRet InserirGenerico( tpMatriz * pMatriz , char ValorParm , tpDirecao Dir )
    {
       MAT_tpCondRet CondRet ;
 
@@ -478,14 +478,14 @@
             return MAT_CondRetErroEstrutura ;
          } /* if */
                
-         if ( getVizinho( pCorr, dir ) == NULL )
+         if ( GetVizinho( pCorr, Dir ) == NULL )
          {
             pNo = CriarNo( ValorParm ) ;
             if ( pNo == NULL )
             {
                return MAT_CondRetFaltouMemoria ;
             } /* if */
-            setNovoVizinho( pCorr , pNo , dir ) ;
+            SetNovoVizinho( pCorr , pNo , Dir ) ;
             pMatriz->pNoCorr = pNo ;
 
             return MAT_CondRetOK ;
@@ -498,7 +498,7 @@
    } /* Fim função: MAT Adicionar filho generico */
 
    
-   tpNoMatriz * getVizinho( tpNoMatriz * pNo , tpDirecao dir )
+   tpNoMatriz * GetVizinho( tpNoMatriz * pNo , tpDirecao dir )
    {
 		if ( dir == ESQ )
 			return pNo->pNoEsq;
@@ -509,7 +509,7 @@
 		return NULL;
    }
    
-   void setNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir )
+   void SetNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir )
    {
 	   pNoNovo->pNoPai = pNo;
 	   if ( dir == ESQ )
