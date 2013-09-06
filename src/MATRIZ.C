@@ -142,6 +142,14 @@
 
    } tpMatriz ;
 
+   typedef enum {
+
+         ESQ = 1 ,
+
+         DIR = 2
+
+   } tpDirecao;
+
 /***** Protótipos das funções encapuladas no módulo *****/
 
    static tpNoMatriz * CriarNo( char ValorParm ) ;
@@ -149,6 +157,12 @@
    static MAT_tpCondRet CriarNoRaiz( tpMatriz * pMatriz , char ValorParm ) ;
 
    static void DestroiMatriz( tpNoMatriz * pNo ) ;
+
+   tpNoMatriz * getVizinho( tpNoMatriz * pNo , tpDirecao dir );
+
+   void setNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir );
+
+   MAT_tpCondRet inserirGenerico( tpMatriz * pMatriz , char ValorParm , tpDirecao dir );
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -212,46 +226,7 @@
 
    MAT_tpCondRet MAT_InserirEsquerda( tpMatriz * pMatriz , char ValorParm )
    {
-
-      MAT_tpCondRet CondRet ;
-
-      tpNoMatriz * pCorr ;
-      tpNoMatriz * pNo ;
-
-      /* Tratar vazio, esquerda */
-
-         CondRet = CriarNoRaiz( pMatriz , ValorParm ) ;
-         if ( CondRet != MAT_CondRetNaoCriouRaiz )
-         {
-            return CondRet ;
-         } /* if */
-
-      /* Criar nó à esquerda de folha */
-
-         pCorr = pMatriz->pNoCorr ;
-         if ( pCorr == NULL )
-         {
-            return MAT_CondRetErroEstrutura ;
-         } /* if */
-               
-         if ( pCorr->pNoEsq == NULL )
-         {
-            pNo = CriarNo( ValorParm ) ;
-            if ( pNo == NULL )
-            {
-               return MAT_CondRetFaltouMemoria ;
-            } /* if */
-            pNo->pNoPai      = pCorr ;
-            pCorr->pNoEsq    = pNo ;
-            pMatriz->pNoCorr = pNo ;
-
-            return MAT_CondRetOK ;
-         } /* if */
-
-      /* Tratar não folha à esquerda */
-
-         return MAT_CondRetNaoEhFolha ;
-
+      return inserirGenerico(pMatriz, ValorParm, ESQ);
    } /* Fim função: MAT Adicionar filho à esquerda */
 
 /***************************************************************************
@@ -261,47 +236,10 @@
 
    MAT_tpCondRet MAT_InserirDireita( tpMatriz * pMatriz , char ValorParm )
    {
-
-      MAT_tpCondRet CondRet ;
-
-      tpNoMatriz * pCorr ;
-      tpNoMatriz * pNo ;
-
-      /* Tratar vazio, direita */
-
-         CondRet = CriarNoRaiz( pMatriz , ValorParm ) ;
-         if ( CondRet != MAT_CondRetNaoCriouRaiz )
-         {
-            return CondRet ;
-         } /* if */
-
-      /* Criar nó à direita de folha */
-
-         pCorr = pMatriz->pNoCorr ;
-         if ( pCorr == NULL )
-         {
-            return MAT_CondRetErroEstrutura ;
-         } /* if */
-
-         if ( pCorr->pNoDir == NULL )
-         {
-            pNo = CriarNo( ValorParm ) ;
-            if ( pNo == NULL )
-            {
-               return MAT_CondRetFaltouMemoria ;
-            } /* if */
-            pNo->pNoPai      = pCorr ;
-            pCorr->pNoDir    = pNo ;
-            pMatriz->pNoCorr = pNo ;
-
-            return MAT_CondRetOK ;
-         } /* if */
-
-      /* Tratar não folha à direita */
-
-         return MAT_CondRetNaoEhFolha ;
-
+	   return inserirGenerico(pMatriz, ValorParm, DIR);
    } /* Fim função: MAT Adicionar filho à direita */
+
+
 
 /***************************************************************************
 *
@@ -514,6 +452,72 @@
       free( pNo ) ;
 
    } /* Fim função: MAT Destruir a estrutura da árvore */
+   
+   
+   
+   MAT_tpCondRet inserirGenerico( tpMatriz * pMatriz , char ValorParm , tpDirecao dir )
+   {
+      MAT_tpCondRet CondRet ;
+
+      tpNoMatriz * pCorr ;
+      tpNoMatriz * pNo ;
+
+      /* Tratar vazio, esquerda */
+
+         CondRet = CriarNoRaiz( pMatriz , ValorParm ) ;
+         if ( CondRet != MAT_CondRetNaoCriouRaiz )
+         {
+            return CondRet ;
+         } /* if */
+
+      /* Criar nó à esquerda de folha */
+
+         pCorr = pMatriz->pNoCorr ;
+         if ( pCorr == NULL )
+         {
+            return MAT_CondRetErroEstrutura ;
+         } /* if */
+               
+         if ( getVizinho( pCorr, dir ) == NULL )
+         {
+            pNo = CriarNo( ValorParm ) ;
+            if ( pNo == NULL )
+            {
+               return MAT_CondRetFaltouMemoria ;
+            } /* if */
+            setNovoVizinho( pCorr , pNo , dir ) ;
+            pMatriz->pNoCorr = pNo ;
+
+            return MAT_CondRetOK ;
+         } /* if */
+
+      /* Tratar não folha à esquerda */
+
+         return MAT_CondRetNaoEhFolha ;
+
+   } /* Fim função: MAT Adicionar filho generico */
+
+   
+   tpNoMatriz * getVizinho( tpNoMatriz * pNo , tpDirecao dir )
+   {
+		if ( dir == ESQ )
+			return pNo->pNoEsq;
+
+		if ( dir== DIR )
+			return pNo->pNoDir;
+
+		return NULL;
+   }
+   
+   void setNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir )
+   {
+	   pNoNovo->pNoPai = pNo;
+	   if ( dir == ESQ )
+			pNo->pNoEsq = pNoNovo;
+
+	   if ( dir == DIR )
+			pNo->pNoDir = pNoNovo;
+   }
 
 /********** Fim do módulo de implementação: Módulo árvore **********/
 
