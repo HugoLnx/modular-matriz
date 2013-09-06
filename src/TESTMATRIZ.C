@@ -57,6 +57,7 @@
 /* Tabela dos nomes dos comandos de teste específicos */
 
 #define     CRIAR_MAT_CMD       "=criar"
+#define     INIT_MAT_CMD        "=init"
 #define     INS_DIR_CMD         "=insdir"
 #define     INS_ESQ_CMD         "=insesq"
 #define     IR_PAI_CMD          "=irpai"
@@ -95,6 +96,8 @@ static tpMatriz * pMatriz = NULL;
       char ValorEsperado = '?'  ;
       char ValorObtido   = '!'  ;
       char ValorDado     = '\0' ;
+	  int Linhas = 0 ;
+	  int Colunas = 0 ;
 
       int  NumLidos = -1 ;
 
@@ -258,6 +261,25 @@ static tpMatriz * pMatriz = NULL;
 									"Não é possível destruir uma matriz que não existe.");
 
          } /* fim ativa: Testar MAT Destruir árvore */
+
+		 
+      /* Testar MAT Inicializar Matriz */
+
+         else if ( strcmp( ComandoTeste , INIT_MAT_CMD ) == 0 )
+         {
+			NumLidos = LER_LerParametros( "iii" ,
+                               &Linhas, &Colunas, &CondRetEsperada ) ;
+            if ( NumLidos != 3 )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+            CondRetObtido = MAT_InicializarMatriz( pMatriz , Linhas, Colunas ) ;
+
+            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
+									"Erro ao inicializar matriz.");
+
+         } /* fim ativa: Testar MAT Inicializar matriz */
 
       return TST_CondRetNaoConhec ;
 

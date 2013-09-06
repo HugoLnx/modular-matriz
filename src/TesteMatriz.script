@@ -52,53 +52,15 @@
 =obter      CharErro   NaoRaiz  
 =recuperar
 
+== Verificar inicializar matriz inexistente
+=init 2 2 NaoMatriz
+
 == Criar árvore
 =criar      OK
 =irdir      NaoCorr
 
-== Inserir à direita
-=insdir     CharA   OK
-
-== Obter o valor inserido
-=obter      CharA   OK
-
-== Verificar controle de obter o valor inserido errado
-=obter      'x'   OK
-=recuperar
-
-== Ir para no pai, nao tem
-=irpai      EhRaiz
-  
-== Inserir à esquerda
-=insesq     CharB   OK
-
-== Obter o valor inserido
-=obter      CharB   OK
-
-== Ir para no pai, tem
-=irpai      OK
-=obter      CharA   OK
-
-== Inserir à direita
-=insdir     CharC   OK
-=obter      CharC   OK
-
-== Ir para no pai
-=irpai      OK
-=obter      CharA   OK
-
-== Ir para no pai
-=irpai      EhRaiz
-=obter      CharA   OK
-
-== Ir para no esquerda tem
-=iresq      OK
-=obter      CharB   OK
-
-== Ir para no direita tem
-=irpai      OK
-=irdir      OK
-=obter      CharC   OK
+== Inicializar matriz
+=init 2 2 OK
 
 == Destroi a matriz
 =destruir OK  

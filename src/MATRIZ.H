@@ -98,6 +98,8 @@ typedef struct tgMatriz tpMatriz;
 
    MAT_tpCondRet MAT_CriarMatriz( tpMatriz ** ppMatriz ) ;
 
+   MAT_tpCondRet MAT_InicializarMatriz( tpMatriz * pMatriz , int Linhas , int Colunas ) ;
+
 
 /***********************************************************************
 *

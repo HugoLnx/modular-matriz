@@ -213,6 +213,40 @@
 
    } /* Fim função: MAT Criar árvore */
 
+   MAT_tpCondRet MAT_InicializarMatriz(tpMatriz * pMatriz , int Linhas , int Colunas )
+   {
+	   int i;
+	   tpNoMatriz * pNoNovo;
+	   tpNoMatriz * pNoAnterior;
+	   MAT_tpCondRet Cond;
+
+	   if( pMatriz == NULL )
+	   {
+		   return MAT_CondRetMatrizNaoExiste;
+	   }
+
+	   Cond = CriarNoRaiz( pMatriz , NULL );
+	   if ( Cond != MAT_CondRetOK )
+	   {
+		   return Cond;
+	   }
+
+	   pNoAnterior = pMatriz->pNoRaiz;
+
+	   for( i = 1 ; i < Linhas ; i++ )
+	   {
+		   pNoNovo = CriarNo( NULL );
+		   if( pNoNovo == NULL )
+		   {
+			   return MAT_CondRetFaltouMemoria;
+		   }
+		   pNoNovo->pNorte = pNoAnterior;
+		   pNoAnterior->pSul = pNoNovo;
+	   }
+
+	   return MAT_CondRetOK;
+   }
+
 /***************************************************************************
 *
 *  Função: MAT Destruir árvore
@@ -391,8 +425,16 @@
       } /* if */
 
       pNo->pNoPai = NULL ;
-      pNo->pNoEsq = NULL ;
       pNo->pNoDir = NULL ;
+      pNo->pNoEsq = NULL ;
+      pNo->pNorte = NULL ;
+	  pNo->pSul = NULL ;
+	  pNo->pEste = NULL ;
+	  pNo->pOeste = NULL ;
+	  pNo->pNordeste = NULL ;
+	  pNo->pSudeste = NULL ;
+	  pNo->pSudoeste = NULL ;
+	  pNo->pNoroeste = NULL ;
       pNo->Valor  = ValorParm ;
       return pNo ;
 
