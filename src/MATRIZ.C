@@ -177,50 +177,200 @@
 
    void SetNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir );
 
+   MAT_tpCondRet AddColuna( tpMatriz * pMatriz );
+
+   void ApontarDeVoltaEmTodasAsDirecoes( tpNoMatriz * pNo ) ;
+
    MAT_tpCondRet InserirGenerico( tpMatriz * pMatriz , char ValorParm , tpDirecao dir );
    
    tpDirecao DirecaoReversa( tpDirecao dir );
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
-    MAT_tpCondRet MAT_TestarLinhasMatriz( tpMatriz * pMatriz , int Linhas )
+    MAT_tpCondRet MAT_TestarEstruturaMatriz( tpMatriz * pMatriz , int Linhas , int Colunas )
 	{
 		tpNoMatriz * pNo = pMatriz->pNoRaiz;
-		int i;
+		tpNoMatriz * pNoExtremidade;
+		int i , j;
+		int LinhasInternas = Linhas - 2;
+		int ColunasInternas = Colunas - 2;
 
-		// Testando navegacao da primeira linha
-		
-		// sentido norte
-		for( i = 1 ; i < Linhas ; i++ )
+		// Verificar extremidades
+		for( i = 0 ; i < Colunas ; i++)
 		{
-			pNo = pNo->pSul;
-			if( pNo == NULL )
+			if( pNo->pNorte != NULL )
+			{
+				return MAT_CondRetErroEstrutura;
+			}
+
+			if( i != Colunas - 1 ) // nao eh ultimo
+			{
+				if( pNo->pEste == NULL )
+				{
+					return MAT_CondRetNaoEhFolha;
+				}
+
+				pNo = pNo->pEste;
+			}
+			else if( pNo->pEste != NULL )
+			{
+				pNo = NULL;
+				return MAT_CondRetErroEstrutura;
+			}
+		}
+		
+		for( i = 0 ; i < Linhas ; i++)
+		{
+			if( pNo->pEste != NULL )
+			{
+				return MAT_CondRetErroEstrutura;
+			}
+
+			if( i != Linhas - 1 )
+			{
+				if( pNo->pSul == NULL )
+				{
+					return MAT_CondRetNaoEhFolha;
+				}
+
+				pNo = pNo->pSul;
+			}
+			else if( pNo->pSul != NULL )
+			{
+				return MAT_CondRetErroEstrutura;
+			}
+		}
+
+		
+		for( i = 0 ; i < Colunas ; i++)
+		{
+			if( pNo->pSul != NULL )
+			{
+				return MAT_CondRetErroEstrutura;
+			}
+
+			if( i != Colunas - 1 )  // nao eh ultimo
+			{
+				if( pNo->pOeste == NULL )
+				{
+					return MAT_CondRetNaoEhFolha;
+				}
+
+				pNo = pNo->pOeste;
+			}
+			else if( pNo->pOeste != NULL )
 			{
 				return MAT_CondRetErroEstrutura;
 			}
 		}
 		
-		// deve ter chegado ao final da linha
-		// logo nao deve ter elemento ao sul
-		if( pNo->pSul != NULL)
+		for( i = 0 ; i < Linhas ; i++)
 		{
-			return MAT_CondRetErroEstrutura;
-		}
+			if( pNo->pOeste != NULL )
+			{
+				return MAT_CondRetErroEstrutura;
+			}
 
-		// segue sentido sul
-		for( i = 1 ; i < Linhas ; i++ )
-		{
-			pNo = pNo->pNorte;
-			if( pNo == NULL )
+			if( i != Linhas - 1 )   // nao eh ultimo
+			{
+				if( pNo->pNorte == NULL )
+				{
+					return MAT_CondRetNaoEhFolha;
+				}
+
+				pNo = pNo->pNorte;
+			}
+			else if( pNo->pNorte != NULL )
 			{
 				return MAT_CondRetErroEstrutura;
 			}
 		}
-		// deve estar no primeiro elemento
-		// logo nao deve ter elemento ao norte
-		if( pNo->pNorte != NULL)
+
+		// Verificar referencias dos nos internos
+		pNoExtremidade = pMatriz->pNoRaiz->pSudeste;
+		for( i = 0 ; i < LinhasInternas ; i++)
 		{
-			return MAT_CondRetErroEstrutura;
+			pNo = pNoExtremidade;
+			for( j = 0 ; j < ColunasInternas ; j++ )
+			{
+				if( 
+					pNo->pNorte == NULL ||
+					pNo->pSul == NULL ||
+					pNo->pEste == NULL ||
+					pNo->pOeste == NULL ||
+					pNo->pNordeste == NULL ||
+					pNo->pSudeste == NULL ||
+					pNo->pSudoeste == NULL ||
+					pNo->pNoroeste == NULL
+				  )
+				{
+					return MAT_CondRetErroEstrutura;
+				}
+
+				if( j != ColunasInternas - 1 )  // nao eh ultimo
+				{
+					if( pNo->pSul == NULL )
+					{
+						return MAT_CondRetNaoEhFolha;
+					}
+
+					pNo = pNo->pSul;
+				}
+			}
+			pNoExtremidade = pNoExtremidade->pEste;
+			pNo = pNoExtremidade;
+		}
+
+		// Verificar todas as referencias para cada no
+		pNoExtremidade = pMatriz->pNoRaiz;
+		for( i = 0 ; i < Linhas ; i++)
+		{
+			pNo = pNoExtremidade;
+			for( j = 0 ; j < Colunas ; j++ )
+			{
+				if( pNo->pNorte != NULL && pNo->pNorte->pSul != pNo ) {
+					return MAT_CondRetErroEstrutura;
+				}
+				
+				if( pNo->pSul != NULL && pNo->pSul->pNorte != pNo ) {
+					return MAT_CondRetErroEstrutura;
+				}
+				
+				if( pNo->pEste != NULL && pNo->pEste->pOeste != pNo ) {
+					return MAT_CondRetErroEstrutura;
+				}
+				
+				if( pNo->pOeste != NULL && pNo->pOeste->pEste != pNo ) {
+					return MAT_CondRetErroEstrutura;
+				}
+
+				if( pNo->pNordeste != NULL && pNo->pNordeste->pSudoeste != pNo ) {
+					return MAT_CondRetErroEstrutura;
+				}
+				
+				if( pNo->pSudeste != NULL && pNo->pSudeste->pNoroeste != pNo ) {
+					return MAT_CondRetErroEstrutura;
+				}
+				
+				if( pNo->pSudoeste != NULL && pNo->pSudoeste->pNordeste != pNo ) {
+					return MAT_CondRetErroEstrutura;
+				}
+				
+				if( pNo->pNoroeste != NULL && pNo->pNoroeste->pSudeste != pNo ) {
+					return MAT_CondRetErroEstrutura;
+				}
+
+				if( j != Colunas - 1 )  // nao eh ultimo
+				{
+					if( pNo->pSul == NULL )
+					{
+						return MAT_CondRetNaoEhFolha;
+					}
+
+					pNo = pNo->pSul;
+				}
+			}
+			pNoExtremidade = pNoExtremidade->pEste;
 		}
 
 
@@ -277,7 +427,7 @@
 
 	   pNoAnterior = pMatriz->pNoRaiz;
 
-	   for( i = 1 ; i < Linhas ; i++ )
+	   for( i = 1 ; i < Linhas+1 ; i++ )
 	   {
 		   pNoNovo = CriarNo( NULL );
 		   if( pNoNovo == NULL )
@@ -287,8 +437,92 @@
 		   pNoNovo->pNorte = pNoAnterior;
 		   pNoAnterior->pSul = pNoNovo;
 	   }
+	   
+	   for ( i = 1 ; i < Colunas ; i++ )
+	   {
+		   AddColuna( pMatriz );
+	   }
 
 	   return MAT_CondRetOK;
+   }
+
+   MAT_tpCondRet AddColuna( tpMatriz * pMatriz )
+   {
+	   tpNoMatriz * pRaiz = pMatriz->pNoRaiz;
+	   tpNoMatriz * pNoNovo;
+	   tpNoMatriz * pNoExtremidade;
+
+	   pNoExtremidade = pMatriz->pNoRaiz;
+	   while( pNoExtremidade->pEste != NULL )
+	   {
+		   pNoExtremidade = pNoExtremidade->pEste;
+	   }
+
+	   while( pNoExtremidade != NULL )
+	   {
+		   pNoNovo = CriarNo( NULL );
+		   if( pNoNovo == NULL )
+		   {
+			   return MAT_CondRetFaltouMemoria;
+		   }
+
+
+		   pNoNovo->pOeste = pNoExtremidade;
+		   pNoNovo->pNoroeste = pNoExtremidade->pNorte;
+		   pNoNovo->pSudoeste = pNoExtremidade->pSul;
+		   pNoNovo->pNorte = pNoExtremidade->pNordeste;
+		   pNoNovo->pSul = pNoExtremidade->pSudeste;
+
+		   ApontarDeVoltaEmTodasAsDirecoes( pNoNovo );
+
+		   pNoExtremidade = pNoExtremidade->pSul;
+	   }
+
+	   return MAT_CondRetOK;
+   }
+
+   
+   void ApontarDeVoltaEmTodasAsDirecoes( tpNoMatriz * pNo )
+   {
+		if( pNo->pNorte != NULL )
+		{
+			pNo->pNorte->pSul= pNo;
+		}
+
+		if( pNo->pSul != NULL )
+		{
+			pNo->pSul->pNorte= pNo;
+		}
+		
+		if( pNo->pEste != NULL )
+		{
+			pNo->pEste->pOeste = pNo;
+		}
+		
+		if( pNo->pOeste != NULL )
+		{
+			pNo->pOeste->pEste= pNo;
+		}
+	   
+		if( pNo->pNordeste != NULL )
+		{
+			pNo->pNordeste->pSudoeste = pNo;
+		}
+		
+		if( pNo->pSudeste != NULL )
+		{
+			pNo->pSudeste->pNoroeste = pNo;
+		}
+		
+		if( pNo->pSudoeste != NULL )
+		{
+			pNo->pSudoeste->pNordeste = pNo;
+		}
+		
+		if( pNo->pNoroeste != NULL )
+		{
+			pNo->pNoroeste->pSudeste = pNo;
+		}
    }
 
 /***************************************************************************

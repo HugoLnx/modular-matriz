@@ -5,3 +5,4 @@ Escrever documentacao das funcoes novas
 Apagar ESQ e DIR do enum de Direção
 Encapsular teste se faltou memoria dentro do CriarNo e do CriarMatriz
 MAT_tpMatriz
+Mudar MAT_CondRetNaoEhFolha para MAT_CondRetNaoEhNo

@@ -63,7 +63,7 @@
 =init 2 2 OK
 
 == Verificar navegacao ate ultimo no da primeira coluna
-=linha 2 OK
+=validarEstrutura 2 2 OK
 
 == Destroi a matriz
 =destruir OK  

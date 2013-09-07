@@ -100,7 +100,7 @@ typedef struct tgNoMatriz tpNoMatriz;
 
    MAT_tpCondRet MAT_InicializarMatriz( tpMatriz * pMatriz , int Linhas , int Colunas ) ;
 
-   MAT_tpCondRet MAT_TestarLinhasMatriz( tpMatriz * pMatriz , int Linhas ) ;
+   MAT_tpCondRet MAT_TestarEstruturaMatriz( tpMatriz * pMatriz , int Linhas , int Colunas ) ;
 
 
 /***********************************************************************
