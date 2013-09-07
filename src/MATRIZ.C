@@ -4,15 +4,17 @@
 *  Arquivo gerado:              MATRIZ.C
 *  Letras identificadoras:      MAT
 *
-*  Nome da base de software:    Exemplo de teste automatizado
-*  Arquivo da base de software: D:\AUTOTEST\PROJETOS\SIMPLES.BSW
 *
 *  Projeto: Disciplinas INF 1628 / 1301
 *  Gestor:  DI/PUC-Rio
 *  Autores: avs - Arndt von Staa
+*           hg - Hugo Roque
+*           ?? = Nino Fabrizio
+*		    ?? = Robert Correa
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*       4.00   ???   ??/??/???? Adaptação do módulo para manipular matrizes
 *       3.00   avs   28/02/2003 Uniformização da interface das funções e
 *                               de todas as condições de retorno.
 *       2.00   avs   03/08/2002 Eliminação de código duplicado, reestruturação
@@ -41,77 +43,66 @@
 
    typedef struct tgNoMatriz {
 
-         struct tgNoMatriz * pNoPai ;
-               /* Ponteiro para pai
-               *
-               *$EED Assertivas estruturais
-               *   É NULL sse o nó é raiz
-               *   Se não for raiz, um de pNoEsq ou pNoDir de pNoPai do nó
-               *   corrente apontam para o nó corrente */
-
-         struct tgNoMatriz * pNoEsq ;
-               /* Ponteiro para filho à esquerda
-               *
-               *$EED Assertivas estruturais
-               *   se pNoEsq do nó X != NULL então pNoPai de pNoEsq aponta para o nó X */
-
-         struct tgNoMatriz * pNoDir ;
-               /* Ponteiro para filho à direita
-               *
-               *$EED Assertivas estruturais
-               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+         struct tgNoMatriz * pNoPai ; /* será apagado*/
+         struct tgNoMatriz * pNoEsq ; /* será apagado*/
+         struct tgNoMatriz * pNoDir ; /* será apagado*/
 
 
 		 struct tgNoMatriz * pNorte ;
-               /* Ponteiro para filho à esquerda
+               /* Ponteiro para nó adjacente ao norte
                *
                *$EED Assertivas estruturais
-               *   se pNoEsq do nó X != NULL então pNoPai de pNoEsq aponta para o nó X */
+               *   se é o nó X é a raiz, então pNorte = NULL
+			   *   se pNorte do nó X != NULL então pSul de pNorte aponta para nó X */
 
          struct tgNoMatriz * pSul ;
-               /* Ponteiro para filho à direita
+               /* Ponteiro para nó adjacente ao sul
                *
                *$EED Assertivas estruturais
-               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+			   *   se pSul do nó X != NULL então pNorte de pSul aponta para nó X */
 
 		 struct tgNoMatriz * pEste ;
-               /* Ponteiro para filho à direita
+               /* Ponteiro para nó adjacente à este
                *
                *$EED Assertivas estruturais
-               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+			   *   se pEste do nó X != NULL então pOeste de pEste aponta para nó X */
 
 		 struct tgNoMatriz * pOeste ;
-               /* Ponteiro para filho à direita
+               /* Ponteiro para nó adjacente à oeste
                *
                *$EED Assertivas estruturais
-               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+               *   se é o nó X é a raiz, então pOeste = NULL
+			   *   se pOeste do nó X != NULL então pEste de pOeste aponta para nó X */
 
 		 struct tgNoMatriz * pNordeste ;
-               /* Ponteiro para filho à direita
+               /* Ponteiro para nó adjacente à nordeste
                *
                *$EED Assertivas estruturais
-               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+               *   se é o nó X é a raiz, então pNordeste = NULL
+			   *   se pNordeste do nó X != NULL então pSudoeste de pNordeste aponta para nó X */
 
 
 		 struct tgNoMatriz * pSudeste ;
-               /* Ponteiro para filho à direita
+               /* Ponteiro para nó adjacente à sudeste
                *
                *$EED Assertivas estruturais
-               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+			   *   se pSudeste do nó X != NULL então pNoroeste de pSudeste aponta para nó X */
 
 
 		 struct tgNoMatriz * pNoroeste ;
-               /* Ponteiro para filho à direita
+               /* Ponteiro para nó adjacente à noroeste
                *
                *$EED Assertivas estruturais
-               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+               *   se é o nó X é a raiz, então pNoroeste = NULL
+			   *   se pNoroeste do nó X != NULL então pSudeste de pNoroeste aponta para nó X */
 
 
 		 struct tgNoMatriz * pSudoeste ;
-               /* Ponteiro para filho à direita
+               /* Ponteiro para nó adjacente à sudoeste
                *
                *$EED Assertivas estruturais
-               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+               *   se é o nó X é a raiz, então pSudoeste = NULL
+			   *   se pSudoeste do nó X != NULL então pNordeste de pSudoeste aponta para nó X */
 
 
          char Valor ;
@@ -125,7 +116,7 @@
 *
 *
 *  $ED Descrição do tipo
-*     A cabe‡a da matriz é o ponto de acesso para uma determinada matriz.
+*     A cabeça da matriz é o ponto de acesso para uma determinada matriz.
 *     Por intermédio da referência para o nó corrente e do ponteiro
 *     pai pode-se navegar a matriz sem necessitar de uma pilha.
 *     Pode-se, inclusive, operar com a matriz em forma de co-rotina.
@@ -142,6 +133,12 @@
 
    } MAT_tpMatriz ;
 
+/***********************************************************************
+*
+*  $TC Tipo de dados: MAT Direções que o nó pode ter ponteiros para outro nó.
+*
+*
+***********************************************************************/
    typedef enum {
 	     NORTE = 1 ,
 		 
@@ -214,6 +211,11 @@
 
    } /* Fim função: MAT Criar matriz */
 
+   /***************************************************************************
+*
+*  Função: MAT Inicializar matriz
+*  ****/
+
    MAT_tpCondRet MAT_InicializarMatriz(MAT_tpMatriz * pMatriz , int Linhas , int Colunas )
    {
 	   int i ;
@@ -244,7 +246,7 @@
 	   }
 
 	   return MAT_CondRetOK ;
-   }
+   }  /* Fim função: MAT Inicializar matriz */
 
 
 /***************************************************************************
@@ -491,6 +493,15 @@
 
    } /* Fim função: MAT Destruir a estrutura da matriz */
    
+
+/***********************************************************************
+*
+*  $FC Função: MAT Recupera o ponteiro para um nó adjacente
+*
+*  Exemplo de uso: getVizinho(noRaiz, ESTE)
+*
+***********************************************************************/
+
    tpNoMatriz * GetVizinho( tpNoMatriz * pNo , tpDirecao dir )
    {
 		switch( dir )
@@ -503,8 +514,17 @@
 		case SUDOESTE: return pNo->pSudoeste ;
 		case NOROESTE: return pNo->pNoroeste ;
 		}
-   }
+   }  /* Fim função: MAT Recupera o ponteiro para um nó adjacente*/
    
+   
+/***********************************************************************
+*
+*  $FC Função: MAT Troca o ponteiro de um nó adjacente.
+*
+*  Exemplo de uso: SetNovoVizinho(noRaiz, pNoNovo, ESTE)
+*
+***********************************************************************/
+
    void SetNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir )
    {
 	   switch( dir )
@@ -517,7 +537,15 @@
 		case SUDOESTE: pNo->pSudoeste = pNoNovo ; break ;
 		case NOROESTE: pNo->pNoroeste = pNoNovo ; break ;
 		}
-   }
+   }  /* Fim função: MAT Troca o ponteiro de um nó adjacente */
+
+/***********************************************************************
+*
+*  $FC Função: MAT Descobre a direção oposta.
+*
+*  Exemplo de uso: DirecaoReversa(ESTE) => OESTE
+*
+***********************************************************************/
 
    tpDirecao DirecaoReversa( tpDirecao dir )
    {
@@ -531,7 +559,23 @@
 			case SUDOESTE: return NORDESTE ;
 			case NOROESTE: return SUDESTE ;
 	   }
-   }
+   }  /* Fim função: MAT Descobre a direção oposta */
+
+
+/***********************************************************************
+*
+*  $FC Função: MAT Constroi a primeira coluna da matriz.
+*  
+*  $ED Descrição da função
+*  Essa função é chamada no momento de inicialização da matriz para
+*  criar a primeira coluna com o número de linhas correto e referenciando
+*  todos os nós adjacentes nas direções norte e sul
+*
+*  $EAE Assertivas de entradas esperadas
+*     - pNoMatriz deve ser a raiz.
+*     - pNoMatriz nao deve apontar para outro nó.
+*
+***********************************************************************/
 
    MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoRaiz , int QntLinhas )
    {
@@ -553,8 +597,20 @@
 	   }
 	   
 	   return MAT_CondRetOK ;
-   }
+   }  /* Fim função: MAT Construi a primeira coluna da matriz */
 
+/***********************************************************************
+*
+*  $FC Função: MAT Adiciona coluna.
+*  
+*  $ED Descrição da função
+*  Adiciona mais uma coluna à matriz, mantendo o número de linhas e
+*  referenciando os nós adjacentes em todas as 8 direções.
+*
+*  $EAE Assertivas de entradas esperadas
+*     - pMatriz deve ter raiz.
+*
+***********************************************************************/
    MAT_tpCondRet AddColuna( MAT_tpMatriz * pMatriz )
    {
 	   tpNoMatriz * pRaiz = pMatriz->pNoRaiz ;
@@ -588,8 +644,20 @@
 	   }
 
 	   return MAT_CondRetOK ;
-   }
+   }  /* Fim função: MAT Adiciona Coluna */
 
+/***********************************************************************
+*
+*  $FC Função: MAT Apontar de volta em todas as direções.
+*  
+*  $ED Descrição da função
+*  A função faz com que os adjacentes de um nó referenciem à ele.
+*  
+*
+*  $EAE Assertivas de entradas esperadas.
+*     - pNo não pode ser nulo
+*
+***********************************************************************/
    
    void ApontarDeVoltaEmTodasAsDirecoes( tpNoMatriz * pNo )
    {
@@ -632,7 +700,7 @@
 		{
 			pNo->pNoroeste->pSudeste = pNo ;
 		}
-   }
+   }  /* Fim função: MAT Apontar de volta em todas as direções */
 
 
 /********** Fim do módulo de implementação: Módulo matriz **********/

@@ -7,15 +7,16 @@
 *  Arquivo gerado:              MATRIZ.H
 *  Letras identificadoras:      MAT
 *
-*  Nome da base de software:    Exemplo de teste automatizado
-*  Arquivo da base de software: D:\AUTOTEST\PROJETOS\SIMPLES.BSW
-*
 *  Projeto: Disciplinas INF 1628 / 1301
 *  Gestor:  DI/PUC-Rio
 *  Autores: avs - Arndt von Staa
+*           hg - Hugo Roque
+*           ?? = Nino Fabrizio
+*		    ?? = Robert Correa
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*       4.00   
 *       3.00   avs   28/02/2003 Uniformização da interface das funções e
 *                               de todas as condições de retorno.
 *       2.00   avs   03/08/2002 Eliminação de código duplicado, reestruturação
@@ -23,10 +24,11 @@
 *
 *  $ED Descrição do módulo
 *     Este módulo implementa um conjunto simples de funções para criar e
-*     explorar matrizs binárias.
+*     explorar matrizes.
 *     A matriz possui uma cabeça que contém uma referência para a raíz da
 *     matriz e outra para um nó corrente da matriz.
-*     A cada momento o módulo admite no máximo uma única matriz.
+*     O modulo permite a manipulação de múltiplas matrizes, porém as funções
+*     só manipulam uma matriz de cada vez.
 *     Ao iniciar a execução do programa não existe matriz.
 *     A matriz poderá estar vazia. Neste caso a raiz e o nó corrente
 *     serão nulos, embora a cabeça esteja definida.
@@ -98,10 +100,28 @@ typedef struct tgNoMatriz tpNoMatriz ;
 
    MAT_tpCondRet MAT_CriarMatriz( MAT_tpMatriz ** ppMatriz ) ;
 
+
+
+/***********************************************************************
+*
+*  $FC Função: MAT Inicializar a matriz
+*
+*  $EP Parâmetros
+*     $P pMatriz - matriz que será inicializada.
+*                    Este parâmetro é passado por referência.
+*     $P Linhas - quantidade de linhas que a matriz terá.
+*     $P Colunas - quantidade de colunas que a matriz terá.
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetFaltouMemoria
+*     MAT_CondRetJaFoiInicializada (Pensar se é a melhor implementação)
+*
+***********************************************************************/
+
+
    MAT_tpCondRet MAT_InicializarMatriz( MAT_tpMatriz * pMatriz , int Linhas , int Colunas ) ;
-
-   MAT_tpCondRet MAT_TestarEstruturaMatriz( MAT_tpMatriz * pMatriz , int Linhas , int Colunas ) ;
-
 
 /***********************************************************************
 *
@@ -111,12 +131,18 @@ typedef struct tgNoMatriz tpNoMatriz ;
 *     Destrói o corpo e a cabeça da matriz, anulando a matriz corrente.
 *     Faz nada caso a matriz corrente não exista.
 *
+*  $EP Parâmetros
+*     $P ppMatriz - é o ponteiro para a matriz que será destruida.
+*                    Este parâmetro é passado por referência.
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*
 ***********************************************************************/
 
    MAT_tpCondRet MAT_DestruirMatriz( MAT_tpMatriz ** ppMatriz ) ;
 
-
- ;
 
 
 /***********************************************************************
@@ -147,6 +173,7 @@ typedef struct tgNoMatriz tpNoMatriz ;
 ***********************************************************************/
 
    MAT_tpCondRet MAT_IrNoEsquerda( MAT_tpMatriz * pMatriz ) ;
+
 
 
 /***********************************************************************
@@ -180,6 +207,9 @@ typedef struct tgNoMatriz tpNoMatriz ;
 ***********************************************************************/
 
    MAT_tpCondRet MAT_ObterValorCorr( MAT_tpMatriz * pMatriz , char * ValorParm ) ;
+
+   
+   MAT_tpCondRet MAT_TestarEstruturaMatriz( MAT_tpMatriz * pMatriz , int Linhas , int Colunas ) ;
 
 #undef MATRIZ_EXT
 
