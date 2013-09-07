@@ -252,85 +252,6 @@
 	   return MAT_CondRetOK;
    }
 
-   MAT_tpCondRet AddColuna( tpMatriz * pMatriz )
-   {
-	   tpNoMatriz * pRaiz = pMatriz->pNoRaiz;
-	   tpNoMatriz * pNoNovo;
-	   tpNoMatriz * pNoExtremidade;
-
-	   pNoExtremidade = pMatriz->pNoRaiz;
-	   while( pNoExtremidade->pEste != NULL )
-	   {
-		   pNoExtremidade = pNoExtremidade->pEste;
-	   }
-
-	   while( pNoExtremidade != NULL )
-	   {
-		   pNoNovo = CriarNo( NULL );
-		   if( pNoNovo == NULL )
-		   {
-			   return MAT_CondRetFaltouMemoria;
-		   }
-
-
-		   pNoNovo->pOeste = pNoExtremidade;
-		   pNoNovo->pNoroeste = pNoExtremidade->pNorte;
-		   pNoNovo->pSudoeste = pNoExtremidade->pSul;
-		   pNoNovo->pNorte = pNoExtremidade->pNordeste;
-		   pNoNovo->pSul = pNoExtremidade->pSudeste;
-
-		   ApontarDeVoltaEmTodasAsDirecoes( pNoNovo );
-
-		   pNoExtremidade = pNoExtremidade->pSul;
-	   }
-
-	   return MAT_CondRetOK;
-   }
-
-   
-   void ApontarDeVoltaEmTodasAsDirecoes( tpNoMatriz * pNo )
-   {
-		if( pNo->pNorte != NULL )
-		{
-			pNo->pNorte->pSul= pNo;
-		}
-
-		if( pNo->pSul != NULL )
-		{
-			pNo->pSul->pNorte= pNo;
-		}
-		
-		if( pNo->pEste != NULL )
-		{
-			pNo->pEste->pOeste = pNo;
-		}
-		
-		if( pNo->pOeste != NULL )
-		{
-			pNo->pOeste->pEste= pNo;
-		}
-	   
-		if( pNo->pNordeste != NULL )
-		{
-			pNo->pNordeste->pSudoeste = pNo;
-		}
-		
-		if( pNo->pSudeste != NULL )
-		{
-			pNo->pSudeste->pNoroeste = pNo;
-		}
-		
-		if( pNo->pSudoeste != NULL )
-		{
-			pNo->pSudoeste->pNordeste = pNo;
-		}
-		
-		if( pNo->pNoroeste != NULL )
-		{
-			pNo->pNoroeste->pSudeste = pNo;
-		}
-   }
-
 /***************************************************************************
 *
 *  Função: MAT Destruir árvore
@@ -616,6 +537,86 @@
 			case NOROESTE: return SUDESTE;
 	   }
    }
+
+   MAT_tpCondRet AddColuna( tpMatriz * pMatriz )
+   {
+	   tpNoMatriz * pRaiz = pMatriz->pNoRaiz;
+	   tpNoMatriz * pNoNovo;
+	   tpNoMatriz * pNoExtremidade;
+
+	   pNoExtremidade = pMatriz->pNoRaiz;
+	   while( pNoExtremidade->pEste != NULL )
+	   {
+		   pNoExtremidade = pNoExtremidade->pEste;
+	   }
+
+	   while( pNoExtremidade != NULL )
+	   {
+		   pNoNovo = CriarNo( NULL );
+		   if( pNoNovo == NULL )
+		   {
+			   return MAT_CondRetFaltouMemoria;
+		   }
+
+
+		   pNoNovo->pOeste = pNoExtremidade;
+		   pNoNovo->pNoroeste = pNoExtremidade->pNorte;
+		   pNoNovo->pSudoeste = pNoExtremidade->pSul;
+		   pNoNovo->pNorte = pNoExtremidade->pNordeste;
+		   pNoNovo->pSul = pNoExtremidade->pSudeste;
+
+		   ApontarDeVoltaEmTodasAsDirecoes( pNoNovo );
+
+		   pNoExtremidade = pNoExtremidade->pSul;
+	   }
+
+	   return MAT_CondRetOK;
+   }
+
+   
+   void ApontarDeVoltaEmTodasAsDirecoes( tpNoMatriz * pNo )
+   {
+		if( pNo->pNorte != NULL )
+		{
+			pNo->pNorte->pSul= pNo;
+		}
+
+		if( pNo->pSul != NULL )
+		{
+			pNo->pSul->pNorte= pNo;
+		}
+		
+		if( pNo->pEste != NULL )
+		{
+			pNo->pEste->pOeste = pNo;
+		}
+		
+		if( pNo->pOeste != NULL )
+		{
+			pNo->pOeste->pEste= pNo;
+		}
+	   
+		if( pNo->pNordeste != NULL )
+		{
+			pNo->pNordeste->pSudoeste = pNo;
+		}
+		
+		if( pNo->pSudeste != NULL )
+		{
+			pNo->pSudeste->pNoroeste = pNo;
+		}
+		
+		if( pNo->pSudoeste != NULL )
+		{
+			pNo->pSudoeste->pNordeste = pNo;
+		}
+		
+		if( pNo->pNoroeste != NULL )
+		{
+			pNo->pNoroeste->pSudeste = pNo;
+		}
+   }
+
 
 /********** Fim do módulo de implementação: Módulo árvore **********/
 
