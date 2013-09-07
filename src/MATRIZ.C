@@ -62,52 +62,52 @@
                *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
 
 
-		 struct tgNoMatriz * pNorte;
+		 struct tgNoMatriz * pNorte ;
                /* Ponteiro para filho à esquerda
                *
                *$EED Assertivas estruturais
                *   se pNoEsq do nó X != NULL então pNoPai de pNoEsq aponta para o nó X */
 
-         struct tgNoMatriz * pSul;
+         struct tgNoMatriz * pSul ;
                /* Ponteiro para filho à direita
                *
                *$EED Assertivas estruturais
                *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
 
-		 struct tgNoMatriz * pEste;
+		 struct tgNoMatriz * pEste ;
                /* Ponteiro para filho à direita
                *
                *$EED Assertivas estruturais
                *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
 
-		 struct tgNoMatriz * pOeste;
+		 struct tgNoMatriz * pOeste ;
                /* Ponteiro para filho à direita
                *
                *$EED Assertivas estruturais
                *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
 
-		 struct tgNoMatriz * pNordeste;
-               /* Ponteiro para filho à direita
-               *
-               *$EED Assertivas estruturais
-               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
-
-
-		 struct tgNoMatriz * pSudeste;
+		 struct tgNoMatriz * pNordeste ;
                /* Ponteiro para filho à direita
                *
                *$EED Assertivas estruturais
                *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
 
 
-		 struct tgNoMatriz * pNoroeste;
+		 struct tgNoMatriz * pSudeste ;
                /* Ponteiro para filho à direita
                *
                *$EED Assertivas estruturais
                *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
 
 
-		 struct tgNoMatriz * pSudoeste;
+		 struct tgNoMatriz * pNoroeste ;
+               /* Ponteiro para filho à direita
+               *
+               *$EED Assertivas estruturais
+               *   se pNoDir do nó X != NULL então pNoPai de pNoDir aponta para o nó X */
+
+
+		 struct tgNoMatriz * pSudoeste ;
                /* Ponteiro para filho à direita
                *
                *$EED Assertivas estruturais
@@ -159,7 +159,7 @@
 
 		 NOROESTE = 8
 
-   } tpDirecao;
+   } tpDirecao ;
 
 /***** Protótipos das funções encapuladas no módulo *****/
 
@@ -169,17 +169,17 @@
 
    static void DestroiMatriz( tpNoMatriz * pNo ) ;
 
-   tpNoMatriz * GetVizinho( tpNoMatriz * pNo , tpDirecao dir );
+   tpNoMatriz * GetVizinho( tpNoMatriz * pNo , tpDirecao dir ) ;
 
-   void SetNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir );
+   void SetNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir ) ;
 
    MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoRaiz , int QntLinhas ) ;
 
-   MAT_tpCondRet AddColuna( tpMatriz * pMatriz );
+   MAT_tpCondRet AddColuna( tpMatriz * pMatriz ) ;
 
    void ApontarDeVoltaEmTodasAsDirecoes( tpNoMatriz * pNo ) ;
    
-   tpDirecao DirecaoReversa( tpDirecao dir );
+   tpDirecao DirecaoReversa( tpDirecao dir ) ;
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -191,7 +191,7 @@
 
    MAT_tpCondRet MAT_CriarMatriz( tpMatriz ** ppMatriz )
    {
-	  tpMatriz * pMatriz;
+	  tpMatriz * pMatriz ;
 
       if ( ppMatriz != NULL && *ppMatriz != NULL )
       {
@@ -208,7 +208,7 @@
       pMatriz->pNoRaiz = NULL ;
       pMatriz->pNoCorr = NULL ;
 
-	  *ppMatriz = pMatriz;
+	  *ppMatriz = pMatriz ;
 
       return MAT_CondRetOK ;
 
@@ -216,34 +216,34 @@
 
    MAT_tpCondRet MAT_InicializarMatriz(tpMatriz * pMatriz , int Linhas , int Colunas )
    {
-	   int i;
-	   tpNoMatriz * pNoNovo;
-	   tpNoMatriz * pNoAnterior;
-	   MAT_tpCondRet Cond;
+	   int i ;
+	   tpNoMatriz * pNoNovo ;
+	   tpNoMatriz * pNoAnterior ;
+	   MAT_tpCondRet Cond ;
 
 	   if( pMatriz == NULL )
 	   {
-		   return MAT_CondRetMatrizNaoExiste;
+		   return MAT_CondRetMatrizNaoExiste ;
 	   }
 
-	   Cond = CriarNoRaiz( pMatriz , NULL );
+	   Cond = CriarNoRaiz( pMatriz , NULL ) ;
 	   if ( Cond != MAT_CondRetOK )
 	   {
-		   return Cond;
+		   return Cond ;
 	   }
 
 	   Cond = ConstruirPrimeiraColuna( pMatriz->pNoRaiz , Linhas) ;
 	   if ( Cond != MAT_CondRetOK )
 	   {
-		   return Cond;
+		   return Cond ;
 	   }
 
 	   for ( i = 0 ; i < Colunas - 1 ; i++ )
 	   {
-		   AddColuna( pMatriz );
+		   AddColuna( pMatriz ) ;
 	   }
 
-	   return MAT_CondRetOK;
+	   return MAT_CondRetOK ;
    }
 
 
@@ -254,20 +254,20 @@
 
    MAT_tpCondRet MAT_DestruirMatriz( tpMatriz ** ppMatriz )
    {
-	  tpMatriz * pMatriz;
+	  tpMatriz * pMatriz ;
 
       if ( ppMatriz != NULL && *ppMatriz != NULL )
       {
-		 pMatriz = *ppMatriz;
+		 pMatriz = *ppMatriz ;
          if ( pMatriz->pNoRaiz != NULL )
          {
             DestroiMatriz( pMatriz->pNoRaiz ) ;
          } /* if */
          free( pMatriz ) ;
          *ppMatriz = NULL ;
-		 return MAT_CondRetOK;
+		 return MAT_CondRetOK ;
       } /* if */
-	  return MAT_CondRetMatrizNaoExiste;
+	  return MAT_CondRetMatrizNaoExiste ;
    } /* Fim função: MAT Destruir árvore */
 
 
@@ -495,13 +495,13 @@
    {
 		switch( dir )
 		{
-		case NORTE:    return pNo->pNorte;
-		case SUL:      return pNo->pSul;
-		case ESTE:     return pNo->pEste;
-		case NORDESTE: return pNo->pNordeste;
-		case SUDESTE:  return pNo->pSudeste;
-		case SUDOESTE: return pNo->pSudoeste;
-		case NOROESTE: return pNo->pNoroeste;
+		case NORTE:    return pNo->pNorte ;
+		case SUL:      return pNo->pSul ;
+		case ESTE:     return pNo->pEste ;
+		case NORDESTE: return pNo->pNordeste ;
+		case SUDESTE:  return pNo->pSudeste ;
+		case SUDOESTE: return pNo->pSudoeste ;
+		case NOROESTE: return pNo->pNoroeste ;
 		}
    }
    
@@ -523,13 +523,13 @@
    {
 	   switch( dir )
 	   {
-			case NORTE: return SUL;
-			case SUL: return NORTE;
-			case ESTE: return OESTE;
-			case NORDESTE: return SUDOESTE;
-			case SUDESTE: return NOROESTE;
-			case SUDOESTE: return NORDESTE;
-			case NOROESTE: return SUDESTE;
+			case NORTE: return SUL ;
+			case SUL: return NORTE ;
+			case ESTE: return OESTE ;
+			case NORDESTE: return SUDOESTE ;
+			case SUDESTE: return NOROESTE ;
+			case SUDOESTE: return NORDESTE ;
+			case NOROESTE: return SUDESTE ;
 	   }
    }
 
@@ -537,57 +537,57 @@
    {
 	   int i ;
 	   tpNoMatriz * pNoNovo ;
-	   tpNoMatriz * pNoAnterior;
+	   tpNoMatriz * pNoAnterior ;
 	   
-	   pNoAnterior = pNoRaiz;
+	   pNoAnterior = pNoRaiz ;
 	   for( i = 0 ; i < QntLinhas - 1 ; i++ )
 	   {
-		   pNoNovo = CriarNo( NULL );
+		   pNoNovo = CriarNo( NULL ) ;
 		   if( pNoNovo == NULL )
 		   {
-			   return MAT_CondRetFaltouMemoria;
+			   return MAT_CondRetFaltouMemoria ;
 		   }
-		   pNoNovo->pNorte = pNoAnterior;
-		   pNoAnterior->pSul = pNoNovo;
-		   pNoAnterior = pNoNovo;
+		   pNoNovo->pNorte = pNoAnterior ;
+		   pNoAnterior->pSul = pNoNovo ;
+		   pNoAnterior = pNoNovo ;
 	   }
 	   
-	   return MAT_CondRetOK;
+	   return MAT_CondRetOK ;
    }
 
    MAT_tpCondRet AddColuna( tpMatriz * pMatriz )
    {
-	   tpNoMatriz * pRaiz = pMatriz->pNoRaiz;
-	   tpNoMatriz * pNoNovo;
-	   tpNoMatriz * pNoExtremidade;
+	   tpNoMatriz * pRaiz = pMatriz->pNoRaiz ;
+	   tpNoMatriz * pNoNovo ;
+	   tpNoMatriz * pNoExtremidade ;
 
-	   pNoExtremidade = pMatriz->pNoRaiz;
+	   pNoExtremidade = pMatriz->pNoRaiz ;
 	   while( pNoExtremidade->pEste != NULL )
 	   {
-		   pNoExtremidade = pNoExtremidade->pEste;
+		   pNoExtremidade = pNoExtremidade->pEste ;
 	   }
 
 	   while( pNoExtremidade != NULL )
 	   {
-		   pNoNovo = CriarNo( NULL );
+		   pNoNovo = CriarNo( NULL ) ;
 		   if( pNoNovo == NULL )
 		   {
-			   return MAT_CondRetFaltouMemoria;
+			   return MAT_CondRetFaltouMemoria ;
 		   }
 
 
-		   pNoNovo->pOeste = pNoExtremidade;
-		   pNoNovo->pNoroeste = pNoExtremidade->pNorte;
-		   pNoNovo->pSudoeste = pNoExtremidade->pSul;
-		   pNoNovo->pNorte = pNoExtremidade->pNordeste;
-		   pNoNovo->pSul = pNoExtremidade->pSudeste;
+		   pNoNovo->pOeste = pNoExtremidade ;
+		   pNoNovo->pNoroeste = pNoExtremidade->pNorte ;
+		   pNoNovo->pSudoeste = pNoExtremidade->pSul ;
+		   pNoNovo->pNorte = pNoExtremidade->pNordeste ;
+		   pNoNovo->pSul = pNoExtremidade->pSudeste ;
 
-		   ApontarDeVoltaEmTodasAsDirecoes( pNoNovo );
+		   ApontarDeVoltaEmTodasAsDirecoes( pNoNovo ) ;
 
-		   pNoExtremidade = pNoExtremidade->pSul;
+		   pNoExtremidade = pNoExtremidade->pSul ;
 	   }
 
-	   return MAT_CondRetOK;
+	   return MAT_CondRetOK ;
    }
 
    
@@ -595,42 +595,42 @@
    {
 		if( pNo->pNorte != NULL )
 		{
-			pNo->pNorte->pSul= pNo;
+			pNo->pNorte->pSul= pNo ;
 		}
 
 		if( pNo->pSul != NULL )
 		{
-			pNo->pSul->pNorte= pNo;
+			pNo->pSul->pNorte= pNo ;
 		}
 		
 		if( pNo->pEste != NULL )
 		{
-			pNo->pEste->pOeste = pNo;
+			pNo->pEste->pOeste = pNo ;
 		}
 		
 		if( pNo->pOeste != NULL )
 		{
-			pNo->pOeste->pEste= pNo;
+			pNo->pOeste->pEste= pNo ;
 		}
 	   
 		if( pNo->pNordeste != NULL )
 		{
-			pNo->pNordeste->pSudoeste = pNo;
+			pNo->pNordeste->pSudoeste = pNo ;
 		}
 		
 		if( pNo->pSudeste != NULL )
 		{
-			pNo->pSudeste->pNoroeste = pNo;
+			pNo->pSudeste->pNoroeste = pNo ;
 		}
 		
 		if( pNo->pSudoeste != NULL )
 		{
-			pNo->pSudoeste->pNordeste = pNo;
+			pNo->pSudoeste->pNordeste = pNo ;
 		}
 		
 		if( pNo->pNoroeste != NULL )
 		{
-			pNo->pNoroeste->pSudeste = pNo;
+			pNo->pNoroeste->pSudeste = pNo ;
 		}
    }
 
@@ -641,34 +641,34 @@
    // Função temporária, não mexam, depois vou converter para um script de teste (Hugo)
     MAT_tpCondRet MAT_TestarEstruturaMatriz( tpMatriz * pMatriz , int Linhas , int Colunas )
 	{
-		tpNoMatriz * pNo = pMatriz->pNoRaiz;
-		tpNoMatriz * pNoExtremidade;
-		int i , j;
-		int LinhasInternas = Linhas - 2;
-		int ColunasInternas = Colunas - 2;
+		tpNoMatriz * pNo = pMatriz->pNoRaiz ;
+		tpNoMatriz * pNoExtremidade ;
+		int i , j ;
+		int LinhasInternas = Linhas - 2 ;
+		int ColunasInternas = Colunas - 2 ;
 
 		// Verificar extremidades
 		for( i = 0 ; i < Colunas ; i++)
 		{
 			if( pNo->pNorte != NULL )
 			{
-				return MAT_CondRetErroEstrutura;
+				return MAT_CondRetErroEstrutura ;
 			}
 
 			if( i != Colunas - 1 ) // nao eh ultimo
 			{
 				if( pNo->pEste == NULL )
 				{
-					return MAT_CondRetNaoEhFolha;
+					return MAT_CondRetNaoEhFolha ;
 				}
 
-				pNo = pNo->pEste;
+				pNo = pNo->pEste ;
 			}
 		}
 
 		if( pNo->pEste != NULL )
 		{
-			return MAT_CondRetErroEstrutura;
+			return MAT_CondRetErroEstrutura ;
 		}
 		
 
@@ -676,23 +676,23 @@
 		{
 			if( pNo->pEste != NULL )
 			{
-				return MAT_CondRetErroEstrutura;
+				return MAT_CondRetErroEstrutura ;
 			}
 
 			if( i != Linhas - 1 )
 			{
 				if( pNo->pSul == NULL )
 				{
-					return MAT_CondRetNaoEhFolha;
+					return MAT_CondRetNaoEhFolha ;
 				}
 
-				pNo = pNo->pSul;
+				pNo = pNo->pSul ;
 			}
 		}
 
 		if( pNo->pSul != NULL )
 		{
-			return MAT_CondRetErroEstrutura;
+			return MAT_CondRetErroEstrutura ;
 		}
 
 		
@@ -700,52 +700,52 @@
 		{
 			if( pNo->pSul != NULL )
 			{
-				return MAT_CondRetErroEstrutura;
+				return MAT_CondRetErroEstrutura ;
 			}
 
 			if( i != Colunas - 1 )  // nao eh ultimo
 			{
 				if( pNo->pOeste == NULL )
 				{
-					return MAT_CondRetNaoEhFolha;
+					return MAT_CondRetNaoEhFolha ;
 				}
 
-				pNo = pNo->pOeste;
+				pNo = pNo->pOeste ;
 			}
 		}
 
 		if( pNo->pOeste != NULL )
 		{
-			return MAT_CondRetErroEstrutura;
+			return MAT_CondRetErroEstrutura ;
 		}
 		
 		for( i = 0 ; i < Linhas ; i++)
 		{
 			if( pNo->pOeste != NULL )
 			{
-				return MAT_CondRetErroEstrutura;
+				return MAT_CondRetErroEstrutura ;
 			}
 
 			if( i != Linhas - 1 )   // nao eh ultimo
 			{
 				if( pNo->pNorte == NULL )
 				{
-					return MAT_CondRetNaoEhFolha;
+					return MAT_CondRetNaoEhFolha ;
 				}
 
-				pNo = pNo->pNorte;
+				pNo = pNo->pNorte ;
 			}
 		}
 		if( pNo->pNorte != NULL )
 		{
-			return MAT_CondRetErroEstrutura;
+			return MAT_CondRetErroEstrutura ;
 		}
 
 		// Verificar referencias dos nós internos
-		pNoExtremidade = pMatriz->pNoRaiz->pSudeste;
+		pNoExtremidade = pMatriz->pNoRaiz->pSudeste ;
 		for( i = 0 ; i < LinhasInternas ; i++)
 		{
-			pNo = pNoExtremidade;
+			pNo = pNoExtremidade ;
 			for( j = 0 ; j < ColunasInternas ; j++ )
 			{
 				if( 
@@ -759,75 +759,75 @@
 					pNo->pNoroeste == NULL
 				  )
 				{
-					return MAT_CondRetErroEstrutura;
+					return MAT_CondRetErroEstrutura ;
 				}
 
 				if( j != ColunasInternas - 1 )  // nao eh ultimo
 				{
 					if( pNo->pSul == NULL )
 					{
-						return MAT_CondRetNaoEhFolha;
+						return MAT_CondRetNaoEhFolha ;
 					}
 
-					pNo = pNo->pSul;
+					pNo = pNo->pSul ;
 				}
 			}
-			pNoExtremidade = pNoExtremidade->pEste;
-			pNo = pNoExtremidade;
+			pNoExtremidade = pNoExtremidade->pEste ;
+			pNo = pNoExtremidade ;
 		}
 
 		// Verificar todas as referencias para cada no
-		pNoExtremidade = pMatriz->pNoRaiz;
+		pNoExtremidade = pMatriz->pNoRaiz ;
 		for( i = 0 ; i < Linhas ; i++)
 		{
-			pNo = pNoExtremidade;
+			pNo = pNoExtremidade ;
 			for( j = 0 ; j < Colunas ; j++ )
 			{
 				if( pNo->pNorte != NULL && pNo->pNorte->pSul != pNo ) {
-					return MAT_CondRetErroEstrutura;
+					return MAT_CondRetErroEstrutura ;
 				}
 				
 				if( pNo->pSul != NULL && pNo->pSul->pNorte != pNo ) {
-					return MAT_CondRetErroEstrutura;
+					return MAT_CondRetErroEstrutura ;
 				}
 				
 				if( pNo->pEste != NULL && pNo->pEste->pOeste != pNo ) {
-					return MAT_CondRetErroEstrutura;
+					return MAT_CondRetErroEstrutura ;
 				}
 				
 				if( pNo->pOeste != NULL && pNo->pOeste->pEste != pNo ) {
-					return MAT_CondRetErroEstrutura;
+					return MAT_CondRetErroEstrutura ;
 				}
 
 				if( pNo->pNordeste != NULL && pNo->pNordeste->pSudoeste != pNo ) {
-					return MAT_CondRetErroEstrutura;
+					return MAT_CondRetErroEstrutura ;
 				}
 				
 				if( pNo->pSudeste != NULL && pNo->pSudeste->pNoroeste != pNo ) {
-					return MAT_CondRetErroEstrutura;
+					return MAT_CondRetErroEstrutura ;
 				}
 				
 				if( pNo->pSudoeste != NULL && pNo->pSudoeste->pNordeste != pNo ) {
-					return MAT_CondRetErroEstrutura;
+					return MAT_CondRetErroEstrutura ;
 				}
 				
 				if( pNo->pNoroeste != NULL && pNo->pNoroeste->pSudeste != pNo ) {
-					return MAT_CondRetErroEstrutura;
+					return MAT_CondRetErroEstrutura ;
 				}
 
 				if( j != Colunas - 1 )  // nao eh ultimo
 				{
 					if( pNo->pSul == NULL )
 					{
-						return MAT_CondRetNaoEhFolha;
+						return MAT_CondRetNaoEhFolha ;
 					}
 
-					pNo = pNo->pSul;
+					pNo = pNo->pSul ;
 				}
 			}
-			pNoExtremidade = pNoExtremidade->pEste;
+			pNoExtremidade = pNoExtremidade->pEste ;
 		}
 
 
-		return MAT_CondRetOK;
+		return MAT_CondRetOK ;
 	}

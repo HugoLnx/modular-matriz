@@ -64,7 +64,7 @@
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
-static tpMatriz * pMatriz = NULL;
+static tpMatriz * pMatriz = NULL ;
 
 /***********************************************************************
 *
@@ -114,7 +114,7 @@ static tpMatriz * pMatriz = NULL;
             CondRetObtido = MAT_CriarMatriz( &pMatriz ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
-                                    "Retorno errado ao criar árvore." );
+                                    "Retorno errado ao criar árvore." ) ;
 
          } /* fim ativa: Testar MAT Criar árvore */
 
@@ -134,7 +134,7 @@ static tpMatriz * pMatriz = NULL;
             CondRetObtido = MAT_ObterValorCorr( pMatriz , &ValorObtido ) ;
 
             Ret = TST_CompararInt( CondRetEsperada , CondRetObtido ,
-                                   "Retorno errado ao obter valor corrente." );
+                                   "Retorno errado ao obter valor corrente." ) ;
 
             if ( Ret != TST_CondRetOK )
             {
@@ -160,7 +160,7 @@ static tpMatriz * pMatriz = NULL;
             CondRetObtido = MAT_DestruirMatriz( &pMatriz ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
-									"Não é possível destruir uma matriz que não existe.");
+									"Não é possível destruir uma matriz que não existe.") ;
 
          } /* fim ativa: Testar MAT Destruir árvore */
 
@@ -179,7 +179,7 @@ static tpMatriz * pMatriz = NULL;
             CondRetObtido = MAT_InicializarMatriz( pMatriz , Linhas, Colunas ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
-									"Erro ao inicializar matriz.");
+									"Erro ao inicializar matriz.") ;
 
          } /* fim ativa: Testar MAT Inicializar matriz */
 
@@ -198,7 +198,7 @@ static tpMatriz * pMatriz = NULL;
             CondRetObtido = MAT_TestarEstruturaMatriz( pMatriz , Linhas, Colunas) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
-									"Estrutura da matriz esta errada.");
+									"Estrutura da matriz esta errada.") ;
 
          } /* fim ativa: Testar MAT Validar estrutura matriz */
 

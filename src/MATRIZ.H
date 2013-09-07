@@ -40,8 +40,8 @@
    #define MATRIZ_EXT extern
 #endif
 
-typedef struct tgMatriz tpMatriz;
-typedef struct tgNoMatriz tpNoMatriz;
+typedef struct tgMatriz tpMatriz ;
+typedef struct tgNoMatriz tpNoMatriz ;
 
 /***********************************************************************
 *
