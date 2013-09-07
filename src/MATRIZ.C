@@ -1,5 +1,5 @@
 /***************************************************************************
-*  $MCI Módulo de implementação: Módulo árvore
+*  $MCI Módulo de implementação: Módulo matriz
 *
 *  Arquivo gerado:              MATRIZ.C
 *  Letras identificadoras:      MAT
@@ -31,7 +31,7 @@
 
    /***********************************************************************
 *
-*  $TC Tipo de dados: MAT Descritor do nó da árvore
+*  $TC Tipo de dados: MAT Descritor do nó da matriz
 *
 *
 *  $ED Descrição do tipo
@@ -121,24 +121,24 @@
 
 /***********************************************************************
 *
-*  $TC Tipo de dados: MAT Descritor da cabeça de uma árvore
+*  $TC Tipo de dados: MAT Descritor da cabeça de uma matriz
 *
 *
 *  $ED Descrição do tipo
-*     A cabe‡a da árvore é o ponto de acesso para uma determinada árvore.
+*     A cabe‡a da matriz é o ponto de acesso para uma determinada matriz.
 *     Por intermédio da referência para o nó corrente e do ponteiro
-*     pai pode-se navegar a árvore sem necessitar de uma pilha.
-*     Pode-se, inclusive, operar com a árvore em forma de co-rotina.
+*     pai pode-se navegar a matriz sem necessitar de uma pilha.
+*     Pode-se, inclusive, operar com a matriz em forma de co-rotina.
 *
 ***********************************************************************/
 
    typedef struct tgMatriz {
 
          tpNoMatriz * pNoRaiz ;
-               /* Ponteiro para a raiz da árvore */
+               /* Ponteiro para a raiz da matriz */
 
          tpNoMatriz * pNoCorr ;
-               /* Ponteiro para o nó corrente da árvore */
+               /* Ponteiro para o nó corrente da matriz */
 
    } tpMatriz ;
 
@@ -186,7 +186,7 @@
 
 /***************************************************************************
 *
-*  Função: MAT Criar árvore
+*  Função: MAT Criar matriz
 *  ****/
 
    MAT_tpCondRet MAT_CriarMatriz( tpMatriz ** ppMatriz )
@@ -212,7 +212,7 @@
 
       return MAT_CondRetOK ;
 
-   } /* Fim função: MAT Criar árvore */
+   } /* Fim função: MAT Criar matriz */
 
    MAT_tpCondRet MAT_InicializarMatriz(tpMatriz * pMatriz , int Linhas , int Colunas )
    {
@@ -249,7 +249,7 @@
 
 /***************************************************************************
 *
-*  Função: MAT Destruir árvore
+*  Função: MAT Destruir matriz
 *  ****/
 
    MAT_tpCondRet MAT_DestruirMatriz( tpMatriz ** ppMatriz )
@@ -268,7 +268,7 @@
 		 return MAT_CondRetOK ;
       } /* if */
 	  return MAT_CondRetMatrizNaoExiste ;
-   } /* Fim função: MAT Destruir árvore */
+   } /* Fim função: MAT Destruir matriz */
 
 
 /***************************************************************************
@@ -382,7 +382,7 @@
 
 /***********************************************************************
 *
-*  $FC Função: MAT Criar nó da árvore
+*  $FC Função: MAT Criar nó da matriz
 *
 *  $FV Valor retornado
 *     Ponteiro para o nó criado.
@@ -417,12 +417,12 @@
       pNo->Valor  = ValorParm ;
       return pNo ;
 
-   } /* Fim função: MAT Criar nó da árvore */
+   } /* Fim função: MAT Criar nó da matriz */
 
 
 /***********************************************************************
 *
-*  $FC Função: MAT Criar nó raiz da árvore
+*  $FC Função: MAT Criar nó raiz da matriz
 *
 *  $FV Valor retornado
 *     MAT_CondRetOK
@@ -462,12 +462,12 @@
 
       return MAT_CondRetNaoCriouRaiz ;
 
-   } /* Fim função: MAT Criar nó raiz da árvore */
+   } /* Fim função: MAT Criar nó raiz da matriz */
 
 
 /***********************************************************************
 *
-*  $FC Função: MAT Destruir a estrutura da árvore
+*  $FC Função: MAT Destruir a estrutura da matriz
 *
 *  $EAE Assertivas de entradas esperadas
 *     pNoMatriz != NULL
@@ -489,7 +489,7 @@
 
       free( pNo ) ;
 
-   } /* Fim função: MAT Destruir a estrutura da árvore */
+   } /* Fim função: MAT Destruir a estrutura da matriz */
    
    tpNoMatriz * GetVizinho( tpNoMatriz * pNo , tpDirecao dir )
    {
@@ -635,7 +635,7 @@
    }
 
 
-/********** Fim do módulo de implementação: Módulo árvore **********/
+/********** Fim do módulo de implementação: Módulo matriz **********/
 
 
    // Função temporária, não mexam, depois vou converter para um script de teste (Hugo)

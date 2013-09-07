@@ -2,7 +2,7 @@
 #define MATRIZ_
 /***************************************************************************
 *
-*  $MCD Módulo de definição: Módulo árvore
+*  $MCD Módulo de definição: Módulo matriz
 *
 *  Arquivo gerado:              MATRIZ.H
 *  Letras identificadoras:      MAT
@@ -23,14 +23,14 @@
 *
 *  $ED Descrição do módulo
 *     Este módulo implementa um conjunto simples de funções para criar e
-*     explorar árvores binárias.
-*     A árvore possui uma cabeça que contém uma referência para a raíz da
-*     árvore e outra para um nó corrente da árvore.
-*     A cada momento o módulo admite no máximo uma única árvore.
-*     Ao iniciar a execução do programa não existe árvore.
-*     A árvore poderá estar vazia. Neste caso a raiz e o nó corrente
+*     explorar matrizs binárias.
+*     A matriz possui uma cabeça que contém uma referência para a raíz da
+*     matriz e outra para um nó corrente da matriz.
+*     A cada momento o módulo admite no máximo uma única matriz.
+*     Ao iniciar a execução do programa não existe matriz.
+*     A matriz poderá estar vazia. Neste caso a raiz e o nó corrente
 *     serão nulos, embora a cabeça esteja definida.
-*     O nó corrente será nulo se e somente se a árvore estiver vazia.
+*     O nó corrente será nulo se e somente se a matriz estiver vazia.
 *
 ***************************************************************************/
  
@@ -59,16 +59,16 @@ typedef struct tgNoMatriz tpNoMatriz ;
                /* Não criou nó raiz */
 
          MAT_CondRetErroEstrutura = 2 ,
-               /* Estrutura da árvore está errada */
+               /* Estrutura da matriz está errada */
 
          MAT_CondRetNaoEhFolha = 3 ,
                /* Não é folha relativa à direção de inserção desejada */
 
          MAT_CondRetMatrizNaoExiste = 4 ,
-               /* Árvore não existe */
+               /* Matriz não existe */
 
          MAT_CondRetMatrizVazia = 5 ,
-               /* Árvore está vazia */
+               /* Matriz está vazia */
 
          MAT_CondRetNohEhRaiz = 6 ,
                /* Nó corrente é raiz */
@@ -84,11 +84,11 @@ typedef struct tgNoMatriz tpNoMatriz ;
 
 /***********************************************************************
 *
-*  $FC Função: MAT Criar árvore
+*  $FC Função: MAT Criar matriz
 *
 *  $ED Descrição da função
-*     Cria uma nova árvore vazia.
-*     Caso já exista uma árvore, esta será destruída.
+*     Cria uma nova matriz vazia.
+*     Caso já exista uma matriz, esta será destruída.
 *
 *  $FV Valor retornado
 *     MAT_CondRetOK
@@ -105,11 +105,11 @@ typedef struct tgNoMatriz tpNoMatriz ;
 
 /***********************************************************************
 *
-*  $FC Função: MAT Destruir árvore
+*  $FC Função: MAT Destruir matriz
 *
 *  $ED Descrição da função
-*     Destrói o corpo e a cabeça da árvore, anulando a árvore corrente.
-*     Faz nada caso a árvore corrente não exista.
+*     Destrói o corpo e a cabeça da matriz, anulando a matriz corrente.
+*     Faz nada caso a matriz corrente não exista.
 *
 ***********************************************************************/
 
@@ -216,7 +216,7 @@ typedef struct tgNoMatriz tpNoMatriz ;
 
 #undef MATRIZ_EXT
 
-/********** Fim do módulo de definição: Módulo árvore **********/
+/********** Fim do módulo de definição: Módulo matriz **********/
 
 #else
 #endif

@@ -20,11 +20,11 @@
 *
 *  $ED Descrição do módulo
 *     Este mÇodulo contém as funções específicas para o teste do
-*     módulo árvore. Ilustra como redigir um interpretador de comandos
+*     módulo matriz. Ilustra como redigir um interpretador de comandos
 *     de teste específicos utilizando o arcabouço de teste para C.
 *
 *  $EIU Interface com o usuário pessoa
-*     Comandos de teste específicos para testar o módulo árvore:
+*     Comandos de teste específicos para testar o módulo matriz:
 *
 *     =criar        - chama a função MAT_CriarMatriz( )
 *     =insdir <Char>
@@ -68,11 +68,11 @@ static tpMatriz * pMatriz = NULL ;
 
 /***********************************************************************
 *
-*  $FC Função: TMAT Efetuar operações de teste específicas para árvore
+*  $FC Função: TMAT Efetuar operações de teste específicas para matriz
 *
 *  $ED Descrição da função
 *     Efetua os diversos comandos de teste específicos para o módulo
-*     árvore sendo testado.
+*     matriz sendo testado.
 *
 *  $EP Parâmetros
 *     $P ComandoTeste - String contendo o comando
@@ -99,7 +99,7 @@ static tpMatriz * pMatriz = NULL ;
 
       TST_tpCondRet Ret ;
 
-      /* Testar MAT Criar árvore */
+      /* Testar MAT Criar matriz */
 
          if ( strcmp( ComandoTeste , CRIAR_MAT_CMD ) == 0 )
          {
@@ -114,9 +114,9 @@ static tpMatriz * pMatriz = NULL ;
             CondRetObtido = MAT_CriarMatriz( &pMatriz ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
-                                    "Retorno errado ao criar árvore." ) ;
+                                    "Retorno errado ao criar matriz." ) ;
 
-         } /* fim ativa: Testar MAT Criar árvore */
+         } /* fim ativa: Testar MAT Criar matriz */
 
 
       /* Testar MAT Obter valor corrente */
@@ -146,7 +146,7 @@ static tpMatriz * pMatriz = NULL ;
 
          } /* fim ativa: Testar MAT Obter valor corrente */
 
-      /* Testar MAT Destruir árvore */
+      /* Testar MAT Destruir matriz */
 
          else if ( strcmp( ComandoTeste , DESTROI_CMD ) == 0 )
          {
@@ -162,7 +162,7 @@ static tpMatriz * pMatriz = NULL ;
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
 									"Não é possível destruir uma matriz que não existe.") ;
 
-         } /* fim ativa: Testar MAT Destruir árvore */
+         } /* fim ativa: Testar MAT Destruir matriz */
 
 		 
       /* Testar MAT Inicializar Matriz */
@@ -204,7 +204,7 @@ static tpMatriz * pMatriz = NULL ;
 
       return TST_CondRetNaoConhec ;
 
-   } /* Fim função: TMAT Efetuar operações de teste específicas para árvore */
+   } /* Fim função: TMAT Efetuar operações de teste específicas para matriz */
 
 /********** Fim do módulo de implementação: Módulo de teste específico **********/
 
