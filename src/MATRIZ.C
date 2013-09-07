@@ -157,11 +157,7 @@
 
 		 SUDOESTE = 7 ,
 
-		 NOROESTE = 8 ,
-
-         ESQ = 9 ,
-
-         DIR = 10
+		 NOROESTE = 8
 
    } tpDirecao;
 
@@ -180,8 +176,6 @@
    MAT_tpCondRet AddColuna( tpMatriz * pMatriz );
 
    void ApontarDeVoltaEmTodasAsDirecoes( tpNoMatriz * pNo ) ;
-
-   MAT_tpCondRet InserirGenerico( tpMatriz * pMatriz , char ValorParm , tpDirecao dir );
    
    tpDirecao DirecaoReversa( tpDirecao dir );
 
@@ -552,27 +546,6 @@
 	  return MAT_CondRetMatrizNaoExiste;
    } /* Fim função: MAT Destruir árvore */
 
-/***************************************************************************
-*
-*  Função: MAT Adicionar filho à esquerda
-*  ****/
-
-   MAT_tpCondRet MAT_InserirEsquerda( tpMatriz * pMatriz , char ValorParm )
-   {
-      return InserirGenerico(pMatriz, ValorParm, ESQ);
-   } /* Fim função: MAT Adicionar filho à esquerda */
-
-/***************************************************************************
-*
-*  Função: MAT Adicionar filho à direita
-*  ****/
-
-   MAT_tpCondRet MAT_InserirDireita( tpMatriz * pMatriz , char ValorParm )
-   {
-	   return InserirGenerico(pMatriz, ValorParm, DIR);
-   } /* Fim função: MAT Adicionar filho à direita */
-
-
 
 /***************************************************************************
 *
@@ -794,70 +767,32 @@
 
    } /* Fim função: MAT Destruir a estrutura da árvore */
    
-   
-   
-   MAT_tpCondRet InserirGenerico( tpMatriz * pMatriz , char ValorParm , tpDirecao Dir )
-   {
-      MAT_tpCondRet CondRet ;
-
-      tpNoMatriz * pCorr ;
-      tpNoMatriz * pNo ;
-
-      /* Tratar vazio, esquerda */
-
-         CondRet = CriarNoRaiz( pMatriz , ValorParm ) ;
-         if ( CondRet != MAT_CondRetNaoCriouRaiz )
-         {
-            return CondRet ;
-         } /* if */
-
-      /* Criar nó à esquerda de folha */
-
-         pCorr = pMatriz->pNoCorr ;
-         if ( pCorr == NULL )
-         {
-            return MAT_CondRetErroEstrutura ;
-         } /* if */
-               
-         if ( GetVizinho( pCorr, Dir ) == NULL )
-         {
-            pNo = CriarNo( ValorParm ) ;
-            if ( pNo == NULL )
-            {
-               return MAT_CondRetFaltouMemoria ;
-            } /* if */
-            SetNovoVizinho( pCorr , pNo , Dir ) ;
-            pMatriz->pNoCorr = pNo ;
-
-            return MAT_CondRetOK ;
-         } /* if */
-
-      /* Tratar não folha à esquerda */
-
-         return MAT_CondRetNaoEhFolha ;
-
-   } /* Fim função: MAT Adicionar filho generico */
-
-   
    tpNoMatriz * GetVizinho( tpNoMatriz * pNo , tpDirecao dir )
    {
-		if ( dir == ESQ )
-			return pNo->pNoEsq;
-
-		if ( dir== DIR )
-			return pNo->pNoDir;
-
-		return NULL;
+		switch( dir )
+		{
+		case NORTE:    return pNo->pNorte;
+		case SUL:      return pNo->pSul;
+		case ESTE:     return pNo->pEste;
+		case NORDESTE: return pNo->pNordeste;
+		case SUDESTE:  return pNo->pSudeste;
+		case SUDOESTE: return pNo->pSudoeste;
+		case NOROESTE: return pNo->pNoroeste;
+		}
    }
    
    void SetNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir )
    {
-	   pNoNovo->pNoPai = pNo;
-	   if ( dir == ESQ )
-			pNo->pNoEsq = pNoNovo;
-
-	   if ( dir == DIR )
-			pNo->pNoDir = pNoNovo;
+	   switch( dir )
+		{
+		case NORTE:    pNo->pNorte    = pNoNovo ; break ;
+		case SUL:      pNo->pSul      = pNoNovo ; break ;
+		case ESTE:     pNo->pEste     = pNoNovo ; break ;
+		case NORDESTE: pNo->pNordeste = pNoNovo ; break ;
+		case SUDESTE:  pNo->pSudeste  = pNoNovo ; break ;
+		case SUDOESTE: pNo->pSudoeste = pNoNovo ; break ;
+		case NOROESTE: pNo->pNoroeste = pNoNovo ; break ;
+		}
    }
 
    tpDirecao DirecaoReversa( tpDirecao dir )
