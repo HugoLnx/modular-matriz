@@ -173,6 +173,8 @@
 
    void SetNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir );
 
+   MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoRaiz , int QntLinhas ) ;
+
    MAT_tpCondRet AddColuna( tpMatriz * pMatriz );
 
    void ApontarDeVoltaEmTodasAsDirecoes( tpNoMatriz * pNo ) ;
@@ -230,20 +232,12 @@
 		   return Cond;
 	   }
 
-	   pNoAnterior = pMatriz->pNoRaiz;
-
-	   for( i = 0 ; i < Linhas - 1 ; i++ )
+	   Cond = ConstruirPrimeiraColuna( pMatriz->pNoRaiz , Linhas) ;
+	   if ( Cond != MAT_CondRetOK )
 	   {
-		   pNoNovo = CriarNo( NULL );
-		   if( pNoNovo == NULL )
-		   {
-			   return MAT_CondRetFaltouMemoria;
-		   }
-		   pNoNovo->pNorte = pNoAnterior;
-		   pNoAnterior->pSul = pNoNovo;
-		   pNoAnterior = pNoNovo;
+		   return Cond;
 	   }
-	   
+
 	   for ( i = 0 ; i < Colunas - 1 ; i++ )
 	   {
 		   AddColuna( pMatriz );
@@ -251,6 +245,7 @@
 
 	   return MAT_CondRetOK;
    }
+
 
 /***************************************************************************
 *
@@ -536,6 +531,28 @@
 			case SUDOESTE: return NORDESTE;
 			case NOROESTE: return SUDESTE;
 	   }
+   }
+
+   MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoRaiz , int QntLinhas )
+   {
+	   int i ;
+	   tpNoMatriz * pNoNovo ;
+	   tpNoMatriz * pNoAnterior;
+	   
+	   pNoAnterior = pNoRaiz;
+	   for( i = 0 ; i < QntLinhas - 1 ; i++ )
+	   {
+		   pNoNovo = CriarNo( NULL );
+		   if( pNoNovo == NULL )
+		   {
+			   return MAT_CondRetFaltouMemoria;
+		   }
+		   pNoNovo->pNorte = pNoAnterior;
+		   pNoAnterior->pSul = pNoNovo;
+		   pNoAnterior = pNoNovo;
+	   }
+	   
+	   return MAT_CondRetOK;
    }
 
    MAT_tpCondRet AddColuna( tpMatriz * pMatriz )
