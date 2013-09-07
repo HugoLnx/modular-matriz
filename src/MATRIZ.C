@@ -212,13 +212,14 @@
 
 				pNo = pNo->pEste;
 			}
-			else if( pNo->pEste != NULL )
-			{
-				pNo = NULL;
-				return MAT_CondRetErroEstrutura;
-			}
+		}
+
+		if( pNo->pEste != NULL )
+		{
+			return MAT_CondRetErroEstrutura;
 		}
 		
+
 		for( i = 0 ; i < Linhas ; i++)
 		{
 			if( pNo->pEste != NULL )
@@ -235,10 +236,11 @@
 
 				pNo = pNo->pSul;
 			}
-			else if( pNo->pSul != NULL )
-			{
-				return MAT_CondRetErroEstrutura;
-			}
+		}
+
+		if( pNo->pSul != NULL )
+		{
+			return MAT_CondRetErroEstrutura;
 		}
 
 		
@@ -258,10 +260,11 @@
 
 				pNo = pNo->pOeste;
 			}
-			else if( pNo->pOeste != NULL )
-			{
-				return MAT_CondRetErroEstrutura;
-			}
+		}
+
+		if( pNo->pOeste != NULL )
+		{
+			return MAT_CondRetErroEstrutura;
 		}
 		
 		for( i = 0 ; i < Linhas ; i++)
@@ -280,13 +283,13 @@
 
 				pNo = pNo->pNorte;
 			}
-			else if( pNo->pNorte != NULL )
-			{
-				return MAT_CondRetErroEstrutura;
-			}
+		}
+		if( pNo->pNorte != NULL )
+		{
+			return MAT_CondRetErroEstrutura;
 		}
 
-		// Verificar referencias dos nos internos
+		// Verificar referencias dos nós internos
 		pNoExtremidade = pMatriz->pNoRaiz->pSudeste;
 		for( i = 0 ; i < LinhasInternas ; i++)
 		{
@@ -427,7 +430,7 @@
 
 	   pNoAnterior = pMatriz->pNoRaiz;
 
-	   for( i = 1 ; i < Linhas+1 ; i++ )
+	   for( i = 0 ; i < Linhas - 1 ; i++ )
 	   {
 		   pNoNovo = CriarNo( NULL );
 		   if( pNoNovo == NULL )
@@ -436,9 +439,10 @@
 		   }
 		   pNoNovo->pNorte = pNoAnterior;
 		   pNoAnterior->pSul = pNoNovo;
+		   pNoAnterior = pNoNovo;
 	   }
 	   
-	   for ( i = 1 ; i < Colunas ; i++ )
+	   for ( i = 0 ; i < Colunas - 1 ; i++ )
 	   {
 		   AddColuna( pMatriz );
 	   }
