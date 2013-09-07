@@ -188,6 +188,9 @@
 		tpNoMatriz * pNo = pMatriz->pNoRaiz;
 		int i;
 
+		// Testando navegacao da primeira linha
+		
+		// sentido norte
 		for( i = 1 ; i < Linhas ; i++ )
 		{
 			pNo = pNo->pSul;
@@ -196,11 +199,15 @@
 				return MAT_CondRetErroEstrutura;
 			}
 		}
+		
+		// deve ter chegado ao final da linha
+		// logo nao deve ter elemento ao sul
 		if( pNo->pSul != NULL)
 		{
 			return MAT_CondRetErroEstrutura;
 		}
 
+		// segue sentido sul
 		for( i = 1 ; i < Linhas ; i++ )
 		{
 			pNo = pNo->pNorte;
@@ -209,6 +216,8 @@
 				return MAT_CondRetErroEstrutura;
 			}
 		}
+		// deve estar no primeiro elemento
+		// logo nao deve ter elemento ao norte
 		if( pNo->pNorte != NULL)
 		{
 			return MAT_CondRetErroEstrutura;
