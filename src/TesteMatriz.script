@@ -55,10 +55,10 @@
 =criar      OK
 
 == Inicializar matriz
-=init 2 2 OK
+=init 5 5 OK
 
 == Verificar navegacao ate ultimo no da primeira coluna
-=validarEstrutura 2 2 OK
+=validarEstrutura 5 5 OK
 
 == Destroi a matriz
 =destruir OK
