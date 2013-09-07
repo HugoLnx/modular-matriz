@@ -34,15 +34,12 @@
 =declararparm  CharB        char  'b'
 =declararparm  CharC        char  'c'
 
-== Verificar assertivas de entrada de irdir
-=irdir      NaoMatriz
-
-== Verificar comando recuperar
-=irdir      OK
-=recuperar
-
 == Verificar erro ao destruir árvore inexistente
 =destruir NaoMatriz
+
+== Verificar comando recuperar
+=destruir OK
+=recuperar
 
 == Verificar ObterValorCorr relativo a árvore inexistente
 =obter      CharErro   NaoMatriz
@@ -56,8 +53,6 @@
 
 == Criar matriz
 =criar      OK
-=irdir      NaoCorr
-
 
 == Inicializar matriz
 =init 2 2 OK
@@ -66,8 +61,7 @@
 =validarEstrutura 2 2 OK
 
 == Destroi a matriz
-=destruir OK  
-=irdir      NaoMatriz
+=destruir OK
 
 == Verificar erro ao destruir árvore duas vezes seguidas
 =destruir NaoMatriz

@@ -58,11 +58,6 @@
 
 #define     CRIAR_MAT_CMD       "=criar"
 #define     INIT_MAT_CMD        "=init"
-#define     INS_DIR_CMD         "=insdir"
-#define     INS_ESQ_CMD         "=insesq"
-#define     IR_PAI_CMD          "=irpai"
-#define     IR_ESQ_CMD          "=iresq"
-#define     IR_DIR_CMD          "=irdir"
 #define     OBTER_VAL_CMD       "=obter"
 #define     DESTROI_CMD         "=destruir"
 #define     VALIDAR_EST_MAT_CMD "=validarEstrutura"
@@ -104,8 +99,6 @@ static tpMatriz * pMatriz = NULL;
 
       TST_tpCondRet Ret ;
 
-
-
       /* Testar MAT Criar árvore */
 
          if ( strcmp( ComandoTeste , CRIAR_MAT_CMD ) == 0 )
@@ -125,100 +118,6 @@ static tpMatriz * pMatriz = NULL;
 
          } /* fim ativa: Testar MAT Criar árvore */
 
-      /* Testar MAT Adicionar filho à direita */
-
-         else if ( strcmp( ComandoTeste , INS_DIR_CMD ) == 0 )
-         {
-
-            NumLidos = LER_LerParametros( "ci" ,
-                               &ValorDado , &CondRetEsperada ) ;
-            if ( NumLidos != 2 )
-            {
-               return TST_CondRetParm ;
-            } /* if */
-
-            CondRetObtido = MAT_InserirDireita( pMatriz , ValorDado ) ;
-
-            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
-                                    "Retorno errado inserir àa direita." );
-
-         } /* fim ativa: Testar MAT Adicionar filho à direita */
-
-      /* Testar MAT Adicionar filho à esquerda */
-
-         else if ( strcmp( ComandoTeste , INS_ESQ_CMD ) == 0 )
-         {
-
-            NumLidos = LER_LerParametros( "ci" ,
-                               &ValorDado , &CondRetEsperada ) ;
-            if ( NumLidos != 2 )
-            {
-               return TST_CondRetParm ;
-            } /* if */
-
-            CondRetObtido = MAT_InserirEsquerda( pMatriz , ValorDado ) ;
-
-            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
-                                    "Retorno errado ao inserir à esquerda." );
-
-         } /* fim ativa: Testar MAT Adicionar filho à esquerda */
-
-      /* Testar MAT Ir para nó pai */
-
-         else if ( strcmp( ComandoTeste , IR_PAI_CMD ) == 0 )
-         {
-
-            NumLidos = LER_LerParametros( "i" ,
-                               &CondRetEsperada ) ;
-            if ( NumLidos != 1 )
-            {
-               return TST_CondRetParm ;
-            } /* if */
-
-            CondRetObtido = MAT_IrPai( pMatriz ) ;
-
-            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
-                                    "Retorno errado ao ir para pai." );
-
-         } /* fim ativa: Testar MAT Ir para nó pai */
-
-      /* Testar MAT Ir para nó à esquerda */
-
-         else if ( strcmp( ComandoTeste , IR_ESQ_CMD ) == 0 )
-         {
-
-            NumLidos = LER_LerParametros( "i" ,
-                               &CondRetEsperada ) ;
-            if ( NumLidos != 1 )
-            {
-               return TST_CondRetParm ;
-            } /* if */
-
-            CondRetObtido = MAT_IrNoEsquerda( pMatriz ) ;
-
-            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
-                                    "Retorno errado ao ir para esquerda." );
-
-         } /* fim ativa: Testar MAT Ir para nó à esquerda */
-
-      /* Testar MAT Ir para nó à direita */
-
-         else if ( strcmp( ComandoTeste , IR_DIR_CMD ) == 0 )
-         {
-
-            NumLidos = LER_LerParametros( "i" ,
-                               &CondRetEsperada ) ;
-            if ( NumLidos != 1 )
-            {
-               return TST_CondRetParm ;
-            } /* if */
-
-            CondRetObtido = MAT_IrNoDireita( pMatriz ) ;
-
-            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
-                                    "Retorno errado ao ir para direita." );
-
-         } /* fim ativa: Testar MAT Ir para nó à direita */
 
       /* Testar MAT Obter valor corrente */
 
@@ -285,7 +184,7 @@ static tpMatriz * pMatriz = NULL;
          } /* fim ativa: Testar MAT Inicializar matriz */
 
 		 
-      /* Testar MAT Linha Matriz */
+      /* Testar MAT Validar estrutura Matriz */
 
          else if ( strcmp( ComandoTeste , VALIDAR_EST_MAT_CMD ) == 0 )
          {
@@ -301,7 +200,7 @@ static tpMatriz * pMatriz = NULL;
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
 									"Estrutura da matriz esta errada.");
 
-         } /* fim ativa: Testar MAT Inicializar matriz */
+         } /* fim ativa: Testar MAT Validar estrutura matriz */
 
       return TST_CondRetNaoConhec ;
 
