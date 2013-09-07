@@ -64,7 +64,7 @@
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
-static tpMatriz * pMatriz = NULL ;
+static MAT_tpMatriz * pMatriz = NULL ;
 
 /***********************************************************************
 *

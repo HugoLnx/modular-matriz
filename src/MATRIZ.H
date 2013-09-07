@@ -40,7 +40,7 @@
    #define MATRIZ_EXT extern
 #endif
 
-typedef struct tgMatriz tpMatriz ;
+typedef struct tgMatriz MAT_tpMatriz ;
 typedef struct tgNoMatriz tpNoMatriz ;
 
 /***********************************************************************
@@ -96,11 +96,11 @@ typedef struct tgNoMatriz tpNoMatriz ;
 *
 ***********************************************************************/
 
-   MAT_tpCondRet MAT_CriarMatriz( tpMatriz ** ppMatriz ) ;
+   MAT_tpCondRet MAT_CriarMatriz( MAT_tpMatriz ** ppMatriz ) ;
 
-   MAT_tpCondRet MAT_InicializarMatriz( tpMatriz * pMatriz , int Linhas , int Colunas ) ;
+   MAT_tpCondRet MAT_InicializarMatriz( MAT_tpMatriz * pMatriz , int Linhas , int Colunas ) ;
 
-   MAT_tpCondRet MAT_TestarEstruturaMatriz( tpMatriz * pMatriz , int Linhas , int Colunas ) ;
+   MAT_tpCondRet MAT_TestarEstruturaMatriz( MAT_tpMatriz * pMatriz , int Linhas , int Colunas ) ;
 
 
 /***********************************************************************
@@ -113,43 +113,10 @@ typedef struct tgNoMatriz tpNoMatriz ;
 *
 ***********************************************************************/
 
-   MAT_tpCondRet MAT_DestruirMatriz( tpMatriz ** ppMatriz ) ;
+   MAT_tpCondRet MAT_DestruirMatriz( MAT_tpMatriz ** ppMatriz ) ;
 
 
-/***********************************************************************
-*
-*  $FC Função: MAT Adicionar filho à esquerda
-*
-*  $EP Parâmetros
-*     $P ValorParm - valor a ser inserido no novo nó.
-*
-*  $FV Valor retornado
-*     MAT_CondRetOK
-*     MAT_CondRetErroEstrutura
-*     MAT_CondRetFaltouMemoria
-*     MAT_CondRetNaoEhFolha     - caso não seja folha para a esquerda
-*
-***********************************************************************/
-
-   MAT_tpCondRet MAT_InserirEsquerda( tpMatriz * pMatriz , char ValorParm ) ;
-
-
-/***********************************************************************
-*
-*  $FC Função: MAT Adicionar filho à direita
-*
-*  $EP Parâmetros
-*     $P ValorParm - valor a ser inserido no novo nó
-*
-*  $FV Valor retornado
-*     MAT_CondRetOK
-*     MAT_CondRetErroEstrutura
-*     MAT_CondRetFaltouMemoria
-*     MAT_CondRetNaoEhFolha     - caso não seja folha para a direita
-*
-***********************************************************************/
-
-   MAT_tpCondRet MAT_InserirDireita( tpMatriz * pMatriz , char ValorParm ) ;
+ ;
 
 
 /***********************************************************************
@@ -164,7 +131,7 @@ typedef struct tgNoMatriz tpNoMatriz ;
 *
 ***********************************************************************/
 
-   MAT_tpCondRet MAT_IrPai( tpMatriz * pMatriz ) ;
+   MAT_tpCondRet MAT_IrPai( MAT_tpMatriz * pMatriz ) ;
 
 
 /***********************************************************************
@@ -179,7 +146,7 @@ typedef struct tgNoMatriz tpNoMatriz ;
 *
 ***********************************************************************/
 
-   MAT_tpCondRet MAT_IrNoEsquerda( tpMatriz * pMatriz ) ;
+   MAT_tpCondRet MAT_IrNoEsquerda( MAT_tpMatriz * pMatriz ) ;
 
 
 /***********************************************************************
@@ -194,7 +161,7 @@ typedef struct tgNoMatriz tpNoMatriz ;
 *
 ***********************************************************************/
 
-   MAT_tpCondRet MAT_IrNoDireita( tpMatriz * pMatriz ) ;
+   MAT_tpCondRet MAT_IrNoDireita( MAT_tpMatriz * pMatriz ) ;
 
 
 /***********************************************************************
@@ -212,7 +179,7 @@ typedef struct tgNoMatriz tpNoMatriz ;
 *
 ***********************************************************************/
 
-   MAT_tpCondRet MAT_ObterValorCorr( tpMatriz * pMatriz , char * ValorParm ) ;
+   MAT_tpCondRet MAT_ObterValorCorr( MAT_tpMatriz * pMatriz , char * ValorParm ) ;
 
 #undef MATRIZ_EXT
 

@@ -140,7 +140,7 @@
          tpNoMatriz * pNoCorr ;
                /* Ponteiro para o nó corrente da matriz */
 
-   } tpMatriz ;
+   } MAT_tpMatriz ;
 
    typedef enum {
 	     NORTE = 1 ,
@@ -165,7 +165,7 @@
 
    static tpNoMatriz * CriarNo( char ValorParm ) ;
 
-   static MAT_tpCondRet CriarNoRaiz( tpMatriz * pMatriz , char ValorParm ) ;
+   static MAT_tpCondRet CriarNoRaiz( MAT_tpMatriz * pMatriz , char ValorParm ) ;
 
    static void DestroiMatriz( tpNoMatriz * pNo ) ;
 
@@ -175,7 +175,7 @@
 
    MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoRaiz , int QntLinhas ) ;
 
-   MAT_tpCondRet AddColuna( tpMatriz * pMatriz ) ;
+   MAT_tpCondRet AddColuna( MAT_tpMatriz * pMatriz ) ;
 
    void ApontarDeVoltaEmTodasAsDirecoes( tpNoMatriz * pNo ) ;
    
@@ -189,16 +189,16 @@
 *  Função: MAT Criar matriz
 *  ****/
 
-   MAT_tpCondRet MAT_CriarMatriz( tpMatriz ** ppMatriz )
+   MAT_tpCondRet MAT_CriarMatriz( MAT_tpMatriz ** ppMatriz )
    {
-	  tpMatriz * pMatriz ;
+	  MAT_tpMatriz * pMatriz ;
 
       if ( ppMatriz != NULL && *ppMatriz != NULL )
       {
          MAT_DestruirMatriz( ppMatriz ) ;
       } /* if */
 	  
-	  pMatriz = ( tpMatriz * ) malloc( sizeof( tpMatriz )) ;
+	  pMatriz = ( MAT_tpMatriz * ) malloc( sizeof( MAT_tpMatriz )) ;
       if ( pMatriz == NULL )
       {
          return MAT_CondRetFaltouMemoria ;
@@ -214,7 +214,7 @@
 
    } /* Fim função: MAT Criar matriz */
 
-   MAT_tpCondRet MAT_InicializarMatriz(tpMatriz * pMatriz , int Linhas , int Colunas )
+   MAT_tpCondRet MAT_InicializarMatriz(MAT_tpMatriz * pMatriz , int Linhas , int Colunas )
    {
 	   int i ;
 	   tpNoMatriz * pNoNovo ;
@@ -252,9 +252,9 @@
 *  Função: MAT Destruir matriz
 *  ****/
 
-   MAT_tpCondRet MAT_DestruirMatriz( tpMatriz ** ppMatriz )
+   MAT_tpCondRet MAT_DestruirMatriz( MAT_tpMatriz ** ppMatriz )
    {
-	  tpMatriz * pMatriz ;
+	  MAT_tpMatriz * pMatriz ;
 
       if ( ppMatriz != NULL && *ppMatriz != NULL )
       {
@@ -276,7 +276,7 @@
 *  Função: MAT Ir para nó pai
 *  ****/
 
-   MAT_tpCondRet MAT_IrPai( tpMatriz * pMatriz )
+   MAT_tpCondRet MAT_IrPai( MAT_tpMatriz * pMatriz )
    {
 
       if ( pMatriz == NULL )
@@ -303,7 +303,7 @@
 *  Função: MAT Ir para nó à esquerda
 *  ****/
 
-   MAT_tpCondRet MAT_IrNoEsquerda( tpMatriz * pMatriz )
+   MAT_tpCondRet MAT_IrNoEsquerda( MAT_tpMatriz * pMatriz )
    {
 
       if ( pMatriz == NULL )
@@ -331,7 +331,7 @@
 *  Função: MAT Ir para nó à direita
 *  ****/
 
-   MAT_tpCondRet MAT_IrNoDireita( tpMatriz * pMatriz )
+   MAT_tpCondRet MAT_IrNoDireita( MAT_tpMatriz * pMatriz )
    {
 
       if ( pMatriz == NULL )
@@ -359,7 +359,7 @@
 *  Função: MAT Obter valor corrente
 *  ****/
 
-   MAT_tpCondRet MAT_ObterValorCorr( tpMatriz * pMatriz , char * ValorParm )
+   MAT_tpCondRet MAT_ObterValorCorr( MAT_tpMatriz * pMatriz , char * ValorParm )
    {
 
       if ( pMatriz == NULL )
@@ -431,7 +431,7 @@
 *
 ***********************************************************************/
 
-   MAT_tpCondRet CriarNoRaiz(tpMatriz * pMatriz , char ValorParm )
+   MAT_tpCondRet CriarNoRaiz(MAT_tpMatriz * pMatriz , char ValorParm )
    {
 
       MAT_tpCondRet CondRet ;
@@ -555,7 +555,7 @@
 	   return MAT_CondRetOK ;
    }
 
-   MAT_tpCondRet AddColuna( tpMatriz * pMatriz )
+   MAT_tpCondRet AddColuna( MAT_tpMatriz * pMatriz )
    {
 	   tpNoMatriz * pRaiz = pMatriz->pNoRaiz ;
 	   tpNoMatriz * pNoNovo ;
@@ -639,7 +639,7 @@
 
 
    // Função temporária, não mexam, depois vou converter para um script de teste (Hugo)
-    MAT_tpCondRet MAT_TestarEstruturaMatriz( tpMatriz * pMatriz , int Linhas , int Colunas )
+    MAT_tpCondRet MAT_TestarEstruturaMatriz( MAT_tpMatriz * pMatriz , int Linhas , int Colunas )
 	{
 		tpNoMatriz * pNo = pMatriz->pNoRaiz ;
 		tpNoMatriz * pNoExtremidade ;
