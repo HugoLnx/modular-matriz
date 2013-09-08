@@ -157,8 +157,6 @@
 		 NOROESTE = 8
 
    } tpDirecao ;
-   const tpDirecao DIRECOES[] = { NORTE , SUL , ESTE , OESTE , NORDESTE , SUDESTE , SUDOESTE , NOROESTE } ;
-   const int DIRECOES_SIZE = 8 ;
 
 /***** Protótipos das funções encapuladas no módulo *****/
 
