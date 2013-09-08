@@ -157,6 +157,8 @@
 		 NOROESTE = 8
 
    } tpDirecao ;
+   const tpDirecao DIRECOES[] = { NORTE , SUL , ESTE , OESTE , NORDESTE , SUDESTE , SUDOESTE , NOROESTE } ;
+   const int DIRECOES_SIZE = 8 ;
 
 /***** Protótipos das funções encapuladas no módulo *****/
 
@@ -472,25 +474,29 @@
 *  $FC Função: MAT Destruir a estrutura da matriz
 *
 *  $EAE Assertivas de entradas esperadas
-*     pNoMatriz != NULL
+*     pNo != NULL
 *
 ***********************************************************************/
 
    void DestroiMatriz( tpNoMatriz * pNo )
    {
+	   tpNoMatriz * pNoExtremidade = pNo ;
+	   tpNoMatriz * pProxNoExtremidade ;
+	   tpNoMatriz * pProxNo ;
 
-      if ( pNo->pNoEsq != NULL )
-      {
-         DestroiMatriz( pNo->pNoEsq ) ;
-      } /* if */
-
-      if ( pNo->pNoDir != NULL )
-      {
-         DestroiMatriz( pNo->pNoDir ) ;
-      } /* if */
-
-      free( pNo ) ;
-
+	   while ( pNoExtremidade != NULL )
+	   {
+		   pProxNoExtremidade = pNoExtremidade->pEste ;
+			while ( pNo != NULL )
+			{
+				pProxNo = pNo->pSul ;
+				free( pNo ) ;
+				pNo = pProxNo ;
+			}
+			pNoExtremidade = pProxNoExtremidade ;
+			pNo = pNoExtremidade ;
+	   }
+	   
    } /* Fim função: MAT Destruir a estrutura da matriz */
    
 
