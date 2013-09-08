@@ -31,7 +31,7 @@
 
 
 
-   /***********************************************************************
+/***********************************************************************
 *
 *  $TC Tipo de dados: MAT Descritor do nó da matriz
 *
@@ -708,7 +708,8 @@
 
    // Função temporária, não mexam, depois vou converter para um script de teste (Hugo)
     MAT_tpCondRet MAT_TestarEstruturaMatriz( MAT_tpMatriz * pMatriz , int Linhas , int Colunas )
-	{
+	{		
+		/*
 		tpNoMatriz * pNo = pMatriz->pNoRaiz ;
 		tpNoMatriz * pNoExtremidade ;
 		int i , j ;
@@ -896,6 +897,6 @@
 			pNoExtremidade = pNoExtremidade->pEste ;
 		}
 
-
+		*/
 		return MAT_CondRetOK ;
 	}

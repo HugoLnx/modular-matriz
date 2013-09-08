@@ -46,6 +46,7 @@
 
 #include    <string.h>
 #include    <stdio.h>
+#include    <stdlib.h>
 
 #include    "TST_ESPC.H"
 
@@ -54,17 +55,23 @@
 
 #include    "matriz.h"
 
-/* Tabela dos nomes dos comandos de teste específicos */
+/* Tabela dos nomes dos comandos de teste relacionados ao módulo */
 
 #define     CRIAR_MAT_CMD       "=criar"
 #define     INIT_MAT_CMD        "=init"
 #define     OBTER_VAL_CMD       "=obter"
 #define     DESTROI_CMD         "=destruir"
+
+/* Tabela dos nomes dos comandos de teste específicos do teste */
 #define     VALIDAR_EST_MAT_CMD "=validarEstrutura"
+#define     SELECIONAR_CMD       "=selecionar"
+
+
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
-static MAT_tpMatriz * pMatriz = NULL ;
+static MAT_tpMatriz * Matrizes[10];
+static int iMat = 0;
 
 /***********************************************************************
 *
@@ -99,6 +106,7 @@ static MAT_tpMatriz * pMatriz = NULL ;
 
       TST_tpCondRet Ret ;
 
+
       /* Testar MAT Criar matriz */
 
          if ( strcmp( ComandoTeste , CRIAR_MAT_CMD ) == 0 )
@@ -111,7 +119,7 @@ static MAT_tpMatriz * pMatriz = NULL ;
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MAT_CriarMatriz( &pMatriz ) ;
+            CondRetObtido = MAT_CriarMatriz( Matrizes + iMat ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                     "Retorno errado ao criar matriz." ) ;
@@ -131,7 +139,7 @@ static MAT_tpMatriz * pMatriz = NULL ;
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MAT_ObterValorCorr( pMatriz , &ValorObtido ) ;
+            CondRetObtido = MAT_ObterValorCorr( Matrizes[iMat] , &ValorObtido ) ;
 
             Ret = TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                    "Retorno errado ao obter valor corrente." ) ;
@@ -157,7 +165,7 @@ static MAT_tpMatriz * pMatriz = NULL ;
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MAT_DestruirMatriz( &pMatriz ) ;
+            CondRetObtido = MAT_DestruirMatriz( Matrizes + iMat ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
 									"Não é possível destruir uma matriz que não existe.") ;
@@ -176,7 +184,7 @@ static MAT_tpMatriz * pMatriz = NULL ;
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MAT_InicializarMatriz( pMatriz , Linhas, Colunas ) ;
+            CondRetObtido = MAT_InicializarMatriz( Matrizes[iMat] , Linhas, Colunas ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
 									"Erro ao inicializar matriz.") ;
@@ -189,16 +197,37 @@ static MAT_tpMatriz * pMatriz = NULL ;
          else if ( strcmp( ComandoTeste , VALIDAR_EST_MAT_CMD ) == 0 )
          {
 			NumLidos = LER_LerParametros( "iii" ,
-                               &Linhas, &Colunas, &CondRetEsperada ) ;
+                               &Linhas, &Colunas , &CondRetEsperada ) ;
             if ( NumLidos != 3 )
             {
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MAT_TestarEstruturaMatriz( pMatriz , Linhas, Colunas) ;
+            CondRetObtido = MAT_TestarEstruturaMatriz( Matrizes[iMat] , Linhas, Colunas) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
 									"Estrutura da matriz esta errada.") ;
+
+         } /* fim ativa: Testar MAT Validar estrutura matriz */
+		 
+      /* Testar Selecionar indice na array de matrizes */
+
+         else if ( strcmp( ComandoTeste , SELECIONAR_CMD ) == 0 )
+         {
+			NumLidos = LER_LerParametros( "i" ,
+                               &iMat ) ;
+            if ( NumLidos != 1 )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+			if ( iMat < 0 || iMat > 9 )
+			{
+				TST_NotificarFalha("Só é possível fazer seleção nos indices de 0 à 9") ;
+				return TST_CondRetErro ;
+			} /* if */
+
+			return TST_CondRetOK ;
 
          } /* fim ativa: Testar MAT Validar estrutura matriz */
 

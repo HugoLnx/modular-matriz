@@ -41,6 +41,16 @@
 =destruir OK
 =recuperar
 
+== Verificar erro ao selecionar posicoes inexistentes na array de matrizes
+=selecionar -1
+=recuperar
+
+=selecionar 10
+=recuperar
+
+== Selecionar posição 0 na array de matrizes
+=selecionar 0
+
 == Verificar ObterValorCorr relativo a matriz inexistente
 =obter      CharErro   NaoMatriz
 
@@ -59,6 +69,14 @@
 
 == Verificar navegacao ate ultimo no da primeira coluna
 =validarEstrutura 5 5 OK
+
+== Trabalhar com outra matriz simultaneamente
+=selecionar 1
+=criar OK
+=init 10 10 OK
+=validarEstrutura 10 10 OK
+=destruir OK
+=selecionar 0
 
 == Destroi a matriz
 =destruir OK

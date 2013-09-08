@@ -43,7 +43,6 @@
 #endif
 
 typedef struct tgMatriz MAT_tpMatriz ;
-typedef struct tgNoMatriz tpNoMatriz ;
 
 /***********************************************************************
 *
