@@ -1,0 +1,53 @@
+TODO
+
+1 - struct do elemento da lista
+		trocar o valor void* para char
+	
+2 - struct da cabeça da lista
+		retirar ponteiro para função responsável pela exclusão do valor
+	
+3 - Função criarLista
+		fazer retornar condRet
+		fazer retornar um ponteiro para a lista por referencia
+		não passar mais o ponteiro para função que exclui o valor
+		
+4 - Função excluir lista
+		ignorar essa função
+		
+5 - Função esvaziar lista
+		ignorar essa função
+		
+6 - Função inserir elemento antes
+		trocar o tipo do argumento valor de void* para char
+		adaptar função para trabalhar com tipo char
+		
+7 - Função inserir elemento após
+		trocar o tipo do argumento valor de void* para char
+		adaptar função para trabalhar com tipo char
+		
+8 - Função excluir elemento
+		ignorar essa função
+		
+9 - Função obter valor
+		ignorar essa função
+		
+10 - Função ir inicio da lista
+		ignorar essa função
+		
+11 - Função ir final da lista
+		ignorar essa função
+		
+12 - Função avançar elemento corrente
+		ignorar essa função
+		
+13 - Função procurar valor
+		ignorar função
+		
+14 - Função liberar elemento
+		ignorar função
+		
+15 - Função cria elemento
+		adaptar função para trabalhar com tipo char
+		
+16 - Função limpar cabeça
+		adaptar função para trabalhar com tipo char
