@@ -140,7 +140,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   void LIS_DestruirLista( LIS_tppLista pLista ) ;
+   /*void LIS_DestruirLista( LIS_tppLista pLista ) ;*/
 
 
 /***********************************************************************
@@ -155,7 +155,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   void LIS_EsvaziarLista( LIS_tppLista pLista ) ;
+   /*void LIS_EsvaziarLista( LIS_tppLista pLista ) ;*/
 
 
 /***********************************************************************
@@ -227,7 +227,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   LIS_tpCondRet LIS_ExcluirElemento( LIS_tppLista pLista ) ;
+  /* LIS_tpCondRet LIS_ExcluirElemento( LIS_tppLista pLista ) ;*/
 
 
 /***********************************************************************
@@ -247,7 +247,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   void * LIS_ObterValor( LIS_tppLista pLista ) ;
+  /* void * LIS_ObterValor( LIS_tppLista pLista ) ;*/
 
 
 /***********************************************************************
@@ -263,7 +263,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   void IrInicioLista( LIS_tppLista pLista ) ;
+  /* void IrInicioLista( LIS_tppLista pLista ) ;*/
 
 
 /***********************************************************************
@@ -279,7 +279,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   void IrFinalLista( LIS_tppLista pLista ) ;
+   /*void IrFinalLista( LIS_tppLista pLista ) ;*/
 
 
 /***********************************************************************
@@ -306,8 +306,8 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   LIS_tpCondRet LIS_AvancarElementoCorrente( LIS_tppLista pLista ,
-                                              int numElem ) ;
+  /* LIS_tpCondRet LIS_AvancarElementoCorrente( LIS_tppLista pLista ,
+                                              int numElem ) ;*/
 
 
 /***********************************************************************
@@ -335,8 +335,8 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   LIS_tpCondRet LIS_ProcurarValor( LIS_tppLista pLista ,
-                                    void * pValor        ) ;
+   /*LIS_tpCondRet LIS_ProcurarValor( LIS_tppLista pLista ,
+                                    void * pValor        ) ;*/
 
 #undef LISTA_EXT
 
