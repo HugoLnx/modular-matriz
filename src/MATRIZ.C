@@ -264,7 +264,7 @@
 		pMatriz = *ppMatriz ;
 		if ( pMatriz->pNoOrigem == NULL )
 		{
-			return MAT_CondRetNaoCriouRaiz;
+			return MAT_CondRetNaoCriouOrigem;
 		} /* if */
          
 		DestroiMatriz( pMatriz->pNoOrigem ) ;
@@ -369,7 +369,7 @@
 *  $FV Valor retornado
 *     MAT_CondRetOK
 *     MAT_CondRetFaltouMemoria
-*     MAT_CondRetNaoCriouRaiz
+*     MAT_CondRetNaoCriouOrigem
 *
 ***********************************************************************/
 
@@ -402,7 +402,7 @@
          return MAT_CondRetOK ;
       } /* if */
 
-      return MAT_CondRetNaoCriouRaiz ;
+      return MAT_CondRetNaoCriouOrigem ;
 
    } /* Fim função: MAT Criar nó origem da matriz */
 
@@ -482,7 +482,7 @@
 *
 *  $FC Função: MAT Recupera o ponteiro para um nó adjacente
 *
-*  Exemplo de uso: getVizinho(noRaiz, ESTE)
+*  Exemplo de uso: getVizinho(noOrigem, ESTE)
 *
 ***********************************************************************/
 
@@ -506,7 +506,7 @@
 *
 *  $FC Função: MAT Troca o ponteiro de um nó adjacente.
 *
-*  Exemplo de uso: SetNovoVizinho(noRaiz, pNoNovo, ESTE)
+*  Exemplo de uso: SetNovoVizinho(noOrigem, pNoNovo, ESTE)
 *
 ***********************************************************************/
 
@@ -600,7 +600,7 @@
 ***********************************************************************/
    MAT_tpCondRet AddColuna( MAT_tpMatriz * pMatriz )
    {
-	   tpNoMatriz * pRaiz = pMatriz->pNoOrigem ;
+	   tpNoMatriz * pOrigem = pMatriz->pNoOrigem ;
 	   tpNoMatriz * pNoNovo ;
 	   tpNoMatriz * pNoExtremidade ;
 

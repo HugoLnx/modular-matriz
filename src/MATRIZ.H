@@ -58,7 +58,7 @@ typedef struct tgMatriz MAT_tpMatriz ;
          MAT_CondRetOK = 0 ,
                /* Executou correto */
 
-         MAT_CondRetNaoCriouRaiz = 1 ,
+         MAT_CondRetNaoCriouOrigem = 1 ,
                /* Não criou nó origem */
 
          MAT_CondRetErroEstrutura = 2 ,
@@ -73,7 +73,7 @@ typedef struct tgMatriz MAT_tpMatriz ;
          MAT_CondRetMatrizVazia = 5 ,
                /* Matriz está vazia */
 
-         MAT_CondRetNohEhRaiz = 6 ,
+         MAT_CondRetNohEhOrigem = 6 ,
                /* Nó corrente é origem */
 
          MAT_CondRetNaoPossuiFilho = 7 ,
