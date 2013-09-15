@@ -336,6 +336,22 @@
 
    } /* Fim função: LIS  &Ir para o elemento inicial */
 
+   /***************************************************************************
+*
+*  Função: LIS  &Ir para o elemento final
+*  ****/
+
+   void IrFinalLista( LIS_tppLista pLista )
+   {
+
+      #ifdef _DEBUG
+         assert( pLista != NULL ) ;
+      #endif
+
+      pLista->pElemCorr = pLista->pFimLista ;
+
+   } /* Fim função: LIS  &Ir para o elemento final */
+
 /***********************************************************************
 *
 *  $FC Função: LIS  -Criar o elemento

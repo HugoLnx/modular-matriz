@@ -83,5 +83,21 @@
 =obtervalorelem  lista2   '4'   OK
 =recuperar
 =obtervalorelem  lista2   '1'   OK
+=destruirlista   lista2
+
+== Testar ir para o final da lista
+=criarlista lista2 OK
+=inselemantes    lista2   '1'   OK
+=inselemantes    lista2   '2'   OK
+=inselemantes    lista2   '3'   OK
+=inselemantes    lista2   '4'   OK
+=obtervalorelem  lista2   '4'   OK
+=irfinal		 lista2
+=obtervalorelem  lista2   '4'   OK
+=recuperar
+=obtervalorelem  lista2   '1'   OK
+=destruirlista   lista2
+
+
 
 // fim
