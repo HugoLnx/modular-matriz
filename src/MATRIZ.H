@@ -30,7 +30,7 @@
 *     O modulo permite a manipulação de múltiplas matrizes, porém as funções
 *     só manipulam uma matriz de cada vez.
 *     Ao iniciar a execução do programa não existe matriz.
-*     A matriz poderá estar vazia. Neste caso a raiz e o nó corrente
+*     A matriz poderá estar vazia. Neste caso a origem e o nó corrente
 *     serão nulos, embora a cabeça esteja definida.
 *     O nó corrente será nulo se e somente se a matriz estiver vazia.
 *
@@ -59,7 +59,7 @@ typedef struct tgMatriz MAT_tpMatriz ;
                /* Executou correto */
 
          MAT_CondRetNaoCriouRaiz = 1 ,
-               /* Não criou nó raiz */
+               /* Não criou nó origem */
 
          MAT_CondRetErroEstrutura = 2 ,
                /* Estrutura da matriz está errada */
@@ -74,7 +74,7 @@ typedef struct tgMatriz MAT_tpMatriz ;
                /* Matriz está vazia */
 
          MAT_CondRetNohEhRaiz = 6 ,
-               /* Nó corrente é raiz */
+               /* Nó corrente é origem */
 
          MAT_CondRetNaoPossuiFilho = 7 ,
                /* Nó corrente não possui filho na direção desejada */

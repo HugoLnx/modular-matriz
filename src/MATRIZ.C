@@ -47,7 +47,7 @@
                /* Ponteiro para nó adjacente ao norte
                *
                *$EED Assertivas estruturais
-               *   se é o nó X é a raiz, então pNorte = NULL
+               *   se é o nó X é a origem, então pNorte = NULL
 			   *   se pNorte do nó X != NULL então pSul de pNorte aponta para nó X */
 
          struct tgNoMatriz * pSul ;
@@ -66,14 +66,14 @@
                /* Ponteiro para nó adjacente à oeste
                *
                *$EED Assertivas estruturais
-               *   se é o nó X é a raiz, então pOeste = NULL
+               *   se é o nó X é a origem, então pOeste = NULL
 			   *   se pOeste do nó X != NULL então pEste de pOeste aponta para nó X */
 
 		 struct tgNoMatriz * pNordeste ;
                /* Ponteiro para nó adjacente à nordeste
                *
                *$EED Assertivas estruturais
-               *   se é o nó X é a raiz, então pNordeste = NULL
+               *   se é o nó X é a origem, então pNordeste = NULL
 			   *   se pNordeste do nó X != NULL então pSudoeste de pNordeste aponta para nó X */
 
 
@@ -88,7 +88,7 @@
                /* Ponteiro para nó adjacente à noroeste
                *
                *$EED Assertivas estruturais
-               *   se é o nó X é a raiz, então pNoroeste = NULL
+               *   se é o nó X é a origem, então pNoroeste = NULL
 			   *   se pNoroeste do nó X != NULL então pSudeste de pNoroeste aponta para nó X */
 
 
@@ -96,7 +96,7 @@
                /* Ponteiro para nó adjacente à sudoeste
                *
                *$EED Assertivas estruturais
-               *   se é o nó X é a raiz, então pSudoeste = NULL
+               *   se é o nó X é a origem, então pSudoeste = NULL
 			   *   se pSudoeste do nó X != NULL então pNordeste de pSudoeste aponta para nó X */
 
 
@@ -120,8 +120,8 @@
 
    typedef struct tgMatriz {
 
-         tpNoMatriz * pNoRaiz ;
-               /* Ponteiro para a raiz da matriz */
+         tpNoMatriz * pNoOrigem ;
+               /* Ponteiro para a origem da matriz */
 
          tpNoMatriz * pNoCorr ;
                /* Ponteiro para o nó corrente da matriz */
@@ -157,7 +157,7 @@
 
    static tpNoMatriz * CriarNo() ;
 
-   static MAT_tpCondRet CriarNoRaiz( MAT_tpMatriz * pMatriz ) ;
+   static MAT_tpCondRet CriarNoOrigem( MAT_tpMatriz * pMatriz ) ;
 
    static void DestroiMatriz( tpNoMatriz * pNo ) ;
 
@@ -165,7 +165,7 @@
 
    void SetNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir ) ;
 
-   MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoRaiz , int QntLinhas ) ;
+   MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoOrigem , int QntLinhas ) ;
 
 
    MAT_tpCondRet AddColuna( MAT_tpMatriz * pMatriz ) ;
@@ -200,7 +200,7 @@
       } /* if */
 
 
-      pMatriz->pNoRaiz = NULL ;
+      pMatriz->pNoOrigem = NULL ;
       pMatriz->pNoCorr = NULL ;
 
 	  *ppMatriz = pMatriz ;
@@ -226,13 +226,13 @@
 		   return MAT_CondRetMatrizNaoExiste ;
 	   }
 
-	   Cond = CriarNoRaiz( pMatriz ) ;
+	   Cond = CriarNoOrigem( pMatriz ) ;
 	   if ( Cond != MAT_CondRetOK )
 	   {
 		   return Cond ;
 	   }
 
-	   Cond = ConstruirPrimeiraColuna( pMatriz->pNoRaiz , Linhas) ;
+	   Cond = ConstruirPrimeiraColuna( pMatriz->pNoOrigem , Linhas) ;
 	   if ( Cond != MAT_CondRetOK )
 	   {
 		   return Cond ;
@@ -262,12 +262,12 @@
 		} /* if */
 
 		pMatriz = *ppMatriz ;
-		if ( pMatriz->pNoRaiz == NULL )
+		if ( pMatriz->pNoOrigem == NULL )
 		{
 			return MAT_CondRetNaoCriouRaiz;
 		} /* if */
          
-		DestroiMatriz( pMatriz->pNoRaiz ) ;
+		DestroiMatriz( pMatriz->pNoOrigem ) ;
 		free( pMatriz ) ;
 		*ppMatriz = NULL ;
 
@@ -364,7 +364,7 @@
 
 /***********************************************************************
 *
-*  $FC Função: MAT Criar nó raiz da matriz
+*  $FC Função: MAT Criar nó origem da matriz
 *
 *  $FV Valor retornado
 *     MAT_CondRetOK
@@ -373,7 +373,7 @@
 *
 ***********************************************************************/
 
-   MAT_tpCondRet CriarNoRaiz(MAT_tpMatriz * pMatriz )
+   MAT_tpCondRet CriarNoOrigem(MAT_tpMatriz * pMatriz )
    {
 
       MAT_tpCondRet CondRet ;
@@ -389,14 +389,14 @@
          } /* if */
       } /* if */
 
-      if ( pMatriz->pNoRaiz == NULL )
+      if ( pMatriz->pNoOrigem == NULL )
       {
          pNo = CriarNo() ;
          if ( pNo == NULL )
          {
             return MAT_CondRetFaltouMemoria ;
          } /* if */
-         pMatriz->pNoRaiz = pNo ;
+         pMatriz->pNoOrigem = pNo ;
          pMatriz->pNoCorr = pNo ;
 
          return MAT_CondRetOK ;
@@ -404,7 +404,7 @@
 
       return MAT_CondRetNaoCriouRaiz ;
 
-   } /* Fim função: MAT Criar nó raiz da matriz */
+   } /* Fim função: MAT Criar nó origem da matriz */
 
 
 /***********************************************************************
@@ -557,18 +557,18 @@
 *  todos os nós adjacentes nas direções norte e sul
 *
 *  $EAE Assertivas de entradas esperadas
-*     - pNoMatriz deve ser a raiz.
+*     - pNoMatriz deve ser a origem.
 *     - pNoMatriz nao deve apontar para outro nó.
 *
 ***********************************************************************/
 
-   MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoRaiz , int QntLinhas )
+   MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoOrigem , int QntLinhas )
    {
 	   int i ;
 	   tpNoMatriz * pNoNovo ;
 	   tpNoMatriz * pNoAnterior ;
 	   
-	   pNoAnterior = pNoRaiz ;
+	   pNoAnterior = pNoOrigem ;
 	   for( i = 0 ; i < QntLinhas - 1 ; i++ )
 	   {
 		   pNoNovo = CriarNo() ;
@@ -595,16 +595,16 @@
 *  referenciando os nós adjacentes em todas as 8 direções.
 *
 *  $EAE Assertivas de entradas esperadas
-*     - pMatriz deve ter raiz.
+*     - pMatriz deve ter origem.
 *
 ***********************************************************************/
    MAT_tpCondRet AddColuna( MAT_tpMatriz * pMatriz )
    {
-	   tpNoMatriz * pRaiz = pMatriz->pNoRaiz ;
+	   tpNoMatriz * pRaiz = pMatriz->pNoOrigem ;
 	   tpNoMatriz * pNoNovo ;
 	   tpNoMatriz * pNoExtremidade ;
 
-	   pNoExtremidade = pMatriz->pNoRaiz ;
+	   pNoExtremidade = pMatriz->pNoOrigem ;
 	   while( pNoExtremidade->pEste != NULL )
 	   {
 		   pNoExtremidade = pNoExtremidade->pEste ;
