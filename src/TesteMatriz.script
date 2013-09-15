@@ -34,8 +34,18 @@
 =declararparm  CharB        char  'b'
 =declararparm  CharC        char  'c'
 
-== Verificar erro ao destruir matriz inexistente
-=destruir NaoMatriz
+== Verificar erros nas operações inválidas quando a está matriz inexistente
+=destruir              NaoMatriz
+=irnorte               NaoMatriz
+=irsul                 NaoMatriz
+=ireste                NaoMatriz
+=iroeste               NaoMatriz
+=irnordeste            NaoMatriz
+=irsudeste             NaoMatriz
+=irsudoeste            NaoMatriz
+=irnoroeste            NaoMatriz
+=obter      CharErro   NaoMatriz
+=init 2 2 NaoMatriz
 
 == Verificar comando recuperar
 =destruir OK
@@ -51,30 +61,170 @@
 == Selecionar posição 0 na array de matrizes
 =selecionar 0
 
-== Verificar ObterValorCorr relativo a matriz inexistente
-=obter      CharErro   NaoMatriz
-
-== Verificar recuperar de ObterValorCorr relativo a matriz inexistente
-=obter      CharErro   NaoRaiz  
-=recuperar
-
-== Verificar inicializar matriz inexistente
-=init 2 2 NaoMatriz
-
 == Criar matriz
 =criar      OK
 
-== Inicializar matriz
-=init 5 5 OK
+== Verificar erros relativos à inexistência da raiz
+=destruir              NaoRaiz
 
-== Verificar navegacao ate ultimo no da primeira coluna
-=validarEstrutura 5 5 OK
+== Verificar erros relativos à inexistência do corrente
+=irnorte               NaoCorr
+=irsul                 NaoCorr
+=ireste                NaoCorr
+=iroeste               NaoCorr
+=irnordeste            NaoCorr
+=irsudeste             NaoCorr
+=irsudoeste            NaoCorr
+=irnoroeste            NaoCorr
+=obter      CharErro   NaoCorr
+
+== Inicializar matriz
+=init 3 3 OK
+
+== Verificar ponteiros da posição (0, 0)
+=irnorte    NaoFolha
+=iroeste    NaoFolha
+=irnordeste NaoFolha
+=irsudoeste NaoFolha
+=irnoroeste NaoFolha
+
+=irsul      OK
+=irnorte    OK
+
+=irsudeste  OK
+=ireste     OK
+
+=irnoroeste OK
+
+
+== Verificar ponteiros da posição (0, 1)
+=irnorte    NaoFolha
+=irnordeste NaoFolha
+=irnoroeste NaoFolha
+
+=irsul      OK
+=irnorte    OK
+
+=iroeste    OK
+=ireste     OK
+
+=irsudeste  OK
+=irnoroeste OK
+
+=irsudoeste OK
+=irnordeste OK
+
+=ireste     OK
+
+
+== Verificar ponteiros da posição (0, 2)
+=irnorte    NaoFolha
+=ireste     NaoFolha
+=irnordeste NaoFolha
+=irsudeste  NaoFolha
+=irnoroeste NaoFolha
+
+=iroeste OK
+=ireste  OK
+
+=irsudoeste OK
+=irnordeste OK
+
+=irsul   OK
+
+
+== Verificar ponteiros da posição (1, 2)
+=ireste     NaoFolha
+=irnordeste NaoFolha
+=irsudeste  NaoFolha
+
+=irnorte OK
+=irsul   OK
+
+=iroeste OK
+=ireste  OK
+
+=irnoroeste OK
+=irsudeste  OK
+
+=irsudoeste OK
+=irnordeste OK
+
+=irsul   OK
+
+
+== Verificar ponteiros da posição (2, 2)
+=irsul      NaoFolha
+=ireste     NaoFolha
+=irnordeste NaoFolha
+=irsudeste  NaoFolha
+=irsudoeste NaoFolha
+
+=irnorte OK
+=irsul   OK
+
+=irnoroeste OK
+=irsudeste  OK
+
+=iroeste OK
+
+== Verificar ponteiros da posição (2, 1)
+=irsul      NaoFolha
+=irsudeste  NaoFolha
+=irsudoeste NaoFolha
+
+=irnorte    OK
+=irsul      OK
+
+=ireste     OK
+=iroeste    OK
+
+=irnordeste OK
+=irsudoeste OK
+
+=irnoroeste OK
+=irsudeste  OK
+
+=iroeste    OK
+
+== Verificar ponteiros da posição (2, 0)
+=irsul      NaoFolha
+=iroeste    NaoFolha
+=irsudeste  NaoFolha
+=irsudoeste NaoFolha
+=irnoroeste NaoFolha
+
+=ireste      OK
+=iroeste     OK
+
+=irnordeste OK
+=irsudoeste OK
+
+=irnorte    OK
+
+== Verificar ponteiros da posição (1, 0)
+=iroeste    NaoFolha
+=irsudoeste NaoFolha
+=irnoroeste NaoFolha
+
+=irsul      OK
+=irnorte    OK
+
+=ireste     OK
+=iroeste    OK
+
+=irnordeste OK
+=irsudoeste OK
+
+=irsudeste  OK
+=irnoroeste OK
+
+=irnorte    OK
 
 == Trabalhar com outra matriz simultaneamente
 =selecionar 1
 =criar OK
 =init 10 10 OK
-=validarEstrutura 10 10 OK
 =destruir OK
 =selecionar 0
 
