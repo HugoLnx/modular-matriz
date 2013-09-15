@@ -156,7 +156,7 @@
 
    static tpNoMatriz * CriarNo() ;
 
-   static MAT_tpCondRet CriarNoRaiz( MAT_tpMatriz * pMatriz , char ValorParm ) ;
+   static MAT_tpCondRet CriarNoRaiz( MAT_tpMatriz * pMatriz ) ;
 
    static void DestroiMatriz( tpNoMatriz * pNo ) ;
 
@@ -225,7 +225,7 @@
 		   return MAT_CondRetMatrizNaoExiste ;
 	   }
 
-	   Cond = CriarNoRaiz( pMatriz , NULL ) ;
+	   Cond = CriarNoRaiz( pMatriz ) ;
 	   if ( Cond != MAT_CondRetOK )
 	   {
 		   return Cond ;
@@ -349,7 +349,7 @@
 *
 ***********************************************************************/
 
-   MAT_tpCondRet CriarNoRaiz(MAT_tpMatriz * pMatriz , char ValorParm )
+   MAT_tpCondRet CriarNoRaiz(MAT_tpMatriz * pMatriz )
    {
 
       MAT_tpCondRet CondRet ;
