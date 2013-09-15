@@ -42,6 +42,8 @@
    #define MATRIZ_EXT extern
 #endif
 
+#include "LISTA.H"
+
 typedef struct tgMatriz MAT_tpMatriz ;
 
 /***********************************************************************
@@ -180,8 +182,10 @@ typedef struct tgMatriz MAT_tpMatriz ;
 *
 ***********************************************************************/
 
-   MAT_tpCondRet MAT_ObterValorCorr( MAT_tpMatriz * pMatriz , char * ValorParm ) ;
+   MAT_tpCondRet MAT_ObterValorCorr( MAT_tpMatriz * pMatriz , LIS_tppLista * ValorParm ) ;
 
+   
+   MAT_tpCondRet MAT_AtribuirValorCorr( MAT_tpMatriz * pMatriz , LIS_tppLista ValorParm ) ;
 
 #undef MATRIZ_EXT
 
