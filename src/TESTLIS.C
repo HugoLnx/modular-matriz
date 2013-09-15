@@ -188,6 +188,26 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 
          } /* fim ativa: Testar inserir elemento apos */
 
+		  /* Testar excluir simbolo */
+
+         else if ( strcmp( ComandoTeste , EXC_ELEM_CMD ) == 0 )
+         {
+
+            numLidos = LER_LerParametros( "ii" ,
+                  &inxLista , &CondRetEsp ) ;
+
+            if ( ( numLidos != 2 )
+              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+            return TST_CompararInt( CondRetEsp ,
+                      LIS_ExcluirElemento( vtListas[ inxLista ] ) ,
+                     "Condição de retorno errada ao excluir."   ) ;
+
+         } /* fim ativa: Testar excluir simbolo */
+
 		 /* Testar obter valor do elemento corrente */
 
          else if (strcmp(ComandoTeste, OBTER_VALOR_CMD) == 0)

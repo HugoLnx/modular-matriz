@@ -235,6 +235,54 @@
 
 /***************************************************************************
 *
+*  Função: LIS  &Excluir elemento
+*  ****/
+
+   LIS_tpCondRet LIS_ExcluirElemento( LIS_tppLista pLista )
+   {
+
+      tpElemLista * pElem ;
+
+      #ifdef _DEBUG
+         assert( pLista  != NULL ) ;
+      #endif
+
+      if ( pLista->pElemCorr == NULL )
+      {
+         return LIS_CondRetListaVazia ;
+      } /* if */
+
+      pElem = pLista->pElemCorr ;
+
+      /* Desencadeia à esquerda */
+
+         if ( pElem->pAnt != NULL )
+         {
+            pElem->pAnt->pProx   = pElem->pProx ;
+            pLista->pElemCorr    = pElem->pAnt ;
+         } else {
+            pLista->pElemCorr    = pElem->pProx ;
+            pLista->pOrigemLista = pLista->pElemCorr ;
+         } /* if */
+
+      /* Desencadeia à direita */
+
+         if ( pElem->pProx != NULL )
+         {
+            pElem->pProx->pAnt = pElem->pAnt ;
+         } else
+         {
+            pLista->pFimLista = pElem->pAnt ;
+         } /* if */
+
+      LiberarElemento( pLista , pElem ) ;
+
+      return LIS_CondRetOK ;
+
+   } /* Fim função: LIS  &Excluir elemento */
+
+/***************************************************************************
+*
 *  Função: LIS  &Obter referência para o valor contido no elemento
 *  ****/
 

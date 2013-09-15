@@ -161,6 +161,28 @@ typedef struct LIS_tagLista * LIS_tppLista ;
    LIS_tpCondRet LIS_InserirElementoApos( LIS_tppLista pLista ,
                                           char valor);
 
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Excluir elemento
+*
+*  $ED Descrição da função
+*     Exclui o elemento corrente da lista dada.
+*     Se existir o elemento aa esquerda do corrente será o novo corrente.
+*     Se não existir e existir o elemento à direita, este se tornará corrente.
+*     Se este também não existir a lista tornou-se vazia.
+*
+*  $EP Parâmetros
+*     pLista    - ponteiro para a lista na qual deve excluir.
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK
+*     LIS_CondRetListaVazia
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ExcluirElemento( LIS_tppLista pLista ) ;
+
 /***********************************************************************
 *
 *  $FC Função: LIS  &Obter referência para o valor contido no elemento

@@ -57,6 +57,12 @@
 =inselemapos     lista1   'g'   OK
 =inselemapos     lista1   'h'   OK
 
+== Testar excluir elemento
+=obtervalorelem lista1 'h' OK
+=excluirelem lista1 OK
+=obtervalorelem lista1 'h' OK
+=recuperar
+
 == Testando valor obtido eh diferente
 =obtervalorelem  lista1   'a'   OK
 =recuperar
