@@ -29,10 +29,16 @@
 =declararparm  Memoria      int 8
 
 == Declarar os conteúdos dos nós
-=declararparm  CharErro     char  '!'
-=declararparm  CharA        char  'a'
-=declararparm  CharB        char  'b'
-=declararparm  CharC        char  'c'
+=declararparm  ValorErro    int -1
+=declararparm  Valor0_0     int 0
+=declararparm  Valor0_1     int 1
+=declararparm  Valor0_2     int 2
+=declararparm  Valor1_0     int 3
+=declararparm  Valor1_1     int 4
+=declararparm  Valor1_2     int 5
+=declararparm  Valor2_0     int 6
+=declararparm  Valor2_1     int 7
+=declararparm  Valor2_2     int 8
 
 == Verificar erros nas operações inválidas quando a está matriz inexistente
 =destruir              NaoMatriz
@@ -44,7 +50,7 @@
 =irsudeste             NaoMatriz
 =irsudoeste            NaoMatriz
 =irnoroeste            NaoMatriz
-=obter      CharErro   NaoMatriz
+=obter      ValorErro  NaoMatriz
 =init 2 2 NaoMatriz
 
 == Verificar comando recuperar
@@ -76,25 +82,54 @@
 =irsudeste             NaoCorr
 =irsudoeste            NaoCorr
 =irnoroeste            NaoCorr
-=obter      CharErro   NaoCorr
+=obter     ValorErro   NaoCorr
 
 == Inicializar matriz
 =init 3 3 OK
 
+== Atribuir valores aos nós
+=atribuir Valor0_0 OK
+
+=ireste            OK
+=atribuir Valor0_1 OK
+
+=ireste            OK
+=atribuir Valor0_2 OK
+
+=irsul             OK
+=atribuir Valor1_2 OK
+
+=irsul             OK
+=atribuir Valor2_2 OK
+
+=iroeste           OK
+=atribuir Valor2_1 OK
+
+=iroeste           OK
+=atribuir Valor2_0 OK
+
+=irnorte           OK
+=atribuir Valor1_0 OK
+
+=ireste            OK
+=atribuir Valor1_1 OK
+
+=irnoroeste        OK
+
 == Verificar ponteiros da posição (0, 0)
-=irnorte    NaoFolha
-=iroeste    NaoFolha
-=irnordeste NaoFolha
-=irsudoeste NaoFolha
-=irnoroeste NaoFolha
+=irnorte        NaoFolha
+=iroeste        NaoFolha
+=irnordeste     NaoFolha
+=irsudoeste     NaoFolha
+=irnoroeste     NaoFolha
+			    
+=irsul          OK
+=irnorte        OK
+			    
+=irsudeste      OK
+=irnoroeste     OK
 
-=irsul      OK
-=irnorte    OK
-
-=irsudeste  OK
-=ireste     OK
-
-=irnoroeste OK
+=ireste         OK
 
 
 == Verificar ponteiros da posição (0, 1)
