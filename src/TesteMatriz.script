@@ -1,20 +1,9 @@
-// Script:    TesteMatrizSimb.script
-// Autor:     Arndt von Staa
-// Data:      20/fev/2006
-// Propósito: Ilustrar arquivo de script, 
-//            Testa a construção de uma matriz usando parâmetros simbólicos
-//            Não verifica se as operações modificaram corretamente as referências
-//            Este script é muito superficial !!!
-//
-
-
-
-
 // Script:    TesteMatriz.script
-// Autor:     Arndt von Staa
-// Data:      12/ago/2003
-// Propósito: Ilustrar arquivo de script, testar construção de matriz
-//            Este script é muito superficial
+// Autor:     Hugo Roque / Nino Fabrizio
+// Data:      15/set/2013
+// Propósito: Testar se a matriz está sendo criada corretamente
+// e se os possíveis erros estão sendo lançados nos momentos
+// adequados.
 //
 
 == Declarar as condicoes de retorno

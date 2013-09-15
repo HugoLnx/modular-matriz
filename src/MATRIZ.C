@@ -9,16 +9,15 @@
 *  Gestor:  DI/PUC-Rio
 *  Autores: avs - Arndt von Staa
 *           hg - Hugo Roque
-*           ?? = Nino Fabrizio
-*		    ?? = Robert Correa
+*           nf - Nino Fabrizio
 *
 *  $HA Histórico de evolução:
-*     Versão  Autor    Data     Observações
-*       4.00   ???   ??/??/???? Adaptação do módulo para manipular matrizes
-*       3.00   avs   28/02/2003 Uniformização da interface das funções e
+*     Versão  Autor     Data     Observações
+*       4.00   hg e nf  15/09/2013 Adaptação do módulo para manipular matrizes
+*       3.00   avs      28/02/2003 Uniformização da interface das funções e
 *                               de todas as condições de retorno.
-*       2.00   avs   03/08/2002 Eliminação de código duplicado, reestruturação
-*       1.00   avs   15/08/2001 Início do desenvolvimento
+*       2.00   avs      03/08/2002 Eliminação de código duplicado, reestruturação
+*       1.00   avs      15/08/2001 Início do desenvolvimento
 *
 ***************************************************************************/
 
@@ -114,7 +113,6 @@
 *     A cabeça da matriz é o ponto de acesso para uma determinada matriz.
 *     Por intermédio da referência para o nó corrente e do ponteiro
 *     pai pode-se navegar a matriz sem necessitar de uma pilha.
-*     Pode-se, inclusive, operar com a matriz em forma de co-rotina.
 *
 ***********************************************************************/
 
