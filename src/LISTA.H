@@ -98,6 +98,23 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    LIS_tpCondRet LIS_CriarLista(LIS_tppLista* pLista) ;
 
+/***********************************************************************
+*
+*  $FC Função: LIS  &Destruir lista
+*
+*  $ED Descrição da função
+*     Destrói a lista fornecida.
+*     O parâmetro ponteiro para a lista não é modificado.
+*     Se ocorrer algum erro durante a destruição, a lista resultará
+*     estruturalmente incorreta.
+*     OBS. não existe previsão para possíveis falhas de execução.
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK    - destruiu sem problemas
+*
+***********************************************************************/
+
+   void LIS_DestruirLista( LIS_tppLista pLista ) ;
 
 /***********************************************************************
 *

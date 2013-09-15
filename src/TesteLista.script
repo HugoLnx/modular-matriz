@@ -47,6 +47,11 @@
 ==Obtendo valor
 =obtervalorelem  lista0   'd'   OK
 
+== Testar destruir lista
+=destruirlista lista0
+=inselemantes    lista0   'z'   OK
+=recuperar
+
 == Testando valor obtido eh diferente
 =obtervalorelem  lista0   'a'   OK
 =recuperar

@@ -104,6 +104,23 @@
 
    } /* Fim função: LIS  &Criar lista */
 
+/***************************************************************************
+*
+*  Função: LIS  &Destruir lista
+*  ****/
+
+   void LIS_DestruirLista( LIS_tppLista pLista )
+   {
+
+      #ifdef _DEBUG
+         assert( pLista != NULL ) ;
+      #endif
+
+      LIS_EsvaziarLista( pLista ) ;
+
+      free( pLista ) ;
+
+   } /* Fim função: LIS  &Destruir lista */
 
 /***************************************************************************
 *
