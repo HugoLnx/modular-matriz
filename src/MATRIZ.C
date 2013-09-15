@@ -475,7 +475,7 @@
 *
 *  $FC Função: MAT Recupera o ponteiro para um nó adjacente
 *
-*  Exemplo de uso: getVizinho(noOrigem, ESTE)
+*  Exemplo de uso: GetVizinho(noOrigem, ESTE)
 *
 ***********************************************************************/
 
@@ -645,6 +645,7 @@
 /***************************************************************************
 *
 *  Função: MAT Ir para nó genérico
+*  Muda o nó corrente da matriz para o nó na direção apontada
 *  ****/
 
    MAT_tpCondRet IrPara( MAT_tpMatriz * pMatriz , tpDirecao direcao )
