@@ -100,6 +100,38 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
 /***********************************************************************
 *
+*  $FC Função: LIS  &Destruir lista
+*
+*  $ED Descrição da função
+*     Destrói a lista fornecida.
+*     O parâmetro ponteiro para a lista não é modificado.
+*     Se ocorrer algum erro durante a destruição, a lista resultará
+*     estruturalmente incorreta.
+*     OBS. não existe previsão para possíveis falhas de execução.
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK    - destruiu sem problemas
+*
+***********************************************************************/
+
+   void LIS_DestruirLista( LIS_tppLista pLista ) ;
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Esvaziar lista
+*
+*  $ED Descrição da função
+*     Elimina todos os elementos, sem contudo eliminar a lista
+*
+*  $EP Parâmetros
+*     pLista - ponteiro para a lista a ser esvaziada
+*
+***********************************************************************/
+
+   void LIS_EsvaziarLista( LIS_tppLista pLista ) ;
+
+/***********************************************************************
+*
 *  $FC Função: LIS  &Inserir elemento antes
 *
 *  $ED Descrição da função
@@ -137,7 +169,6 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *           
 *
 *  $FV Valor retornado
-*     Valor retornado
 *        LIS_CondRetOK
 *        LIS_CondRetFaltouMemoria
 *
@@ -145,6 +176,133 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    LIS_tpCondRet LIS_InserirElementoApos( LIS_tppLista pLista ,
                                           char valor);
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Excluir elemento
+*
+*  $ED Descrição da função
+*     Exclui o elemento corrente da lista dada.
+*     Se existir o elemento aa esquerda do corrente será o novo corrente.
+*     Se não existir e existir o elemento à direita, este se tornará corrente.
+*     Se este também não existir a lista tornou-se vazia.
+*
+*  $EP Parâmetros
+*     pLista    - ponteiro para a lista na qual deve excluir.
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK         - se o elemento foi excluido
+*     LIS_CondRetListaVazia - se a lista estiver vazia
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ExcluirElemento( LIS_tppLista pLista ) ;
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Obter o valor contido no elemento
+*
+*  $ED Descrição da função
+*     Obtem o valor contido no elemento corrente da lista
+*
+*  $EP Parâmetros
+*     pLista - ponteiro para a lista de onde se quer o valor
+*
+*  $FV Valor retornado
+*     CondRetOK         - se o elemento foi obtido
+*	  CondRetListaVazia - se a lista estiver vazia
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ObterValor( LIS_tppLista pLista, char* valor ) ;
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Ir para o elemento inicial
+*
+*  $ED Descrição da função
+*     Torna corrente o primeiro elemento da lista.
+*     Faz nada se a lista está vazia.
+*
+*  $EP Parâmetros
+*     pLista - ponteiro para a lista a manipular
+*
+***********************************************************************/
+
+   void LIS_IrInicioLista( LIS_tppLista pLista ) ;
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Ir para o elemento final
+*
+*  $ED Descrição da função
+*     Torna corrente o elemento final da lista.
+*     Faz nada se a lista está vazia.
+*
+*  $EP Parâmetros
+*     pLista - ponteiro para a lista a manipular
+*
+***********************************************************************/
+
+   void LIS_IrFinalLista( LIS_tppLista pLista ) ;
+
+   /***********************************************************************
+*
+*  $FC Função: LIS  &Avançar elemento
+*
+*  $ED Descrição da função
+*     Avança o elemento corrente numElem elementos na lista
+*     Se numElem for positivo avança em direção ao final
+*     Se numElem for negativo avança em direção ao início
+*     numElem pode ser maior do que o númro de elementos existentes na
+*               direção desejada
+*     Se numElem for zero somente verifica se a lista está vazia
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista a ser manipulada
+*     numElem - o número de elementos a andar
+*
+*  $FV Valor retornado
+*     CondRetOK         - se numElem elementos tiverem sido andados
+*     CondRetFimLista   - se encontrou o fim da lista antes de andar numElem
+*                         elementos
+*     CondRetListaVazia - se a lista está vazia
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_AvancarElementoCorrente( LIS_tppLista pLista ,
+                                              int numElem ) ;
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Procurar elemento contendo valor
+*
+*  $ED Descrição da função
+*     Procura o elemento que referencia o valor dado.
+*     A função compara ponteiro e não conteúdo apontado.
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista onde procura
+*     pValor  - ponteiro para o valor procurado
+*               Pode ser NULL
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK  - se encontrou.
+*                      O elemento corrente é o primeiro elemento do
+*                      elemento corrente inclusive para o fim da lista
+*                      e que contém o ponteiro procurado
+*
+*     LIS_CondRetNaoEncontrou - se o ponteiro não foi encontrado
+*                      O elemento corrente continua o mesmo
+*     LIS_CondRetListaVazia   - se a lista estiver vazia
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ProcurarValor( LIS_tppLista pLista ,
+                                    char valor        ) ;
+
+/***********************************************************************/
 #undef LISTA_EXT
 
 /********** Fim do módulo de definição: LIS  Lista duplamente encadeada **********/

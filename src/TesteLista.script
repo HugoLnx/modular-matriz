@@ -16,29 +16,235 @@
 =declararparm   NaoAchou       int  3
 =declararparm   FaltouMemoria  int  4
 
-=declararparm   pNULL          int  0
-=declararparm   pNaoNULL       int  1
+//*********************************
 
-== Criar a lista 0
+== Testar cria a lista
+
+// CondRetOK
+
+=criarlista lista0 OK
+=criarlista lista1 OK
+=criarlista lista2 OK
+
+=destruirlista lista0
+=destruirlista lista1
+=destruirlista lista2
+
+// FIM CondRetOK
+
+//*********************************
+
+== Testar inserir elemento antes.
+
+// CondRetOK
+
 =criarlista lista0 OK
 
-== Inserir elemento antes. Elemento: 'a'
 =inselemantes    lista0   'a'   OK
 =inselemantes    lista0   'b'   OK
-=inselemantes    lista0   'b'   OK
-=inselemantes    lista0   'b'   OK
-=inselemantes    lista0   'b'   OK
-=inselemantes    lista0   'b'   OK
-=inselemantes    lista0   'b'   OK
-=inselemantes    lista0   'b'   OK
-=inselemantes    lista0   'b'   OK
+=inselemantes    lista0   'c'   OK
+=inselemantes    lista0   'd'   OK
 
+=destruirlista   lista0
+
+// FIM CondRetOK
+
+//*********************************
+
+== Obtendo valor
+
+// CondRetOK
+
+=criarlista      lista0         OK
+=inselemantes    lista0   'a'   OK
+=obtervalorelem  lista0   'a'   OK
+
+// FIM CondRetOK
+
+// Nao Consegue Obter
+
+=obtervalorelem  lista0   'b'   OK
+=recuperar
+
+=destruirlista   lista0
+
+// FIM Nao Consegue Obter
+
+//*********************************
+
+== Esvaziar lista
+
+=criarlista lista0 OK
+
+=inselemantes    lista0   'a'   OK
+=inselemantes    lista0   'b'   OK
+=inselemantes    lista0   'c'   OK
+
+=esvaziarlista   lista0
+
+=excluirelem     lista0         ListaVazia
+
+=destruirlista   lista0
+
+//*********************************
+
+== Inserir elemento antes.
+
+=criarlista lista0 OK
+
+=inselemantes    lista0   'a'   OK
+=inselemantes    lista0   'b'   OK
+=inselemantes    lista0   'c'   OK
+=inselemantes    lista0   'd'   OK
+
+=destruirlista   lista0
+
+//*********************************
+
+== Testar destruir lista
+
+// CondRetOK
+
+=criarlista lista0 OK
+
+=inselemantes    lista0   'a'   OK
+=inselemantes    lista0   'b'   OK
+=inselemantes    lista0   'c'   OK
+=inselemantes    lista0   'd'   OK
+
+=obtervalorelem  lista0   'd'   OK
+
+=destruirlista   lista0
+
+=inselemantes    lista0   'z'   OK
+=recuperar
+
+// FIM CondRetOk
+
+//*********************************
 
 == Inserir elementos apos.
-=inselemapos     lista0   'a'   OK
 
-== Inserir elementos antes.
-=inselemantes    lista0   'a'   OK
-=inselemantes    lista0   'b'   OK
+// CondRetOK
+=criarlista      lista1         OK
+=inselemapos     lista1   'e'   OK
+=inselemapos     lista1   'f'   OK
+=inselemapos     lista1   'g'   OK
+=inselemapos     lista1   'h'   OK
+
+=destruirlista   lista1
+
+// FIM CondRetOK
+
+//*********************************
+
+== Testar excluir elemento
+
+// CondRetOK
+=criarlista      lista2         OK
+
+=inselemapos     lista2   '1'   OK
+=inselemapos     lista2   '2'   OK
+=inselemapos     lista2   '3'   OK
+=inselemapos     lista2   '4'   OK
+
+=obtervalorelem  lista2   '4'   OK
+=excluirelem     lista2         OK
+// FIM CondRetOK
+
+//CondRetListaVazia
+
+=destruirlista   lista2
+=criarlista      lista2         OK
+=excluirelem     lista2         ListaVazia
+=destruirlista   lista2
+// FIM CondRetListaVazia
+
+//*********************************
+
+== Testar ir para o inicio da lista
+
+=criarlista lista2 OK
+
+=inselemapos     lista2   '1'   OK
+=inselemapos     lista2   '2'   OK
+=inselemapos     lista2   '3'   OK
+=inselemapos     lista2   '4'   OK
+
+=obtervalorelem  lista2   '4'   OK
+
+=irinicio		 lista2
+
+=obtervalorelem  lista2   '4'   OK
+=recuperar
+
+=obtervalorelem  lista2   '1'   OK
+
+=destruirlista   lista2
+
+//*********************************
+
+== Testar ir para o final da lista
+
+=criarlista lista2 OK
+
+=inselemantes    lista2   '1'   OK
+=inselemantes    lista2   '2'   OK
+=inselemantes    lista2   '3'   OK
+=inselemantes    lista2   '4'   OK
+
+=irfinal		 lista2
+
+=obtervalorelem  lista2   '4'   OK
+=recuperar
+
+=obtervalorelem  lista2   '1'   OK
+=destruirlista   lista2
+
+
+//*********************************
+
+== Testar avanço dos elementos
+// CondRetOK
+
+=criarlista lista2 OK
+=inselemantes    lista2   '1'   OK
+=inselemantes    lista2   '2'   OK
+=inselemantes    lista2   '3'   OK
+=inselemantes    lista2   '4'   OK
+=avancarelem     lista2    1    OK
+=obtervalorelem  lista2   '3'   OK
+
+// FIM CondRetOK
+
+// CondRetFimLista
+=avancarelem     lista2   -2    FimLista
+// FIM CondRetFimLista
+
+// CondRetListaVazia
+=destruirlista   lista2
+// FIM CondRetListaVazia
+
+//*********************************
+
+== Testar procura de elementos
+
+// LIS_CondRetOK
+=criarlista lista2 OK
+=inselemantes    lista2   '1'   OK
+=inselemantes    lista2   '2'   OK
+=procurarelem    lista2   '2'   OK
+// FIM LIS_CondRetOK
+
+
+// LIS_CondRetNaoEncontrou
+=procurarelem    lista2   '5'   NaoAchou
+=destruirlista   lista2
+// FIM LIS_CondRetNaoEncontrou
+
+// LIS_CondRetListaVazia
+=criarlista lista2 OK
+=procurarelem    lista2   '1'   ListaVazia
+// FIM LIS_CondRetListaVazia
 
 // fim
