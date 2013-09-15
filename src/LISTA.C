@@ -312,7 +312,7 @@
 
       if ( pLista->pElemCorr == NULL )
       {
-		  return LIS_CondRetFaltouMemoria ;
+		  return LIS_CondRetListaVazia ;
       } /* if */
 
 	  *valor = pLista->pElemCorr->pValor;

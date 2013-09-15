@@ -169,7 +169,6 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *           
 *
 *  $FV Valor retornado
-*     Valor retornado
 *        LIS_CondRetOK
 *        LIS_CondRetFaltouMemoria
 *
@@ -193,8 +192,8 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *     pLista    - ponteiro para a lista na qual deve excluir.
 *
 *  $FV Valor retornado
-*     LIS_CondRetOK
-*     LIS_CondRetListaVazia
+*     LIS_CondRetOK         - se o elemento foi excluido
+*     LIS_CondRetListaVazia - se a lista estiver vazia
 *
 ***********************************************************************/
 
@@ -202,18 +201,17 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
 /***********************************************************************
 *
-*  $FC Função: LIS  &Obter referência para o valor contido no elemento
+*  $FC Função: LIS  &Obter o valor contido no elemento
 *
 *  $ED Descrição da função
-*     Obtem a referência para o valor contido no elemento corrente da lista
+*     Obtem o valor contido no elemento corrente da lista
 *
 *  $EP Parâmetros
 *     pLista - ponteiro para a lista de onde se quer o valor
 *
 *  $FV Valor retornado
-*     não NULL - se o elemento corrente existe
-*     NULL     - se a lista estiver vazia
-*                Pode retornar NULL se o valor inserido no elemento for NULL.
+*     CondRetOK         - se o elemento foi obtido
+*	  CondRetListaVazia - se a lista estiver vazia
 *
 ***********************************************************************/
 
