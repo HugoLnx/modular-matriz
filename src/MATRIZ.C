@@ -163,18 +163,13 @@
 
    tpNoMatriz * GetVizinho( tpNoMatriz * pNo , tpDirecao dir ) ;
 
-   void SetNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir ) ;
-
    MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoOrigem , int QntLinhas ) ;
-
 
    MAT_tpCondRet AddColuna( MAT_tpMatriz * pMatriz ) ;
 
    void ApontarDeVoltaEmTodasAsDirecoes( tpNoMatriz * pNo ) ;
    
    MAT_tpCondRet IrPara( MAT_tpMatriz * pMatriz , tpDirecao direcao );
-   
-   tpDirecao DirecaoReversa( tpDirecao dir ) ;
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -217,8 +212,6 @@
    MAT_tpCondRet MAT_InicializarMatriz(MAT_tpMatriz * pMatriz , int Linhas , int Colunas )
    {
 	   int i ;
-	   tpNoMatriz * pNoNovo ;
-	   tpNoMatriz * pNoAnterior ;
 	   MAT_tpCondRet Cond ;
 
 	   if( pMatriz == NULL )
@@ -499,53 +492,8 @@
 		case SUDOESTE: return pNo->pSudoeste ;
 		case NOROESTE: return pNo->pNoroeste ;
 		}
+		return NULL;
    }  /* Fim função: MAT Recupera o ponteiro para um nó adjacente*/
-   
-   
-/***********************************************************************
-*
-*  $FC Função: MAT Troca o ponteiro de um nó adjacente.
-*
-*  Exemplo de uso: SetNovoVizinho(noOrigem, pNoNovo, ESTE)
-*
-***********************************************************************/
-
-   void SetNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir )
-   {
-	   switch( dir )
-		{
-		case NORTE:    pNo->pNorte    = pNoNovo ; break ;
-		case SUL:      pNo->pSul      = pNoNovo ; break ;
-		case ESTE:     pNo->pEste     = pNoNovo ; break ;
-		case NORDESTE: pNo->pNordeste = pNoNovo ; break ;
-		case SUDESTE:  pNo->pSudeste  = pNoNovo ; break ;
-		case SUDOESTE: pNo->pSudoeste = pNoNovo ; break ;
-		case NOROESTE: pNo->pNoroeste = pNoNovo ; break ;
-		}
-   }  /* Fim função: MAT Troca o ponteiro de um nó adjacente */
-
-/***********************************************************************
-*
-*  $FC Função: MAT Descobre a direção oposta.
-*
-*  Exemplo de uso: DirecaoReversa(ESTE) => OESTE
-*
-***********************************************************************/
-
-   tpDirecao DirecaoReversa( tpDirecao dir )
-   {
-	   switch( dir )
-	   {
-			case NORTE: return SUL ;
-			case SUL: return NORTE ;
-			case ESTE: return OESTE ;
-			case NORDESTE: return SUDOESTE ;
-			case SUDESTE: return NOROESTE ;
-			case SUDOESTE: return NORDESTE ;
-			case NOROESTE: return SUDESTE ;
-	   }
-   }  /* Fim função: MAT Descobre a direção oposta */
-
 
 /***********************************************************************
 *
