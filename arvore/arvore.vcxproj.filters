@@ -32,7 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\src\ArcaboucoTeste.lib" />
-    <Library Include="..\Debug\lista.lib" />
+    <Library Include="..\src\lista.lib" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\MATRIZ.H">
