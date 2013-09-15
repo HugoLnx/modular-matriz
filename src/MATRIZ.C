@@ -253,20 +253,25 @@
 
    MAT_tpCondRet MAT_DestruirMatriz( MAT_tpMatriz ** ppMatriz )
    {
-	  MAT_tpMatriz * pMatriz ;
+		MAT_tpMatriz * pMatriz ;
 
-      if ( ppMatriz != NULL && *ppMatriz != NULL )
-      {
-		 pMatriz = *ppMatriz ;
-         if ( pMatriz->pNoRaiz != NULL )
-         {
-            DestroiMatriz( pMatriz->pNoRaiz ) ;
-         } /* if */
-         free( pMatriz ) ;
-         *ppMatriz = NULL ;
-		 return MAT_CondRetOK ;
-      } /* if */
-	  return MAT_CondRetMatrizNaoExiste ;
+		if ( ppMatriz == NULL || *ppMatriz == NULL )
+		{
+			return MAT_CondRetMatrizNaoExiste ;
+		} /* if */
+
+		pMatriz = *ppMatriz ;
+		if ( pMatriz->pNoRaiz == NULL )
+		{
+			return MAT_CondRetNaoCriouRaiz;
+		} /* if */
+         
+		DestroiMatriz( pMatriz->pNoRaiz ) ;
+		free( pMatriz ) ;
+		*ppMatriz = NULL ;
+
+		return MAT_CondRetOK ;
+	  
    } /* Fim função: MAT Destruir matriz */
 
 

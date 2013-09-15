@@ -64,6 +64,8 @@
 == Criar matriz
 =criar      OK
 
+== Verificar erros relativos à inexistência da raiz
+=destruir              NaoRaiz
 
 == Inicializar matriz
 =init 5 5 OK
