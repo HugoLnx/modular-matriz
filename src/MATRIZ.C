@@ -283,7 +283,7 @@
       } /* if */
       if ( pMatriz->pNoCorr == NULL )
       {
-         return MAT_CondRetMatrizVazia ;
+         return MAT_CondRetNaoTemCorrente ;
       } /* if */
       * ValorParm = pMatriz->pNoCorr->Valor ;
 
@@ -306,7 +306,7 @@
       } /* if */
       if ( pMatriz->pNoCorr == NULL )
       {
-         return MAT_CondRetMatrizVazia ;
+         return MAT_CondRetNaoTemCorrente ;
       } /* if */
       pMatriz->pNoCorr->Valor =ValorParm ;
 
@@ -656,7 +656,7 @@
       } /* if */
       if ( pMatriz->pNoCorr == NULL )
       {
-         return MAT_CondRetMatrizVazia ;
+         return MAT_CondRetNaoTemCorrente ;
       } /* if */
 
       if ( GetVizinho( pMatriz->pNoCorr , direcao ) == NULL )

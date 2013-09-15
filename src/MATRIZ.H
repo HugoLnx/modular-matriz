@@ -67,7 +67,7 @@ typedef struct tgMatriz MAT_tpMatriz ;
          MAT_CondRetMatrizNaoExiste = 3 ,
                /* Matriz não existe */
 
-         MAT_CondRetMatrizVazia = 4 ,
+         MAT_CondRetNaoTemCorrente = 4 ,
                /* Matriz está vazia */
 
          MAT_CondRetFaltouMemoria = 5
@@ -142,7 +142,7 @@ typedef struct tgMatriz MAT_tpMatriz ;
 *  $FV Valor retornado
 *     MAT_CondRetOK
 *     MAT_CondRetMatrizNaoExiste
-*     MAT_CondRetMatrizVazia
+*     MAT_CondRetNaoTemCorrente
 *     MAT_CondRetNaoEhNo
 *
 ***********************************************************************/
@@ -169,7 +169,7 @@ typedef struct tgMatriz MAT_tpMatriz ;
 *  $FV Valor retornado
 *     MAT_CondRetOK
 *     MAT_CondRetMatrizNaoExiste
-*     MAT_CondRetMatrizVazia
+*     MAT_CondRetNaoTemCorrente
 *
 ***********************************************************************/
 
