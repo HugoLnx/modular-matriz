@@ -1,0 +1,7 @@
+﻿Módulo Lista
+
+Tarefas:
+
+*Implementar demais métodos.
+*Efetuar testes mais abrangentes
+*Tornar a lista genérica e ao mesmo tempo trabalhar com o tipo char.

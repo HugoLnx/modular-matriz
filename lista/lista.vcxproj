@@ -21,7 +21,9 @@
     <None Include="..\src\TesteLista.script" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\src\ArcaboucoTeste.lib" />
+    <Library Include="..\..\..\..\%40INF1301\trabalho.1\modular-matriz\src\ArcaboucoTeste.lib">
+      <FileType>Document</FileType>
+    </Library>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C4A415DB-7689-488D-8243-3E17AE332C30}</ProjectGuid>
@@ -52,6 +54,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -68,6 +71,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>"$(OutDir)roda.bat" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
