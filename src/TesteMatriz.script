@@ -67,6 +67,17 @@
 == Verificar erros relativos à inexistência da raiz
 =destruir              NaoRaiz
 
+== Verificar erros relativos à inexistência do corrente
+=irnorte               NaoCorr
+=irsul                 NaoCorr
+=ireste                NaoCorr
+=iroeste               NaoCorr
+=irnordeste            NaoCorr
+=irsudeste             NaoCorr
+=irsudoeste            NaoCorr
+=irnoroeste            NaoCorr
+=obter      CharErro   NaoCorr
+
 == Inicializar matriz
 =init 5 5 OK
 
