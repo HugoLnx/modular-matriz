@@ -416,42 +416,42 @@
 
    MAT_tpCondRet MAT_IrNoNorte( MAT_tpMatriz * pMatriz )
    {
-	   IrPara( pMatriz , NORTE );
+	   return IrPara( pMatriz , NORTE );
    }
 
    MAT_tpCondRet MAT_IrNoSul( MAT_tpMatriz * pMatriz )
    {
-	   IrPara( pMatriz , SUL );
+	   return IrPara( pMatriz , SUL );
    }
 
    MAT_tpCondRet MAT_IrNoEste( MAT_tpMatriz * pMatriz )
    {
-	   IrPara( pMatriz , ESTE );
+	   return IrPara( pMatriz , ESTE );
    }
 
    MAT_tpCondRet MAT_IrNoOeste( MAT_tpMatriz * pMatriz )
    {
-	   IrPara( pMatriz , OESTE );
+	   return IrPara( pMatriz , OESTE );
    }
    
    MAT_tpCondRet MAT_IrNoNordeste( MAT_tpMatriz * pMatriz )
    {
-	   IrPara( pMatriz , NORDESTE );
+	   return IrPara( pMatriz , NORDESTE );
    }
    
    MAT_tpCondRet MAT_IrNoSudeste( MAT_tpMatriz * pMatriz )
    {
-	   IrPara( pMatriz , SUDESTE );
+	   return IrPara( pMatriz , SUDESTE );
    }
    
    MAT_tpCondRet MAT_IrNoSudoeste( MAT_tpMatriz * pMatriz )
    {
-	   IrPara( pMatriz , SUDOESTE );
+	   return IrPara( pMatriz , SUDOESTE );
    }
 
    MAT_tpCondRet MAT_IrNoNoroeste( MAT_tpMatriz * pMatriz )
    {
-	   IrPara( pMatriz , NOROESTE );
+	   return IrPara( pMatriz , NOROESTE );
    }
 
 /***********************************************************************
@@ -469,6 +469,7 @@
 		case NORTE:    return pNo->pNorte ;
 		case SUL:      return pNo->pSul ;
 		case ESTE:     return pNo->pEste ;
+		case OESTE:    return pNo->pOeste ;
 		case NORDESTE: return pNo->pNordeste ;
 		case SUDESTE:  return pNo->pSudeste ;
 		case SUDOESTE: return pNo->pSudoeste ;
@@ -691,7 +692,7 @@
 		  return MAT_CondRetNaoEhFolha ;
       } /* if */
 
-	  pMatriz->pNoCorr = GetVizinho( pMatriz->pNoCorr, direcao ) ;
+	  pMatriz->pNoCorr = GetVizinho( pMatriz->pNoCorr , direcao ) ;
 	  return MAT_CondRetOK ;
 
    } /* Fim função: MAT Ir para nó genérico */

@@ -79,7 +79,147 @@
 =obter      CharErro   NaoCorr
 
 == Inicializar matriz
-=init 5 5 OK
+=init 3 3 OK
+
+== Verificar ponteiros da posição (0, 0)
+=irnorte    NaoFolha
+=iroeste    NaoFolha
+=irnordeste NaoFolha
+=irsudoeste NaoFolha
+=irnoroeste NaoFolha
+
+=irsul      OK
+=irnorte    OK
+
+=irsudeste  OK
+=ireste     OK
+
+=irnoroeste OK
+
+
+== Verificar ponteiros da posição (0, 1)
+=irnorte    NaoFolha
+=irnordeste NaoFolha
+=irnoroeste NaoFolha
+
+=irsul      OK
+=irnorte    OK
+
+=iroeste    OK
+=ireste     OK
+
+=irsudeste  OK
+=irnoroeste OK
+
+=irsudoeste OK
+=irnordeste OK
+
+=ireste     OK
+
+
+== Verificar ponteiros da posição (0, 2)
+=irnorte    NaoFolha
+=ireste     NaoFolha
+=irnordeste NaoFolha
+=irsudeste  NaoFolha
+=irnoroeste NaoFolha
+
+=iroeste OK
+=ireste  OK
+
+=irsudoeste OK
+=irnordeste OK
+
+=irsul   OK
+
+
+== Verificar ponteiros da posição (1, 2)
+=ireste     NaoFolha
+=irnordeste NaoFolha
+=irsudeste  NaoFolha
+
+=irnorte OK
+=irsul   OK
+
+=iroeste OK
+=ireste  OK
+
+=irnoroeste OK
+=irsudeste  OK
+
+=irsudoeste OK
+=irnordeste OK
+
+=irsul   OK
+
+
+== Verificar ponteiros da posição (2, 2)
+=irsul      NaoFolha
+=ireste     NaoFolha
+=irnordeste NaoFolha
+=irsudeste  NaoFolha
+=irsudoeste NaoFolha
+
+=irnorte OK
+=irsul   OK
+
+=irnoroeste OK
+=irsudeste  OK
+
+=iroeste OK
+
+== Verificar ponteiros da posição (2, 1)
+=irsul      NaoFolha
+=irsudeste  NaoFolha
+=irsudoeste NaoFolha
+
+=irnorte    OK
+=irsul      OK
+
+=ireste     OK
+=iroeste    OK
+
+=irnordeste OK
+=irsudoeste OK
+
+=irnoroeste OK
+=irsudeste  OK
+
+=iroeste    OK
+
+== Verificar ponteiros da posição (2, 0)
+=irsul      NaoFolha
+=iroeste    NaoFolha
+=irsudeste  NaoFolha
+=irsudoeste NaoFolha
+=irnoroeste NaoFolha
+
+=ireste      OK
+=iroeste     OK
+
+=irnordeste OK
+=irsudoeste OK
+
+=irnorte    OK
+
+== Verificar ponteiros da posição (1, 0)
+=iroeste    NaoFolha
+=irsudoeste NaoFolha
+=irnoroeste NaoFolha
+
+=irsul      OK
+=irnorte    OK
+
+=ireste     OK
+=iroeste    OK
+
+=irnordeste OK
+=irsudoeste OK
+
+=irsudeste  OK
+=irnoroeste OK
+
+=irnorte    OK
 
 == Trabalhar com outra matriz simultaneamente
 =selecionar 1
