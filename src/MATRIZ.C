@@ -154,7 +154,7 @@
 
 /***** Protótipos das funções encapuladas no módulo *****/
 
-   static tpNoMatriz * CriarNo( char ValorParm ) ;
+   static tpNoMatriz * CriarNo() ;
 
    static MAT_tpCondRet CriarNoRaiz( MAT_tpMatriz * pMatriz , char ValorParm ) ;
 
@@ -313,7 +313,7 @@
 *
 ***********************************************************************/
 
-   tpNoMatriz * CriarNo( char ValorParm )
+   tpNoMatriz * CriarNo()
    {
 
       tpNoMatriz * pNo ;
@@ -332,7 +332,7 @@
 	  pNo->pSudeste = NULL ;
 	  pNo->pSudoeste = NULL ;
 	  pNo->pNoroeste = NULL ;
-      pNo->Valor  = ValorParm ;
+      pNo->Valor  = NULL ;
       return pNo ;
 
    } /* Fim função: MAT Criar nó da matriz */
@@ -367,7 +367,7 @@
 
       if ( pMatriz->pNoRaiz == NULL )
       {
-         pNo = CriarNo( ValorParm ) ;
+         pNo = CriarNo() ;
          if ( pNo == NULL )
          {
             return MAT_CondRetFaltouMemoria ;
@@ -547,7 +547,7 @@
 	   pNoAnterior = pNoRaiz ;
 	   for( i = 0 ; i < QntLinhas - 1 ; i++ )
 	   {
-		   pNoNovo = CriarNo( NULL ) ;
+		   pNoNovo = CriarNo() ;
 		   if( pNoNovo == NULL )
 		   {
 			   return MAT_CondRetFaltouMemoria ;
@@ -588,7 +588,7 @@
 
 	   while( pNoExtremidade != NULL )
 	   {
-		   pNoNovo = CriarNo( NULL ) ;
+		   pNoNovo = CriarNo() ;
 		   if( pNoNovo == NULL )
 		   {
 			   return MAT_CondRetFaltouMemoria ;
