@@ -142,26 +142,9 @@ typedef struct tgMatriz MAT_tpMatriz ;
 
    MAT_tpCondRet MAT_DestruirMatriz( MAT_tpMatriz ** ppMatriz ) ;
 
-
-
 /***********************************************************************
 *
-*  $FC Função: MAT Ir para nó pai
-*
-*  $FV Valor retornado
-*     MAT_CondRetOK
-*     MAT_CondRetMatrizNaoExiste
-*     MAT_CondRetMatrizVazia
-*     MAT_CondRetNoEhRaiz
-*
-***********************************************************************/
-
-   MAT_tpCondRet MAT_IrPai( MAT_tpMatriz * pMatriz ) ;
-
-
-/***********************************************************************
-*
-*  $FC Função: MAT Ir para nó à esquerda
+*  $FC Função: MAT Ir para nó ao norte
 *
 *  $FV Valor retornado
 *     MAT_CondRetOK
@@ -171,23 +154,15 @@ typedef struct tgMatriz MAT_tpMatriz ;
 *
 ***********************************************************************/
 
-   MAT_tpCondRet MAT_IrNoEsquerda( MAT_tpMatriz * pMatriz ) ;
+   MAT_tpCondRet MAT_IrNoNorte( MAT_tpMatriz * pMatriz ) ;
+   MAT_tpCondRet MAT_IrNoSul( MAT_tpMatriz * pMatriz ) ;
+   MAT_tpCondRet MAT_IrNoEste( MAT_tpMatriz * pMatriz ) ;
+   MAT_tpCondRet MAT_IrNoOeste( MAT_tpMatriz * pMatriz ) ;
+   MAT_tpCondRet MAT_IrNoNordeste( MAT_tpMatriz * pMatriz ) ;
+   MAT_tpCondRet MAT_IrNoSudeste( MAT_tpMatriz * pMatriz ) ;
+   MAT_tpCondRet MAT_IrNoSudoeste( MAT_tpMatriz * pMatriz ) ;
+   MAT_tpCondRet MAT_IrNoNoroeste( MAT_tpMatriz * pMatriz ) ;
 
-
-
-/***********************************************************************
-*
-*  $FC Função: MAT Ir para nó à direita
-*
-*  $FV Valor retornado
-*     MAT_CondRetOK
-*     MAT_CondRetMatrizNaoExiste
-*     MAT_CondRetMatrizVazia
-*     MAT_CondRetNaoPossuiFilho   - nó corrente não possui filho à direita
-*
-***********************************************************************/
-
-   MAT_tpCondRet MAT_IrNoDireita( MAT_tpMatriz * pMatriz ) ;
 
 
 /***********************************************************************

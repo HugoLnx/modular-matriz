@@ -42,12 +42,6 @@
 ***********************************************************************/
 
    typedef struct tgNoMatriz {
-
-         struct tgNoMatriz * pNoPai ; /* será apagado*/
-         struct tgNoMatriz * pNoEsq ; /* será apagado*/
-         struct tgNoMatriz * pNoDir ; /* será apagado*/
-
-
 		 struct tgNoMatriz * pNorte ;
                /* Ponteiro para nó adjacente ao norte
                *
@@ -172,9 +166,12 @@
 
    MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoRaiz , int QntLinhas ) ;
 
+
    MAT_tpCondRet AddColuna( MAT_tpMatriz * pMatriz ) ;
 
    void ApontarDeVoltaEmTodasAsDirecoes( tpNoMatriz * pNo ) ;
+   
+   MAT_tpCondRet IrPara( MAT_tpMatriz * pMatriz , tpDirecao direcao );
    
    tpDirecao DirecaoReversa( tpDirecao dir ) ;
 
@@ -275,89 +272,6 @@
 
 /***************************************************************************
 *
-*  Função: MAT Ir para nó pai
-*  ****/
-
-   MAT_tpCondRet MAT_IrPai( MAT_tpMatriz * pMatriz )
-   {
-
-      if ( pMatriz == NULL )
-      {
-         return MAT_CondRetMatrizNaoExiste ;
-      } /* if */
-      if ( pMatriz->pNoCorr == NULL )
-      {
-         return MAT_CondRetMatrizVazia ;
-      } /* if */
-
-      if ( pMatriz->pNoCorr->pNoPai != NULL )
-      {
-         pMatriz->pNoCorr = pMatriz->pNoCorr->pNoPai ;
-         return MAT_CondRetOK ;
-      } else {
-         return MAT_CondRetNohEhRaiz ;
-      } /* if */
-
-   } /* Fim função: MAT Ir para nó pai */
-
-/***************************************************************************
-*
-*  Função: MAT Ir para nó à esquerda
-*  ****/
-
-   MAT_tpCondRet MAT_IrNoEsquerda( MAT_tpMatriz * pMatriz )
-   {
-
-      if ( pMatriz == NULL )
-      {
-         return MAT_CondRetMatrizNaoExiste ;
-      } /* if */
-
-      if ( pMatriz->pNoCorr == NULL )
-      {
-         return MAT_CondRetMatrizVazia ;
-      } /* if */
-
-      if ( pMatriz->pNoCorr->pNoEsq == NULL )
-      {
-         return MAT_CondRetNaoPossuiFilho ;
-      } /* if */
-
-      pMatriz->pNoCorr = pMatriz->pNoCorr->pNoEsq ;
-      return MAT_CondRetOK ;
-
-   } /* Fim função: MAT Ir para nó à esquerda */
-
-/***************************************************************************
-*
-*  Função: MAT Ir para nó à direita
-*  ****/
-
-   MAT_tpCondRet MAT_IrNoDireita( MAT_tpMatriz * pMatriz )
-   {
-
-      if ( pMatriz == NULL )
-      {
-         return MAT_CondRetMatrizNaoExiste ;
-      } /* if */
-
-      if ( pMatriz->pNoCorr == NULL )
-      {
-         return MAT_CondRetMatrizVazia ;
-      } /* if */
-
-      if ( pMatriz->pNoCorr->pNoDir == NULL )
-      {
-         return MAT_CondRetNaoPossuiFilho ;
-      } /* if */
-
-      pMatriz->pNoCorr = pMatriz->pNoCorr->pNoDir ;
-      return MAT_CondRetOK ;
-
-   } /* Fim função: MAT Ir para nó à direita */
-
-/***************************************************************************
-*
 *  Função: MAT Obter valor corrente
 *  ****/
 
@@ -405,9 +319,6 @@
          return NULL ;
       } /* if */
 
-      pNo->pNoPai = NULL ;
-      pNo->pNoDir = NULL ;
-      pNo->pNoEsq = NULL ;
       pNo->pNorte = NULL ;
 	  pNo->pSul = NULL ;
 	  pNo->pEste = NULL ;
@@ -497,6 +408,46 @@
 	   
    } /* Fim função: MAT Destruir a estrutura da matriz */
    
+
+   MAT_tpCondRet MAT_IrNoNorte( MAT_tpMatriz * pMatriz )
+   {
+	   IrPara( pMatriz , NORTE );
+   }
+
+   MAT_tpCondRet MAT_IrNoSul( MAT_tpMatriz * pMatriz )
+   {
+	   IrPara( pMatriz , SUL );
+   }
+
+   MAT_tpCondRet MAT_IrNoEste( MAT_tpMatriz * pMatriz )
+   {
+	   IrPara( pMatriz , ESTE );
+   }
+
+   MAT_tpCondRet MAT_IrNoOeste( MAT_tpMatriz * pMatriz )
+   {
+	   IrPara( pMatriz , OESTE );
+   }
+   
+   MAT_tpCondRet MAT_IrNoNordeste( MAT_tpMatriz * pMatriz )
+   {
+	   IrPara( pMatriz , NORDESTE );
+   }
+   
+   MAT_tpCondRet MAT_IrNoSudeste( MAT_tpMatriz * pMatriz )
+   {
+	   IrPara( pMatriz , SUDESTE );
+   }
+   
+   MAT_tpCondRet MAT_IrNoSudoeste( MAT_tpMatriz * pMatriz )
+   {
+	   IrPara( pMatriz , SUDOESTE );
+   }
+
+   MAT_tpCondRet MAT_IrNoNoroeste( MAT_tpMatriz * pMatriz )
+   {
+	   IrPara( pMatriz , NOROESTE );
+   }
 
 /***********************************************************************
 *
@@ -603,6 +554,8 @@
 	   return MAT_CondRetOK ;
    }  /* Fim função: MAT Construi a primeira coluna da matriz */
 
+
+
 /***********************************************************************
 *
 *  $FC Função: MAT Adiciona coluna.
@@ -649,6 +602,7 @@
 
 	   return MAT_CondRetOK ;
    }  /* Fim função: MAT Adiciona Coluna */
+
 
 /***********************************************************************
 *
@@ -706,6 +660,36 @@
 		}
    }  /* Fim função: MAT Apontar de volta em todas as direções */
 
+
+      
+
+
+/***************************************************************************
+*
+*  Função: MAT Ir para nó genérico
+*  ****/
+
+   MAT_tpCondRet IrPara( MAT_tpMatriz * pMatriz , tpDirecao direcao )
+   {
+
+      if ( pMatriz == NULL )
+      {
+         return MAT_CondRetMatrizNaoExiste ;
+      } /* if */
+      if ( pMatriz->pNoCorr == NULL )
+      {
+         return MAT_CondRetMatrizVazia ;
+      } /* if */
+
+      if ( GetVizinho( pMatriz->pNoCorr , direcao ) == NULL )
+      {
+		 return MAT_CondRetNohEhRaiz ;
+      } /* if */
+
+	  pMatriz->pNoCorr = GetVizinho( pMatriz->pNoCorr, direcao ) ;
+	  return MAT_CondRetOK ;
+
+   } /* Fim função: MAT Ir para nó genérico */
 
 /********** Fim do módulo de implementação: Módulo matriz **********/
 
