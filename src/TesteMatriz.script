@@ -34,8 +34,18 @@
 =declararparm  CharB        char  'b'
 =declararparm  CharC        char  'c'
 
-== Verificar erro ao destruir matriz inexistente
-=destruir NaoMatriz
+== Verificar erros nas operações inválidas quando a está matriz inexistente
+=destruir              NaoMatriz
+=irnorte               NaoMatriz
+=irsul                 NaoMatriz
+=ireste                NaoMatriz
+=iroeste               NaoMatriz
+=irnordeste            NaoMatriz
+=irsudeste             NaoMatriz
+=irsudoeste            NaoMatriz
+=irnoroeste            NaoMatriz
+=obter      CharErro   NaoMatriz
+=init 2 2 NaoMatriz
 
 == Verificar comando recuperar
 =destruir OK
@@ -51,30 +61,17 @@
 == Selecionar posição 0 na array de matrizes
 =selecionar 0
 
-== Verificar ObterValorCorr relativo a matriz inexistente
-=obter      CharErro   NaoMatriz
-
-== Verificar recuperar de ObterValorCorr relativo a matriz inexistente
-=obter      CharErro   NaoRaiz  
-=recuperar
-
-== Verificar inicializar matriz inexistente
-=init 2 2 NaoMatriz
-
 == Criar matriz
 =criar      OK
 
+
 == Inicializar matriz
 =init 5 5 OK
-
-== Verificar navegacao ate ultimo no da primeira coluna
-=validarEstrutura 5 5 OK
 
 == Trabalhar com outra matriz simultaneamente
 =selecionar 1
 =criar OK
 =init 10 10 OK
-=validarEstrutura 10 10 OK
 =destruir OK
 =selecionar 0
 

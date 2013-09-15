@@ -34,9 +34,14 @@
 *
 *     "=insesq" <Char>
 *                   - chama a função MAT_InserirEsquerda( <Char> )
-*     "=irpai"      - chama a função MAT_IrPai( )
-*     "=iresq"      - chama a função MAT_IrEsquerda( )
-*     "=irdir"      - chama a função MAT_IrDireita( )
+*     "=irnorte"      - chama a função MAT_IrNorte( )
+*     "=irsul"      - chama a função MAT_IrSul( )
+*     "=ireste"      - chama a função MAT_IrEste( )
+*     "=iroeste"      - chama a função MAT_IrOeste( )
+*     "=irnordeste"      - chama a função MAT_IrNordeste( )
+*     "=irsudeste"      - chama a função MAT_IrSudeste( )
+*     "=irsudoeste"      - chama a função MAT_IrSudoeste( )
+*     "=irnoroeste"      - chama a função MAT_IrNoroeste( )
 *     "=obter" <Char>
 *                   - chama a função MAT_ObterValorCorr( ) e compara
 *                     o valor retornado com o valor <Char>
@@ -61,6 +66,15 @@
 #define     INIT_MAT_CMD        "=init"
 #define     OBTER_VAL_CMD       "=obter"
 #define     DESTROI_CMD         "=destruir"
+
+#define     IR_NORTE_CMD       "=irnorte"
+#define     IR_SUL_CMD         "=irsul"
+#define     IR_ESTE_CMD        "=ireste"
+#define     IR_OESTE_CMD       "=iroeste"
+#define     IR_NORDESTE_CMD    "=irnordeste"
+#define     IR_SUDESTE_CMD     "=irsudeste"
+#define     IR_SUDOESTE_CMD    "=irsudoeste"
+#define     IR_NOROESTE_CMD    "=irnoroeste"
 
 /* Tabela dos nomes dos comandos de teste específicos do teste */
 #define     VALIDAR_EST_MAT_CMD "=validarEstrutura"
@@ -192,24 +206,151 @@ static int iMat = 0;
          } /* fim ativa: Testar MAT Inicializar matriz */
 
 		 
-      /* Testar MAT Validar estrutura Matriz */
+      /* Testar MAT Ir norte */
 
-         else if ( strcmp( ComandoTeste , VALIDAR_EST_MAT_CMD ) == 0 )
+		 else if ( strcmp( ComandoTeste , IR_NORTE_CMD ) == 0 )
          {
-			NumLidos = LER_LerParametros( "iii" ,
-                               &Linhas, &Colunas , &CondRetEsperada ) ;
-            if ( NumLidos != 3 )
+			NumLidos = LER_LerParametros( "i" , &CondRetEsperada ) ;
+            if ( NumLidos != 1 )
             {
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MAT_TestarEstruturaMatriz( Matrizes[iMat] , Linhas, Colunas) ;
+			CondRetObtido = MAT_IrNoNorte( Matrizes[iMat] ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
-									"Estrutura da matriz esta errada.") ;
+									"Não foi possível ir para Norte.") ;
 
-         } /* fim ativa: Testar MAT Validar estrutura matriz */
+         } /* fim ativa: Testar MAT Ir norte */
+
+
+		/* Testar MAT Ir sul */
+
+		 else if ( strcmp( ComandoTeste , IR_SUL_CMD ) == 0 )
+         {
+			NumLidos = LER_LerParametros( "i" , &CondRetEsperada ) ;
+            if ( NumLidos != 1 )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+			CondRetObtido = MAT_IrNoSul( Matrizes[iMat] ) ;
+
+            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
+									"Não foi possível ir para Sul.") ;
+
+         } /* fim ativa: Testar MAT Ir sul */
+
+
+		/* Testar MAT Ir este */
+
+		 else if ( strcmp( ComandoTeste , IR_ESTE_CMD ) == 0 )
+         {
+			NumLidos = LER_LerParametros( "i" , &CondRetEsperada ) ;
+            if ( NumLidos != 1 )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+			CondRetObtido = MAT_IrNoEste( Matrizes[iMat] ) ;
+
+            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
+									"Não foi possível ir para Este.") ;
+
+         } /* fim ativa: Testar MAT Ir este */
+
+
+		/* Testar MAT Ir oeste */
+
+		 else if ( strcmp( ComandoTeste , IR_OESTE_CMD ) == 0 )
+         {
+			NumLidos = LER_LerParametros( "i" , &CondRetEsperada ) ;
+            if ( NumLidos != 1 )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+			CondRetObtido = MAT_IrNoOeste( Matrizes[iMat] ) ;
+
+            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
+									"Não foi possível ir para Oeste.") ;
+
+         } /* fim ativa: Testar MAT Ir oeste */
+
 		 
+		/* Testar MAT Ir nordeste */
+
+		 else if ( strcmp( ComandoTeste , IR_NORDESTE_CMD ) == 0 )
+         {
+			NumLidos = LER_LerParametros( "i" , &CondRetEsperada ) ;
+            if ( NumLidos != 1 )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+			CondRetObtido = MAT_IrNoNordeste( Matrizes[iMat] ) ;
+
+            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
+									"Não foi possível ir para Nordeste.") ;
+
+         } /* fim ativa: Testar MAT Ir nordeste */
+
+
+		/* Testar MAT Ir sudeste */
+
+		 else if ( strcmp( ComandoTeste , IR_SUDESTE_CMD ) == 0 )
+         {
+			NumLidos = LER_LerParametros( "i" , &CondRetEsperada ) ;
+            if ( NumLidos != 1 )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+			CondRetObtido = MAT_IrNoSudeste( Matrizes[iMat] ) ;
+
+            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
+									"Não foi possível ir para Sudeste.") ;
+
+         } /* fim ativa: Testar MAT Ir sudeste */
+
+
+		/* Testar MAT Ir sudoeste */
+
+		 else if ( strcmp( ComandoTeste , IR_SUDOESTE_CMD ) == 0 )
+         {
+			NumLidos = LER_LerParametros( "i" , &CondRetEsperada ) ;
+            if ( NumLidos != 1 )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+			CondRetObtido = MAT_IrNoSudoeste( Matrizes[iMat] ) ;
+
+            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
+									"Não foi possível ir para Sudoeste.") ;
+
+         } /* fim ativa: Testar MAT Ir sudoeste */
+
+
+		/* Testar MAT Ir noroeste */
+
+		 else if ( strcmp( ComandoTeste , IR_NOROESTE_CMD ) == 0 )
+         {
+			NumLidos = LER_LerParametros( "i" , &CondRetEsperada ) ;
+            if ( NumLidos != 1 )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+			CondRetObtido = MAT_IrNoNoroeste( Matrizes[iMat] ) ;
+
+            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
+									"Não foi possível ir para Noroeste.") ;
+
+         } /* fim ativa: Testar MAT Ir noroeste */
+
+
+
       /* Testar Selecionar indice na array de matrizes */
 
          else if ( strcmp( ComandoTeste , SELECIONAR_CMD ) == 0 )

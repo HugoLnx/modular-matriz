@@ -182,8 +182,6 @@ typedef struct tgMatriz MAT_tpMatriz ;
 
    MAT_tpCondRet MAT_ObterValorCorr( MAT_tpMatriz * pMatriz , char * ValorParm ) ;
 
-   
-   MAT_tpCondRet MAT_TestarEstruturaMatriz( MAT_tpMatriz * pMatriz , int Linhas , int Colunas ) ;
 
 #undef MATRIZ_EXT
 
