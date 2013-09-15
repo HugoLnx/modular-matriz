@@ -320,6 +320,21 @@
 	  return LIS_CondRetOK;
    } /* Fim função: LIS  &Obter referência para o valor contido no elemento */
 
+/***************************************************************************
+*
+*  Função: LIS  &Ir para o elemento inicial
+*  ****/
+
+   void LIS_IrInicioLista( LIS_tppLista pLista )
+   {
+
+      #ifdef _DEBUG
+         assert( pLista != NULL ) ;
+      #endif
+
+      pLista->pElemCorr = pLista->pOrigemLista ;
+
+   } /* Fim função: LIS  &Ir para o elemento inicial */
 
 /***********************************************************************
 *

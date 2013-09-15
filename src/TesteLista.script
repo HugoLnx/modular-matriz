@@ -25,8 +25,6 @@
 == Criar a lista 1
 =criarlista lista1 OK
 
-== Criar a lista 2
-=criarlista lista2 OK
 
 == Inserir elemento antes.
 =inselemantes    lista0   'a'   OK
@@ -62,6 +60,7 @@
 =inselemapos     lista1   'g'   OK
 =inselemapos     lista1   'h'   OK
 
+
 == Testar excluir elemento
 =obtervalorelem lista1 'h' OK
 =excluirelem lista1 OK
@@ -72,5 +71,17 @@
 =obtervalorelem  lista1   'a'   OK
 =recuperar
 
+
+== Testar ir para o inicio da lista
+=criarlista lista2 OK
+=inselemapos     lista2   '1'   OK
+=inselemapos     lista2   '2'   OK
+=inselemapos     lista2   '3'   OK
+=inselemapos     lista2   '4'   OK
+=obtervalorelem  lista2   '4'   OK
+=irinicio		 lista2
+=obtervalorelem  lista2   '4'   OK
+=recuperar
+=obtervalorelem  lista2   '1'   OK
 
 // fim
