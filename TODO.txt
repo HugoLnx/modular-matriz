@@ -1,3 +1,5 @@
 Criar testes para criação de varias matrizes
 Revisar os comentários
 Mudar MAT_CondRetNaoEhFolha para MAT_CondRetNaoEhNo
+Jogar IndiceDoValor para o final
+Arrumar constantes da matriz
