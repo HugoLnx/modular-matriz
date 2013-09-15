@@ -206,6 +206,27 @@
 
    } /* Fim função: LIS  &Inserir elemento após */
 
+/***************************************************************************
+*
+*  Função: LIS  &Obter referência para o valor contido no elemento
+*  ****/
+
+   LIS_tpCondRet LIS_ObterValor(LIS_tppLista pLista, char* valor )
+   {
+
+      #ifdef _DEBUG
+         assert( pLista != NULL ) ;
+      #endif
+
+      if ( pLista->pElemCorr == NULL )
+      {
+		  return LIS_CondRetFaltouMemoria ;
+      } /* if */
+
+	  *valor = pLista->pElemCorr->pValor;
+
+	  return LIS_CondRetOK;
+   } /* Fim função: LIS  &Obter referência para o valor contido no elemento */
 
 
 /***********************************************************************

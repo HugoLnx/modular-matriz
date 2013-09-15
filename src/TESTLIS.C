@@ -92,57 +92,45 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
    TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
    {
 
-      int inxLista  = -1 ,
-          numLidos   = -1 ,
-          CondRetEsp = -1  ;
+      int inxLista   = -1,
+          numLidos   = -1,
+          CondRetEsp = -1;
 
-      TST_tpCondRet CondRet ;
+      TST_tpCondRet CondRet;
 	  LIS_tppLista ppLista = NULL;
-      char   dado;
-
-      int ValEsp = -1 ;
-
-      int i ;
-
-      int numElem = -1 ;
-
-      dado = 0 ;
 
       /* Efetuar reset de teste de lista */
 
-         if ( strcmp( ComandoTeste , RESET_LISTA_CMD ) == 0 )
+         if (strcmp(ComandoTeste, RESET_LISTA_CMD ) == 0)
          {
-
-            for( i = 0 ; i < DIM_VT_LISTA ; i++ )
+			int i;
+            for(i = 0; i < DIM_VT_LISTA; i++)
             {
-               vtListas[ i ] = NULL ;
+               vtListas[i] = NULL;
             } /* for */
 
-            return TST_CondRetOK ;
+            return TST_CondRetOK;
 
          } /* fim ativa: Efetuar reset de teste de lista */
 
       /* Testar CriarLista */
 
-         else if ( strcmp( ComandoTeste , CRIAR_LISTA_CMD ) == 0 )
+         else if (strcmp(ComandoTeste ,CRIAR_LISTA_CMD) == 0)
          {
 
-            numLidos = LER_LerParametros( "ii" ,
-                       &inxLista, &CondRetEsp) ;
+            numLidos = LER_LerParametros( "ii", &inxLista, &CondRetEsp);
 
-            if ( ( numLidos != 2 )
-              || ( ! ValidarInxLista( inxLista , VAZIO )))
+            if ((numLidos != 2) || (!ValidarInxLista(inxLista, VAZIO)))
             {
                return TST_CondRetParm ;
             } /* if */
 
-			
 			CondRet = LIS_CriarLista(&ppLista);
 
 			if(CondRet ==  LIS_CondRetOK)
 			{
 				vtListas[ inxLista ] = ppLista;
-				return TST_CompararPonteiroNulo( 1 , vtListas[ inxLista ] ,"Erro em ponteiro de nova lista."  ) ;
+				return TST_CompararPonteiroNulo(1 ,vtListas[ inxLista ] ,"Erro em ponteiro de nova lista.");
 			}
 
 			return TST_CondRetErro;
@@ -152,57 +140,79 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
      
       /* Testar inserir elemento antes */
 
-         else if ( strcmp( ComandoTeste , INS_ELEM_ANTES_CMD ) == 0 )
+         else if (strcmp(ComandoTeste, INS_ELEM_ANTES_CMD ) == 0)
          {
+            char dadoAInserir = 0;
 
-            numLidos = LER_LerParametros( "ici" ,
-                       &inxLista , &dado , &CondRetEsp ) ;
+            numLidos = LER_LerParametros( "ici", &inxLista, &dadoAInserir, &CondRetEsp);
 
-            if ( ( numLidos != 3 )
-              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
+            if ((numLidos != 3) || (!ValidarInxLista(inxLista, NAO_VAZIO)))
             {
                return TST_CondRetParm ;
             } /* if */
    
-            CondRet = LIS_InserirElementoAntes( vtListas[ inxLista ] , dado ) ;
+            CondRet = LIS_InserirElementoAntes(vtListas[inxLista], dadoAInserir);
 
-            if ( CondRet != LIS_CondRetOK )
+            if (CondRet != LIS_CondRetOK)
             {
                 TST_NotificarFalha("Não foi possivel inserir elemento antes") ;
 				return TST_CondRetErro;
             } /* if */
 
-            return TST_CompararInt( CondRetEsp , CondRet ,
-                     "Condicao de retorno errada ao inserir antes."                   ) ;
+            return TST_CompararInt( CondRetEsp, CondRet, "Condicao de retorno errada ao inserir antes.");
 
          } /* fim ativa: Testar inserir elemento antes */
 
       /* Testar inserir elemento apos */
 
-         else if ( strcmp( ComandoTeste , INS_ELEM_APOS_CMD ) == 0 )
+         else if (strcmp(ComandoTeste ,INS_ELEM_APOS_CMD) == 0)
          {
+			char dadoAInserir;
 
-            numLidos = LER_LerParametros( "ici" ,
-                       &inxLista , &dado , &CondRetEsp ) ;
+            numLidos = LER_LerParametros( "ici", &inxLista, &dadoAInserir, &CondRetEsp);
 
-            if ( ( numLidos != 3 )
-              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
+            if ((numLidos != 3) || (!ValidarInxLista(inxLista, NAO_VAZIO)))
             {
                return TST_CondRetParm ;
             } /* if */
 
-            CondRet = LIS_InserirElementoApos( vtListas[ inxLista ] , dado ) ;
+            CondRet = LIS_InserirElementoApos(vtListas[inxLista], dadoAInserir) ;
 
-            if ( CondRet != LIS_CondRetOK )
+            if (CondRet != LIS_CondRetOK)
             {
 				TST_NotificarFalha("Não foi possivel inserir elemento apos") ;
 				return TST_CondRetErro;
             } /* if */
 
-            return TST_CompararInt( CondRetEsp , CondRet ,
-                     "Condicao de retorno errada ao inserir apos."                   ) ;
+            return TST_CompararInt(CondRetEsp, CondRet, "Condicao de retorno errada ao inserir apos.");
 
          } /* fim ativa: Testar inserir elemento apos */
+
+		 /* Testar obter valor do elemento corrente */
+
+         else if (strcmp(ComandoTeste, OBTER_VALOR_CMD) == 0)
+         {
+			char dadoObtido = 0;
+			char dadoEsperado = 0;
+
+            numLidos = LER_LerParametros("ici", &inxLista, &dadoEsperado, &CondRetEsp);
+
+            if (( numLidos != 3) || (!ValidarInxLista(inxLista, NAO_VAZIO)))
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+            CondRet = LIS_ObterValor(vtListas[inxLista], &dadoObtido);
+
+			if(CondRet != TST_CondOK)
+			{
+				return CondRet;
+			}
+
+			return TST_CompararChar(dadoEsperado,dadoObtido,"Valor do elemento errado.");
+
+         } /* fim ativa: Testar obter valor do elemento corrente */
+
 
       return TST_CondRetNaoConhec ;
 

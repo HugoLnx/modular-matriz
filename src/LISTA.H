@@ -145,6 +145,25 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    LIS_tpCondRet LIS_InserirElementoApos( LIS_tppLista pLista ,
                                           char valor);
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Obter referência para o valor contido no elemento
+*
+*  $ED Descrição da função
+*     Obtem a referência para o valor contido no elemento corrente da lista
+*
+*  $EP Parâmetros
+*     pLista - ponteiro para a lista de onde se quer o valor
+*
+*  $FV Valor retornado
+*     não NULL - se o elemento corrente existe
+*     NULL     - se a lista estiver vazia
+*                Pode retornar NULL se o valor inserido no elemento for NULL.
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ObterValor( LIS_tppLista pLista, char* valor ) ;
 #undef LISTA_EXT
 
 /********** Fim do módulo de definição: LIS  Lista duplamente encadeada **********/

@@ -22,23 +22,32 @@
 == Criar a lista 0
 =criarlista lista0 OK
 
-== Inserir elemento antes. Elemento: 'a'
+== Criar a lista 1
+=criarlista lista1 OK
+
+== Criar a lista 2
+=criarlista lista2 OK
+
+== Inserir elemento antes.
 =inselemantes    lista0   'a'   OK
 =inselemantes    lista0   'b'   OK
-=inselemantes    lista0   'b'   OK
-=inselemantes    lista0   'b'   OK
-=inselemantes    lista0   'b'   OK
-=inselemantes    lista0   'b'   OK
-=inselemantes    lista0   'b'   OK
-=inselemantes    lista0   'b'   OK
-=inselemantes    lista0   'b'   OK
+=inselemantes    lista0   'c'   OK
+=inselemantes    lista0   'd'   OK
+==Obtendo valor
+=obtervalorelem  lista0   'd'   OK
 
+== Testando valor obtido eh diferente
+=obtervalorelem  lista0   'a'   OK
+=recuperar
 
 == Inserir elementos apos.
-=inselemapos     lista0   'a'   OK
+=inselemapos     lista1   'e'   OK
+=inselemapos     lista1   'f'   OK
+=inselemapos     lista1   'g'   OK
+=inselemapos     lista1   'h'   OK
 
-== Inserir elementos antes.
-=inselemantes    lista0   'a'   OK
-=inselemantes    lista0   'b'   OK
+== Testando valor obtido eh diferente
+=obtervalorelem  lista1   'a'   OK
+=recuperar
 
 // fim
