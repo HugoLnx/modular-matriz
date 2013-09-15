@@ -148,12 +148,103 @@ typedef struct tgMatriz MAT_tpMatriz ;
 ***********************************************************************/
 
    MAT_tpCondRet MAT_IrNoNorte( MAT_tpMatriz * pMatriz ) ;
+
+   
+/***********************************************************************
+*
+*  $FC Função: MAT Ir para nó ao sul
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetNaoTemCorrente
+*     MAT_CondRetNaoEhNo
+*
+***********************************************************************/
    MAT_tpCondRet MAT_IrNoSul( MAT_tpMatriz * pMatriz ) ;
+
+   
+/***********************************************************************
+*
+*  $FC Função: MAT Ir para nó à este
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetNaoTemCorrente
+*     MAT_CondRetNaoEhNo
+*
+***********************************************************************/
    MAT_tpCondRet MAT_IrNoEste( MAT_tpMatriz * pMatriz ) ;
+
+   
+/***********************************************************************
+*
+*  $FC Função: MAT Ir para nó à oeste
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetNaoTemCorrente
+*     MAT_CondRetNaoEhNo
+*
+***********************************************************************/
    MAT_tpCondRet MAT_IrNoOeste( MAT_tpMatriz * pMatriz ) ;
+
+   
+/***********************************************************************
+*
+*  $FC Função: MAT Ir para nó à nordeste
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetNaoTemCorrente
+*     MAT_CondRetNaoEhNo
+*
+***********************************************************************/
    MAT_tpCondRet MAT_IrNoNordeste( MAT_tpMatriz * pMatriz ) ;
+
+   
+/***********************************************************************
+*
+*  $FC Função: MAT Ir para nó à sudeste
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetNaoTemCorrente
+*     MAT_CondRetNaoEhNo
+*
+***********************************************************************/
    MAT_tpCondRet MAT_IrNoSudeste( MAT_tpMatriz * pMatriz ) ;
+
+   
+/***********************************************************************
+*
+*  $FC Função: MAT Ir para nó à sudoeste
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetNaoTemCorrente
+*     MAT_CondRetNaoEhNo
+*
+***********************************************************************/
    MAT_tpCondRet MAT_IrNoSudoeste( MAT_tpMatriz * pMatriz ) ;
+
+   
+/***********************************************************************
+*
+*  $FC Função: MAT Ir para nó à noroeste
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetNaoTemCorrente
+*     MAT_CondRetNaoEhNo
+*
+***********************************************************************/
    MAT_tpCondRet MAT_IrNoNoroeste( MAT_tpMatriz * pMatriz ) ;
 
 
@@ -175,6 +266,19 @@ typedef struct tgMatriz MAT_tpMatriz ;
 
    MAT_tpCondRet MAT_ObterValorCorr( MAT_tpMatriz * pMatriz , LIS_tppLista * ValorParm ) ;
 
+/***********************************************************************
+*
+*  $FC Função: MAT Atribuir valor corrente
+*
+*  $EP Parâmetros
+*     $P ValorParm - o valor que será atribuido ao nó corrente.
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetNaoTemCorrente
+*
+***********************************************************************/
    
    MAT_tpCondRet MAT_AtribuirValorCorr( MAT_tpMatriz * pMatriz , LIS_tppLista ValorParm ) ;
 
