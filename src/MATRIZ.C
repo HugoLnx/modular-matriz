@@ -22,8 +22,9 @@
 *
 ***************************************************************************/
 
-#include   <malloc.h>
-#include   <stdio.h>
+#include <malloc.h>
+#include <stdio.h>
+#include "LISTA.H"
 
 #define MATRIZ_OWN
 #include "MATRIZ.H"
@@ -99,7 +100,7 @@
 			   *   se pSudoeste do nó X != NULL então pNordeste de pSudoeste aponta para nó X */
 
 
-         char Valor ;
+         LIS_tpLista * Valor ;
                /* Valor do nó */
 
    } tpNoMatriz ;
@@ -280,7 +281,7 @@
 *  Função: MAT Obter valor corrente
 *  ****/
 
-   MAT_tpCondRet MAT_ObterValorCorr( MAT_tpMatriz * pMatriz , char * ValorParm )
+   MAT_tpCondRet MAT_ObterValorCorr( MAT_tpMatriz * pMatriz , LIS_tpLista ** ValorParm )
    {
 
       if ( pMatriz == NULL )
@@ -411,8 +412,8 @@
 			pNo = pNoExtremidade ;
 	   }
 	   
-   } /* Fim função: MAT Destruir a estrutura da matriz */
-   
+   } /* Fim função: MAT Destruir a estrutura da matriz */   
+
 
    MAT_tpCondRet MAT_IrNoNorte( MAT_tpMatriz * pMatriz )
    {
