@@ -43,6 +43,7 @@ static const char EXC_ELEM_CMD            [ ] = "=excluirelem"    ;
 static const char IR_INICIO_CMD           [ ] = "=irinicio"       ;
 static const char IR_FIM_CMD              [ ] = "=irfinal"        ;
 static const char AVANCAR_ELEM_CMD        [ ] = "=avancarelem"    ;
+static const char PROCURAR_ELEM_CMD        [ ] = "=procurarelem"  ;
 
 
 #define TRUE  1
@@ -79,13 +80,14 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 *     =criarlista                   inxLista
 *     =destruirlista                inxLista
 *     =esvaziarlista                inxLista
-*     =inselemantes                 inxLista  string  CondRetEsp
-*     =inselemapos                  inxLista  string  CondRetEsp
-*     =obtervalorelem               inxLista  string  CondretPonteiro
+*     =inselemantes                 inxLista  char  CondRetEsp
+*     =inselemapos                  inxLista  char  CondRetEsp
+*     =obtervalorelem               inxLista  char  CondretPonteiro
 *     =excluirelem                  inxLista  CondRetEsp
 *     =irinicio                     inxLista
 *     =irfinal                      inxLista
 *     =avancarelem                  inxLista  numElem CondRetEsp
+*     =procurarelem                 inxLista  char    CondRetEsp
 *
 ***********************************************************************/
 
@@ -286,7 +288,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetParm ;
             } /* if */
 
-            IrFinalLista( vtListas[ inxLista ] ) ;
+            LIS_IrFinalLista( vtListas[ inxLista ] ) ;
 
             return TST_CondRetOK ;
 
@@ -329,6 +331,27 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 
             return TST_CompararInt( CondRetEsp ,
                       LIS_AvancarElementoCorrente( vtListas[ inxLista ] , numElem ) ,
+                      "Condicao de retorno errada ao avancar" ) ;
+
+         } /* fim ativa: LIS  &Avançar elemento */
+
+		  /* LIS  &Procurar elemento */
+
+         else if ( strcmp( ComandoTeste , PROCURAR_ELEM_CMD ) == 0 )
+         {
+			char dadoASerProcurado = -1;
+
+            numLidos = LER_LerParametros( "ici" , &inxLista , &dadoASerProcurado ,
+                                &CondRetEsp ) ;
+
+            if ( ( numLidos != 3 )
+              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+            return TST_CompararInt( CondRetEsp ,
+                      LIS_ProcurarValor(vtListas[ inxLista ], dadoASerProcurado),
                       "Condicao de retorno errada ao avancar" ) ;
 
          } /* fim ativa: LIS  &Avançar elemento */

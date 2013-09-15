@@ -247,7 +247,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   void IrFinalLista( LIS_tppLista pLista ) ;
+   void LIS_IrFinalLista( LIS_tppLista pLista ) ;
 
    /***********************************************************************
 *
@@ -275,6 +275,34 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    LIS_tpCondRet LIS_AvancarElementoCorrente( LIS_tppLista pLista ,
                                               int numElem ) ;
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Procurar elemento contendo valor
+*
+*  $ED Descrição da função
+*     Procura o elemento que referencia o valor dado.
+*     A função compara ponteiro e não conteúdo apontado.
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista onde procura
+*     pValor  - ponteiro para o valor procurado
+*               Pode ser NULL
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK  - se encontrou.
+*                      O elemento corrente é o primeiro elemento do
+*                      elemento corrente inclusive para o fim da lista
+*                      e que contém o ponteiro procurado
+*
+*     LIS_CondRetNaoEncontrou - se o ponteiro não foi encontrado
+*                      O elemento corrente continua o mesmo
+*     LIS_CondRetListaVazia   - se a lista estiver vazia
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ProcurarValor( LIS_tppLista pLista ,
+                                    char valor        ) ;
 
 /***********************************************************************/
 #undef LISTA_EXT

@@ -112,4 +112,18 @@
 =destruirlista   lista2
 
 
+== Testar procura de elementos
+=criarlista lista2 OK
+=inselemantes    lista2   '1'   OK
+=inselemantes    lista2   '2'   OK
+=inselemantes    lista2   '3'   OK
+=inselemantes    lista2   '4'   OK
+
+=procurarelem    lista2   '2'   OK
+=procurarelem    lista2   '5'   NaoAchou
+=destruirlista   lista2
+=criarlista lista2 OK
+=procurarelem    lista2   '1'   ListaVazia
+
+
 // fim
