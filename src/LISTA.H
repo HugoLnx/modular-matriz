@@ -98,6 +98,21 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    LIS_tpCondRet LIS_CriarLista(LIS_tppLista* pLista) ;
 
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Esvaziar lista
+*
+*  $ED Descrição da função
+*     Elimina todos os elementos, sem contudo eliminar a lista
+*
+*  $EP Parâmetros
+*     pLista - ponteiro para a lista a ser esvaziada
+*
+***********************************************************************/
+
+   void LIS_EsvaziarLista( LIS_tppLista pLista ) ;
+
 /***********************************************************************
 *
 *  $FC Função: LIS  &Inserir elemento antes

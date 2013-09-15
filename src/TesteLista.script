@@ -36,6 +36,17 @@
 ==Obtendo valor
 =obtervalorelem  lista0   'd'   OK
 
+== Esvaziar lista
+=esvaziarlista lista0
+
+== Inserir elemento antes.
+=inselemantes    lista0   'a'   OK
+=inselemantes    lista0   'b'   OK
+=inselemantes    lista0   'c'   OK
+=inselemantes    lista0   'd'   OK
+==Obtendo valor
+=obtervalorelem  lista0   'd'   OK
+
 == Testando valor obtido eh diferente
 =obtervalorelem  lista0   'a'   OK
 =recuperar
@@ -49,5 +60,6 @@
 == Testando valor obtido eh diferente
 =obtervalorelem  lista1   'a'   OK
 =recuperar
+
 
 // fim

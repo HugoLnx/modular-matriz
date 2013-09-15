@@ -213,6 +213,27 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 
          } /* fim ativa: Testar obter valor do elemento corrente */
 
+		 /* Testar Esvaziar lista lista */
+
+         else if ( strcmp( ComandoTeste , ESVAZIAR_LISTA_CMD ) == 0 )
+         {
+
+            numLidos = LER_LerParametros( "i" ,
+                               &inxLista ) ;
+
+            if ( ( numLidos != 1 )
+              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )))
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+            LIS_EsvaziarLista( vtListas[ inxLista ] ) ;
+
+            return TST_CondRetOK ;
+
+         } /* fim ativa: Testar Esvaziar lista lista */
+
+      /* Testar Destruir lista */
 
       return TST_CondRetNaoConhec ;
 

@@ -71,8 +71,8 @@
 
 /***** Protótipos das funções encapuladas no módulo *****/
 
-  /* static void LiberarElemento( LIS_tppLista   pLista ,
-                                tpElemLista  * pElem   ) ;*/
+   static void LiberarElemento( LIS_tppLista   pLista ,
+                                tpElemLista  * pElem   ) ;
 
    static tpElemLista * CriarElemento( LIS_tppLista pLista ,
                                        char    valor  ) ;
@@ -104,6 +104,33 @@
 
    } /* Fim função: LIS  &Criar lista */
 
+
+/***************************************************************************
+*
+*  Função: LIS  &Esvaziar lista
+*  ****/
+
+   void LIS_EsvaziarLista( LIS_tppLista pLista )
+   {
+
+      tpElemLista * pElem ;
+      tpElemLista * pProx ;
+
+      #ifdef _DEBUG
+         assert( pLista != NULL ) ;
+      #endif
+
+      pElem = pLista->pOrigemLista ;
+      while ( pElem != NULL )
+      {
+         pProx = pElem->pProx ;
+         LiberarElemento( pLista , pElem ) ;
+         pElem = pProx ;
+      } /* while */
+
+      LimparCabeca( pLista ) ;
+
+   } /* Fim função: LIS  &Esvaziar lista */
 /***************************************************************************
 *
 *  Função: LIS  &Inserir elemento antes
@@ -256,7 +283,25 @@
 
    } /* Fim função: LIS  -Criar o elemento */
 
+/***********************************************************************
+*
+*  $FC Função: LIS  -Liberar elemento da lista
+*
+*  $ED Descrição da função
+*     Elimina os espaços apontados pelo valor do elemento e o
+*     próprio elemento.
+*
+***********************************************************************/
 
+   void LiberarElemento( LIS_tppLista   pLista ,
+                         tpElemLista  * pElem   )
+   {
+
+      free( pElem ) ;
+
+      pLista->numElem-- ;
+
+   } /* Fim função: LIS  -Liberar elemento da lista */
 /***********************************************************************
 *
 *  $FC Função: LIS  -Limpar a cabeça da lista
