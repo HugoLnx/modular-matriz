@@ -117,6 +117,7 @@
 =irnoroeste        OK
 
 == Verificar ponteiros da posição (0, 0)
+=obter Valor0_0 OK
 =irnorte        NaoFolha
 =iroeste        NaoFolha
 =irnordeste     NaoFolha
@@ -125,34 +126,42 @@
 			    
 =irsul          OK
 =irnorte        OK
+=obter Valor0_0 OK
 			    
 =irsudeste      OK
 =irnoroeste     OK
+=obter Valor0_0 OK
 
 =ireste         OK
 
 
 == Verificar ponteiros da posição (0, 1)
+=obter Valor0_1 OK
 =irnorte    NaoFolha
 =irnordeste NaoFolha
 =irnoroeste NaoFolha
 
 =irsul      OK
 =irnorte    OK
+=obter Valor0_1 OK
 
 =iroeste    OK
 =ireste     OK
+=obter Valor0_1 OK
 
 =irsudeste  OK
 =irnoroeste OK
+=obter Valor0_1 OK
 
 =irsudoeste OK
 =irnordeste OK
+=obter Valor0_1 OK
 
 =ireste     OK
 
 
 == Verificar ponteiros da posição (0, 2)
+=obter Valor0_2 OK
 =irnorte    NaoFolha
 =ireste     NaoFolha
 =irnordeste NaoFolha
@@ -161,34 +170,42 @@
 
 =iroeste OK
 =ireste  OK
+=obter Valor0_2 OK
 
 =irsudoeste OK
 =irnordeste OK
+=obter Valor0_2 OK
 
 =irsul   OK
 
 
 == Verificar ponteiros da posição (1, 2)
+=obter Valor1_2 OK
 =ireste     NaoFolha
 =irnordeste NaoFolha
 =irsudeste  NaoFolha
 
 =irnorte OK
 =irsul   OK
+=obter Valor1_2 OK
 
 =iroeste OK
 =ireste  OK
+=obter Valor1_2 OK
 
 =irnoroeste OK
 =irsudeste  OK
+=obter Valor1_2 OK
 
 =irsudoeste OK
 =irnordeste OK
+=obter Valor1_2 OK
 
 =irsul   OK
 
 
 == Verificar ponteiros da posição (2, 2)
+=obter Valor2_2 OK
 =irsul      NaoFolha
 =ireste     NaoFolha
 =irnordeste NaoFolha
@@ -197,32 +214,40 @@
 
 =irnorte OK
 =irsul   OK
+=obter Valor2_2 OK
 
 =irnoroeste OK
 =irsudeste  OK
+=obter Valor2_2 OK
 
 =iroeste OK
 
 == Verificar ponteiros da posição (2, 1)
+=obter Valor2_1 OK
 =irsul      NaoFolha
 =irsudeste  NaoFolha
 =irsudoeste NaoFolha
 
 =irnorte    OK
 =irsul      OK
+=obter Valor2_1 OK
 
 =ireste     OK
 =iroeste    OK
+=obter Valor2_1 OK
 
 =irnordeste OK
 =irsudoeste OK
+=obter Valor2_1 OK
 
 =irnoroeste OK
 =irsudeste  OK
+=obter Valor2_1 OK
 
 =iroeste    OK
 
 == Verificar ponteiros da posição (2, 0)
+=obter Valor2_0 OK
 =irsul      NaoFolha
 =iroeste    NaoFolha
 =irsudeste  NaoFolha
@@ -231,28 +256,35 @@
 
 =ireste      OK
 =iroeste     OK
+=obter Valor2_0 OK
 
 =irnordeste OK
 =irsudoeste OK
+=obter Valor2_0 OK
 
 =irnorte    OK
 
 == Verificar ponteiros da posição (1, 0)
+=obter Valor1_0 OK
 =iroeste    NaoFolha
 =irsudoeste NaoFolha
 =irnoroeste NaoFolha
 
 =irsul      OK
 =irnorte    OK
+=obter Valor1_0 OK
 
 =ireste     OK
 =iroeste    OK
+=obter Valor1_0 OK
 
 =irnordeste OK
 =irsudoeste OK
+=obter Valor1_0 OK
 
 =irsudeste  OK
 =irnoroeste OK
+=obter Valor1_0 OK
 
 =irnorte    OK
 

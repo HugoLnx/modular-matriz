@@ -66,7 +66,7 @@
 #define     CRIAR_MAT_CMD       "=criar"
 #define     INIT_MAT_CMD        "=init"
 #define     OBTER_VAL_CMD       "=obter"
-#define     ATRIBUIR_VAL_CMD       "=atribuir"
+#define     ATRIBUIR_VAL_CMD    "=atribuir"
 #define     DESTROI_CMD         "=destruir"
 
 #define     IR_NORTE_CMD       "=irnorte"
@@ -84,32 +84,17 @@
 
 
 
+
 /*****  Código das funções exportadas pelo módulo  *****/
 const int VALORES_SIZE = 9 ;
 
-static MAT_tpMatriz * Matrizes[10] = {NULL} ;
+int IndiceDoValor( LIS_tppLista Valor );
+void PreencherArrayDeValores();
+
+static MAT_tpMatriz * Matrizes[10] ;
 static LIS_tppLista VALORES[9] ;
+
 static int iMat = 0 ;
-
-int IndiceDoValor( LIS_tppLista Valor )
-{
-	int i;
-
-	if ( Valor == NULL )
-	{
-		return -1;
-	}
-
-	for ( i = 0 ; i < VALORES_SIZE ; i++ )
-	{
-		if ( VALORES[i] == Valor )
-		{
-			return i;
-		}
-	}
-
-	return -1;
-}
 
 /***********************************************************************
 *
@@ -147,6 +132,8 @@ int IndiceDoValor( LIS_tppLista Valor )
 
       TST_tpCondRet Ret ;
 
+
+	  PreencherArrayDeValores();
 
       /* Testar MAT Criar matriz */
 
@@ -211,7 +198,7 @@ int IndiceDoValor( LIS_tppLista Valor )
                return TST_CondRetParm ;
             } /* if */
 
-            CondRetObtido = MAT_ObterValorCorr( Matrizes[iMat] , &VALORES[IndiceValorDado] ) ;
+            CondRetObtido = MAT_AtribuirValorCorr( Matrizes[iMat] , VALORES[IndiceValorDado] ) ;
 
             return TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                    "Retorno errado ao obter valor corrente." ) ;
@@ -429,3 +416,37 @@ int IndiceDoValor( LIS_tppLista Valor )
 
 /********** Fim do módulo de implementação: Módulo de teste específico **********/
 
+int IndiceDoValor( LIS_tppLista Valor )
+{
+	int i;
+
+	if ( Valor == NULL )
+	{
+		return -1;
+	}
+
+	for ( i = 0 ; i < VALORES_SIZE ; i++ )
+	{
+		if ( VALORES[i] == Valor )
+		{
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+void PreencherArrayDeValores()
+{
+	int i;
+
+	if ( VALORES[0] != NULL )
+	{
+		return;
+	}
+
+	for ( i = 0 ; i < VALORES_SIZE ; i++ )
+	{
+		LIS_CriarLista( &VALORES[i] );
+	}
+}
