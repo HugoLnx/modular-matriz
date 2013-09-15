@@ -98,6 +98,18 @@
 =obtervalorelem  lista2   '1'   OK
 =destruirlista   lista2
 
+== Testar avanço dos elementos
+=criarlista lista2 OK
+=inselemantes    lista2   '1'   OK
+=inselemantes    lista2   '2'   OK
+=inselemantes    lista2   '3'   OK
+=inselemantes    lista2   '4'   OK
+
+=avancarelem     lista2   -1    FimLista
+=avancarelem     lista2   1     OK
+=obtervalorelem  lista2   '3'   OK
+
+=destruirlista   lista2
 
 
 // fim

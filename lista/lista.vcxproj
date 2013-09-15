@@ -21,7 +21,7 @@
     <None Include="..\src\TesteLista.script" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\%40puc\%40modular\modular-matriz\src\ArcaboucoTeste.lib" />
+    <Library Include="..\src\ArcaboucoTeste.lib" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C4A415DB-7689-488D-8243-3E17AE332C30}</ProjectGuid>

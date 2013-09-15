@@ -249,6 +249,33 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    void IrFinalLista( LIS_tppLista pLista ) ;
 
+   /***********************************************************************
+*
+*  $FC Função: LIS  &Avançar elemento
+*
+*  $ED Descrição da função
+*     Avança o elemento corrente numElem elementos na lista
+*     Se numElem for positivo avança em direção ao final
+*     Se numElem for negativo avança em direção ao início
+*     numElem pode ser maior do que o númro de elementos existentes na
+*               direção desejada
+*     Se numElem for zero somente verifica se a lista está vazia
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista a ser manipulada
+*     numElem - o número de elementos a andar
+*
+*  $FV Valor retornado
+*     CondRetOK         - se numElem elementos tiverem sido andados
+*     CondRetFimLista   - se encontrou o fim da lista antes de andar numElem
+*                         elementos
+*     CondRetListaVazia - se a lista está vazia
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_AvancarElementoCorrente( LIS_tppLista pLista ,
+                                              int numElem ) ;
+
 /***********************************************************************/
 #undef LISTA_EXT
 

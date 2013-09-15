@@ -352,6 +352,90 @@
 
    } /* Fim função: LIS  &Ir para o elemento final */
 
+   /***************************************************************************
+*
+*  Função: LIS  &Avançar elemento
+*  ****/
+
+   LIS_tpCondRet LIS_AvancarElementoCorrente( LIS_tppLista pLista ,
+                                              int numElem )
+   {
+
+      int i ;
+
+      tpElemLista * pElem ;
+
+      #ifdef _DEBUG
+         assert( pLista != NULL ) ;
+      #endif
+
+      /* Tratar lista vazia */
+
+         if ( pLista->pElemCorr == NULL )
+         {
+
+            return LIS_CondRetListaVazia ;
+
+         } /* fim ativa: Tratar lista vazia */
+
+      /* Tratar avançar para frente */
+
+         if ( numElem > 0 )
+         {
+
+            pElem = pLista->pElemCorr ;
+            for( i = numElem ; i > 0 ; i-- )
+            {
+               if ( pElem == NULL )
+               {
+                  break ;
+               } /* if */
+               pElem    = pElem->pProx ;
+            } /* for */
+
+            if ( pElem != NULL )
+            {
+               pLista->pElemCorr = pElem ;
+               return LIS_CondRetOK ;
+            } /* if */
+
+            pLista->pElemCorr = pLista->pFimLista ;
+            return LIS_CondRetFimLista ;
+
+         } /* fim ativa: Tratar avançar para frente */
+
+      /* Tratar avançar para trás */
+
+         else if ( numElem < 0 )
+         {
+
+            pElem = pLista->pElemCorr ;
+            for( i = numElem ; i < 0 ; i++ )
+            {
+               if ( pElem == NULL )
+               {
+                  break ;
+               } /* if */
+               pElem    = pElem->pAnt ;
+            } /* for */
+
+            if ( pElem != NULL )
+            {
+               pLista->pElemCorr = pElem ;
+               return LIS_CondRetOK ;
+            } /* if */
+
+            pLista->pElemCorr = pLista->pOrigemLista ;
+            return LIS_CondRetFimLista ;
+
+         } /* fim ativa: Tratar avançar para trás */
+
+      /* Tratar não avançar */
+
+         return LIS_CondRetOK ;
+
+   } /* Fim função: LIS  &Avançar elemento */
+
 /***********************************************************************
 *
 *  $FC Função: LIS  -Criar o elemento

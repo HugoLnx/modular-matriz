@@ -312,7 +312,26 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 
          } /* fim ativa: Testar Esvaziar lista lista */
 
-      /* Testar Destruir lista */
+	  /* LIS  &Avançar elemento */
+
+         else if ( strcmp( ComandoTeste , AVANCAR_ELEM_CMD ) == 0 )
+         {
+			 int numElem = -1;
+
+            numLidos = LER_LerParametros( "iii" , &inxLista , &numElem ,
+                                &CondRetEsp ) ;
+
+            if ( ( numLidos != 3 )
+              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+            return TST_CompararInt( CondRetEsp ,
+                      LIS_AvancarElementoCorrente( vtListas[ inxLista ] , numElem ) ,
+                      "Condicao de retorno errada ao avancar" ) ;
+
+         } /* fim ativa: LIS  &Avançar elemento */
 
       return TST_CondRetNaoConhec ;
 

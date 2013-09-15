@@ -36,6 +36,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\%40puc\%40modular\modular-matriz\src\ArcaboucoTeste.lib" />
+    <Library Include="..\src\ArcaboucoTeste.lib" />
   </ItemGroup>
 </Project>
