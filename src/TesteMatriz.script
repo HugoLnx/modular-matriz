@@ -20,13 +20,10 @@
 == Declarar as condicoes de retorno
 =declararparm  OK           int 0
 =declararparm  NaoOrigem    int 1 
-=declararparm  Estrutura    int 2
-=declararparm  NaoFolha     int 3
-=declararparm  NaoMatriz    int 4
-=declararparm  NaoCorr      int 5
-=declararparm  EhOrigem     int 6
-=declararparm  NaoFilho     int 7
-=declararparm  Memoria      int 8
+=declararparm  NaoFolha     int 2
+=declararparm  NaoMatriz    int 3
+=declararparm  NaoCorr      int 4
+=declararparm  Memoria      int 5
 
 == Declarar os conteúdos dos nós
 =declararparm  ValorErro    int -1

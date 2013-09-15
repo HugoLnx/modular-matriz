@@ -61,25 +61,16 @@ typedef struct tgMatriz MAT_tpMatriz ;
          MAT_CondRetNaoCriouOrigem = 1 ,
                /* Não criou nó origem */
 
-         MAT_CondRetErroEstrutura = 2 ,
-               /* Estrutura da matriz está errada */
+         MAT_CondRetNaoEhNo = 2 ,
+               /* Não é nó na direção desejada */
 
-         MAT_CondRetNaoEhFolha = 3 ,
-               /* Não é folha relativa à direção de inserção desejada */
-
-         MAT_CondRetMatrizNaoExiste = 4 ,
+         MAT_CondRetMatrizNaoExiste = 3 ,
                /* Matriz não existe */
 
-         MAT_CondRetMatrizVazia = 5 ,
+         MAT_CondRetMatrizVazia = 4 ,
                /* Matriz está vazia */
 
-         MAT_CondRetNohEhOrigem = 6 ,
-               /* Nó corrente é origem */
-
-         MAT_CondRetNaoPossuiFilho = 7 ,
-               /* Nó corrente não possui filho na direção desejada */
-
-         MAT_CondRetFaltouMemoria = 8
+         MAT_CondRetFaltouMemoria = 5
                /* Faltou memória ao alocar dados */
 
    } MAT_tpCondRet ;
@@ -152,7 +143,7 @@ typedef struct tgMatriz MAT_tpMatriz ;
 *     MAT_CondRetOK
 *     MAT_CondRetMatrizNaoExiste
 *     MAT_CondRetMatrizVazia
-*     MAT_CondRetNaoPossuiFilho   - nó corrente não possui filho à esquerda
+*     MAT_CondRetNaoEhNo
 *
 ***********************************************************************/
 

@@ -661,7 +661,7 @@
 
       if ( GetVizinho( pMatriz->pNoCorr , direcao ) == NULL )
       {
-		  return MAT_CondRetNaoEhFolha ;
+		  return MAT_CondRetNaoEhNo ;
       } /* if */
 
 	  pMatriz->pNoCorr = GetVizinho( pMatriz->pNoCorr , direcao ) ;
