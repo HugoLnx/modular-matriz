@@ -48,6 +48,7 @@
 =irsudoeste            NaoMatriz
 =irnoroeste            NaoMatriz
 =obter      ValorErro  NaoMatriz
+=atribuir   ValorErro  NaoMatriz
 =init 2 2 NaoMatriz
 
 == Verificar comando recuperar
@@ -80,6 +81,7 @@
 =irsudoeste            NaoCorr
 =irnoroeste            NaoCorr
 =obter     ValorErro   NaoCorr
+=atribuir  ValorErro   NaoCorr
 
 == Inicializar matriz
 =init 3 3 OK
