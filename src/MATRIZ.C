@@ -100,7 +100,7 @@
 			   *   se pSudoeste do nó X != NULL então pNordeste de pSudoeste aponta para nó X */
 
 
-         LIS_tpLista * Valor ;
+         LIS_tppLista Valor ;
                /* Valor do nó */
 
    } tpNoMatriz ;
@@ -281,7 +281,7 @@
 *  Função: MAT Obter valor corrente
 *  ****/
 
-   MAT_tpCondRet MAT_ObterValorCorr( MAT_tpMatriz * pMatriz , LIS_tpLista ** ValorParm )
+   MAT_tpCondRet MAT_ObterValorCorr( MAT_tpMatriz * pMatriz , LIS_tppLista * ValorParm )
    {
 
       if ( pMatriz == NULL )
@@ -297,6 +297,29 @@
       return MAT_CondRetOK ;
 
    } /* Fim função: MAT Obter valor corrente */
+
+   
+/***************************************************************************
+*
+*  Função: MAT Atribuir para valor corrente
+*  ****/
+
+   MAT_tpCondRet MAT_AtribuirValorCorr( MAT_tpMatriz * pMatriz , LIS_tppLista ValorParm )
+   {
+
+      if ( pMatriz == NULL )
+      {
+         return MAT_CondRetMatrizNaoExiste ;
+      } /* if */
+      if ( pMatriz->pNoCorr == NULL )
+      {
+         return MAT_CondRetMatrizVazia ;
+      } /* if */
+      pMatriz->pNoCorr->Valor =ValorParm ;
+
+      return MAT_CondRetOK ;
+
+   } /* Fim função: MAT Atribuir valor corrente */
 
 
 /*****  Código das funções encapsuladas no módulo  *****/
