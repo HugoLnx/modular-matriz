@@ -151,7 +151,7 @@
 
    static void DestroiMatriz( tpNoMatriz * pNo ) ;
 
-   tpNoMatriz * GetVizinho( tpNoMatriz * pNo , tpDirecao dir ) ;
+   tpNoMatriz * GetAdjacente( tpNoMatriz * pNo , tpDirecao dir ) ;
 
    MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoOrigem , int QntLinhas ) ;
 
@@ -611,11 +611,11 @@
 *
 *  $FC Função: MAT Recupera o ponteiro para um nó adjacente
 *
-*  Exemplo de uso: GetVizinho(noOrigem, ESTE)
+*  Exemplo de uso: GetAdjacente(noOrigem, ESTE)
 *
 ***********************************************************************/
 
-   tpNoMatriz * GetVizinho( tpNoMatriz * pNo , tpDirecao dir )
+   tpNoMatriz * GetAdjacente( tpNoMatriz * pNo , tpDirecao dir )
    {
 		switch( dir )
 		{
@@ -807,12 +807,12 @@
          return MAT_CondRetNaoTemCorrente ;
       } /* if */
 
-      if ( GetVizinho( pMatriz->pNoCorr , direcao ) == NULL )
+      if ( GetAdjacente( pMatriz->pNoCorr , direcao ) == NULL )
       {
 		  return MAT_CondRetNaoEhNo ;
       } /* if */
 
-	  pMatriz->pNoCorr = GetVizinho( pMatriz->pNoCorr , direcao ) ;
+	  pMatriz->pNoCorr = GetAdjacente( pMatriz->pNoCorr , direcao ) ;
 	  return MAT_CondRetOK ;
 
    } /* Fim função: MAT Ir para nó genérico */
