@@ -2,6 +2,6 @@
 
 Tarefas:
 
-*Implementar demais métodos.
-*Efetuar testes mais abrangentes
-*Tornar a lista genérica e ao mesmo tempo trabalhar com o tipo char.
+*Implementar demais métodos. OK
+*Efetuar testes mais abrangentes OK
+*Tornar a lista genérica e ao mesmo tempo trabalhar com o tipo char?

@@ -7,3 +7,5 @@ Debug/
 modular-matrix/Debug/
 *.opensdf
 ipch/
+*.log
+*.stat
