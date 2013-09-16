@@ -1,6 +1,6 @@
 == Apresentação == 
 
-Este texto descreve brevemente o funcionamento e uso dos módulos LISTA e Matriz de listas do ponto de vista de testes.
+Este texto descreve brevemente o funcionamento e uso dos módulos LISTA e MATRIZ de listas do ponto de vista de testes.
 
 == Estrutura de diretórios ==
 

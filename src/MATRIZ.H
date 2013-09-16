@@ -7,19 +7,12 @@
 *  Arquivo gerado:              MATRIZ.H
 *  Letras identificadoras:      MAT
 *
-*  Projeto: Disciplinas INF 1628 / 1301
-*  Gestor:  DI/PUC-Rio
-*  Autores: avs - Arndt von Staa
-*           hg - Hugo Roque
-*           nf = Nino Fabrizio
+*  Autores: hg - Hugo Roque
+*           nf - Nino Fabrizio
 *
 *  $HA Histórico de evolução:
-*     Versão  Autor      Data         Observações
-*       4.00   hg e nf   09/15/2013   Adaptação do módulo para manipular matrizes
-*       3.00   avs       28/02/2003   Uniformização da interface das funções e
-*                                     de todas as condições de retorno.
-*       2.00   avs       03/08/2002   Eliminação de código duplicado, reestruturação
-*       1.00   avs       15/08/2001   Início do desenvolvimento
+*     Versão  Autor     Data     Observações
+*       1.00   hg e nf  15/09/2013 Adaptação do módulo para manipular matrizes
 *
 *  $ED Descrição do módulo
 *     Este módulo implementa um conjunto simples de funções para criar e
@@ -107,7 +100,6 @@ typedef struct tgMatriz MAT_tpMatriz ;
 *     MAT_CondRetOK
 *     MAT_CondRetMatrizNaoExiste
 *     MAT_CondRetFaltouMemoria
-*     MAT_CondRetJaFoiInicializada (Pensar se é a melhor implementação)
 *
 ***********************************************************************/
 

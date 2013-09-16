@@ -52,6 +52,9 @@ copy batches\LimpaTudo.bat deploy\TRAB1-2\batches
 copy batches\TestaTudo.bat deploy\
 copy batches\LimpaTudo.bat deploy\
 
+
+copy LEIAME.txt deploy\
+
 del deploy.zip
 
 ferramentas\7za a -tzip deploy.zip deploy

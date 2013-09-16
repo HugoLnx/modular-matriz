@@ -1,3 +1,2 @@
-Revisar os comentários
-Mudar MAT_CondRetNaoEhFolha para MAT_CondRetNaoEhNo
-Arrumar constantes da matriz
+Renomear para .exe.txt
+Dar free matriz caso ela seja inicializada duas vezes

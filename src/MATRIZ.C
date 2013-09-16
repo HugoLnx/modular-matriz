@@ -4,20 +4,12 @@
 *  Arquivo gerado:              MATRIZ.C
 *  Letras identificadoras:      MAT
 *
-*
-*  Projeto: Disciplinas INF 1628 / 1301
-*  Gestor:  DI/PUC-Rio
-*  Autores: avs - Arndt von Staa
-*           hg - Hugo Roque
+*  Autores: hg - Hugo Roque
 *           nf - Nino Fabrizio
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor     Data     Observações
-*       4.00   hg e nf  15/09/2013 Adaptação do módulo para manipular matrizes
-*       3.00   avs      28/02/2003 Uniformização da interface das funções e
-*                               de todas as condições de retorno.
-*       2.00   avs      03/08/2002 Eliminação de código duplicado, reestruturação
-*       1.00   avs      15/08/2001 Início do desenvolvimento
+*       1.00   hg e nf  15/09/2013 Adaptação do módulo para manipular matrizes
 *
 ***************************************************************************/
 
@@ -587,9 +579,8 @@
 *  $ED Descrição da função
 *  A função faz com que os adjacentes de um nó referenciem à ele.
 *  
-*
-*  $EAE Assertivas de entradas esperadas.
-*     - pNo não pode ser nulo
+*  $EP Parâmetros
+*     pNo - ponteiro para nó que é referenciado por cada direção.
 *
 ***********************************************************************/
    
@@ -642,8 +633,20 @@
 
 /***************************************************************************
 *
-*  Função: MAT Ir para nó genérico
+*  $FC Função: MAT Ir para nó genérico.
+*  
+*  $ED Descrição da função
 *  Muda o nó corrente da matriz para o nó na direção apontada
+*  
+*  $EP Parâmetros
+*     pMatriz - ponteiro para matriz que manipulada.
+*     direcao - representa a direção que o nó corrente navegará.
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetNaoTemCorrente
+*     MAT_CondRetNaoEhNo
 *  ****/
 
    MAT_tpCondRet IrPara( MAT_tpMatriz * pMatriz , tpDirecao direcao )
