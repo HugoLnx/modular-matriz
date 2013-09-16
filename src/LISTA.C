@@ -1,16 +1,17 @@
 /***************************************************************************
-*  $MCI Módulo de implementação: LIS  Lista duplamente encadeada 
+*  $MCI Módulo de implementação: LIS  Lista duplamente encadeada para o tipo char
 *
 *  Arquivo gerado:              LISTA.c
 *  Letras identificadoras:      LIS
 *
-*  Autores: hg - Hugo Roque
-*            ?? = Nino Fabrizio
+*	Autores: hg - Hugo Roque
+*            nf = Nino Fabrizio
 *		     rc = Robert Correa
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
-*     1       rc    12/set/2013 Adapitar função criar para ser testavel, inserir somente valores char.
+*     1       rc    12/set/2013 Adaptação da função CriarLista para ser testavel e inserção de somente valores char.
+*     2       rc    15/set/2013 Implementação e adaptação do restante das funções para trabalhar somente com o tipo char.
 *
 ***************************************************************************/
 
@@ -33,8 +34,8 @@
 
    typedef struct tagElemLista {
 
-         char  pValor ;
-               /* Ponteiro para o valor contido no elemento */
+         char  valor ;
+               /* valor contido no elemento */
 
          struct tagElemLista * pAnt ;
                /* Ponteiro para o elemento predecessor */
@@ -64,8 +65,6 @@
 
          int numElem ;
                /* Número de elementos da lista */
-
-               /* Ponteiro para a função de destruição do valor contido em um elemento */
 
    } LIS_tpLista ;
 
@@ -300,7 +299,7 @@
 
 /***************************************************************************
 *
-*  Função: LIS  &Obter referência para o valor contido no elemento
+*  Função: LIS  &Obter o valor contido no elemento
 *  ****/
 
    LIS_tpCondRet LIS_ObterValor(LIS_tppLista pLista, char* valor )
@@ -315,10 +314,10 @@
 		  return LIS_CondRetListaVazia ;
       } /* if */
 
-	  *valor = pLista->pElemCorr->pValor;
+	  *valor = pLista->pElemCorr->valor;
 
 	  return LIS_CondRetOK;
-   } /* Fim função: LIS  &Obter referência para o valor contido no elemento */
+   } /* Fim função: LIS  &Obter o valor contido no elemento */
 
 /***************************************************************************
 *
@@ -460,7 +459,7 @@
             pElem != NULL ;
             pElem  = pElem->pProx )
       {
-         if ( pElem->pValor == valor )
+         if ( pElem->valor == valor )
          {
             pLista->pElemCorr = pElem ;
             return LIS_CondRetOK ;
@@ -488,7 +487,7 @@
          return NULL ;
       } /* if */
 
-      pElem->pValor = valor ;
+      pElem->valor = valor ;
       pElem->pAnt   = NULL  ;
       pElem->pProx  = NULL  ;
 
@@ -527,9 +526,9 @@
    {
 
       pLista->pOrigemLista = NULL ;
-      pLista->pFimLista = NULL ;
-      pLista->pElemCorr = NULL ;
-      pLista->numElem   = 0 ;
+      pLista->pFimLista    = NULL ;
+      pLista->pElemCorr    = NULL ;
+      pLista->numElem      = 0 ;
 
    } /* Fim função: LIS  -Limpar a cabeça da lista */
 

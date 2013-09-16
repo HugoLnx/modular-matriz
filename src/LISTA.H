@@ -2,27 +2,29 @@
 #define LISTA_
 /***************************************************************************
 *
-*  $MCD Módulo de definição: LIS  Lista duplamente encadeada
+*  $MCD Módulo de definição: LIS  Lista duplamente encadeada para o tipo char
 *
 *  Arquivo gerado:              LISTA.h
 *  Letras identificadoras:      LIS
 *
 *	Autores: hg - Hugo Roque
-*            ?? = Nino Fabrizio
+*            nf = Nino Fabrizio
 *		     rc = Robert Correa
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
-*     1       rc    12/set/2013 Adapitar função criar para ser testavel, inserir somente valores char.
+*     1       rc    12/set/2013 Adaptação da função CriarLista para ser testavel e inserção de somente valores char.
+*     2       rc    15/set/2013 Implementação e adaptação do restante das funções para trabalhar somente com o tipo char.
 *
 *  $ED Descrição do módulo
-*     Implementa listas de char duplamente encadeadas sem manipulação,
-*	  ou seja, apenas é possivel criar e inserir elementos na lista, antes,
-*     ou após.
+*     Implementa listas de char duplamente encadeadas com manipulação,
+*	  ou seja, é possivel criar, inserir elementos na lista, antes,
+*     ou após além de esvaziar a lista, remover elementos, procurar elementos,
+*	  navegar para o inicio e final da lista e destruir a lista
+*
 *     Podem existir n listas em operação simultaneamente.
 *     As listas possuem uma cabeça encapsulando o seu estado.
 *	  
-*
 *     Cada lista armazena apenas dados do tipo char.
 *     Cada elemento da lista não possui uma referencia e sim o próprio valor.
 ***************************************************************************/
@@ -75,16 +77,8 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *  $FC Função: LIS  &Criar lista
 *
 *  $ED Descrição da função
-*     Cria uma lista genérica duplamente encadeada.
-*     Os possíveis tipos são desconhecidos a priori.
-*     A tipagem é implicita.
-*     Não existe identificador de tipo associado à lista.
+*     Cria uma lista de char duplamente encadeada.
 *
-*  $EP Parâmetros
-*     ExcluirValor  - ponteiro para a função que processa a
-*                     exclusão do valor referenciado pelo elemento
-*                     a ser excluído.
-*                     Ver descrição do módulo.
 *
 *  $FV Valor retornado
 *     Se executou corretamente retorna o ponteiro para a lista.
@@ -140,8 +134,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $EP Parâmetros
 *     pLista - ponteiro para a lista onde deve ser inserido o elemento
-*     pValor - ponteiro para o valor do novo elemento
-*              Pode ser NULL
+*     valor  - valor do novo elemento
 *
 *  $FV Valor retornado
 *     LIS_CondRetOK
@@ -158,14 +151,13 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *  $FC Função: LIS  &Inserir elemento após
 *
 *  $ED Descrição da função
-*     Insere novo elemento apás o elemento corrente.
+*     Insere novo elemento após o elemento corrente.
 *     Caso a lista esteja vazia, insere o primeiro elemento da lista.
 *
 *  $EP Parâmetros
 *     Parâmetros
 *        pLista - ponteiro para a lista onde deve ser inserido o elemento
-*        pValor - ponteiro para o valor do novo elemento
-*                 Pode ser NULL
+*        valor  -  valor do novo elemento
 *           
 *
 *  $FV Valor retornado
@@ -184,7 +176,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $ED Descrição da função
 *     Exclui o elemento corrente da lista dada.
-*     Se existir o elemento aa esquerda do corrente será o novo corrente.
+*     Se existir o elemento à esquerda do corrente será o novo corrente.
 *     Se não existir e existir o elemento à direita, este se tornará corrente.
 *     Se este também não existir a lista tornou-se vazia.
 *
@@ -208,6 +200,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $EP Parâmetros
 *     pLista - ponteiro para a lista de onde se quer o valor
+*     pValor - ponteiro que terá o valor obtido.
 *
 *  $FV Valor retornado
 *     CondRetOK         - se o elemento foi obtido
@@ -215,7 +208,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   LIS_tpCondRet LIS_ObterValor( LIS_tppLista pLista, char* valor ) ;
+   LIS_tpCondRet LIS_ObterValor( LIS_tppLista pLista, char* pvalor ) ;
 
 /***********************************************************************
 *
@@ -280,12 +273,10 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $ED Descrição da função
 *     Procura o elemento que referencia o valor dado.
-*     A função compara ponteiro e não conteúdo apontado.
 *
 *  $EP Parâmetros
 *     pLista  - ponteiro para a lista onde procura
-*     pValor  - ponteiro para o valor procurado
-*               Pode ser NULL
+*     valor   - o valor procurado
 *
 *  $FV Valor retornado
 *     LIS_CondRetOK  - se encontrou.

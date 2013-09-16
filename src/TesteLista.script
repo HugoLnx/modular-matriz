@@ -1,7 +1,7 @@
 // Script:    TesteLista.script
-// Autor:     Arndt von Staa
-// Data:      02/abr/2008
-// Propósito: Testar superficialmente o módulo lista genérica duplamente encadeada
+// Autor:     Robert Correa / Nino Fabrizio / Hugo Roque
+// Data:      15/set/2013
+// Propósito: Testar completamente o módulo lista de char duplamente encadeada
 //
 
 == Declarar as condicoes de retorno
