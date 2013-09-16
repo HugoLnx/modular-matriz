@@ -29,7 +29,7 @@ mkdir deploy\TRAB1-2\src\implementacao
 copy ferramentas\compilebanner.exe deploy\ferramentas
 copy ferramentas\exbestat.exe deploy\ferramentas
 copy Debug\lista.exe deploy\TRAB1-1\executavel
-rename deploy\TRAB1-1\executavel\lista.exe TRAB1-1.exe
+rename deploy\TRAB1-1\executavel\lista.exe TRAB1-1.EXE
 copy src\ArcaboucoTeste.lib deploy\TRAB1-1\lib
 copy src\TesteLista.script deploy\TRAB1-1\scripts
 copy src\LISTA.H deploy\TRAB1-1\src\definicao
@@ -39,7 +39,7 @@ copy batches\TestaLista.bat deploy\TRAB1-1\batches
 copy batches\LimpaTudo.bat deploy\TRAB1-1\batches
 
 copy Debug\matriz.exe deploy\TRAB1-2\executavel
-rename deploy\TRAB1-2\executavel\matriz.exe TRAB1-2.exe
+rename deploy\TRAB1-2\executavel\matriz.exe TRAB1-2.EXE
 copy src\ArcaboucoTeste.lib deploy\TRAB1-2\lib
 copy src\lista.lib deploy\TRAB1-2\lib
 copy src\TesteMatriz.script deploy\TRAB1-2\scripts

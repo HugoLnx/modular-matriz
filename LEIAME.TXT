@@ -1,0 +1,85 @@
+== Apresentação == 
+
+Este texto descreve brevemente o funcionamento e uso dos módulos LISTA e Matriz de listas do ponto de vista de testes.
+
+== Estrutura de diretórios ==
+
+->ferramentas
+--------->compilebanner.exe
+--------->exbestat.exe
+
+->TRAB1-1
+--------->batches
+----------------->LimpaTudo.bat
+----------------->TestaLista.bat
+--------->executavel
+----------------->TRAB1-1.exe
+--------->lib
+----------------->ArcaboucoTeste.lib
+--------->scripts
+----------------->TesteLista.script
+--------->src
+----------------->definicao
+------------------------->LISTA.H
+----------------->implementacao
+------------------------->LISTA.C
+------------------------->TESTLIS.C
+
+->TRAB1-2
+--------->batches
+----------------->LimpaTudo.bat
+----------------->TestaMatrz.bat
+--------->executavel
+----------------->TRAB1-2.exe
+--------->lib
+----------------->ArcaboucoTeste.lib
+----------------->lista.lib
+--------->scripts
+----------------->TesteMatriz.script
+--------->src
+----------------->definicao
+------------------------->MATRIZ.H
+----------------->implementacao
+------------------------->MATRIZ.C
+------------------------->TESTMATRIZ.C
+
+->LimpaTudo.bat
+
+->TestaTudo.bat
+
+
+== Arquivos e diretórios detalhados ==
+
+= Diretórios
+
+Diretório ferramentas: contém ferramentas de apoio a geração e acumulo de dado de estátisticas a partir dos resultados de testes dos módulos LISTA e Matriz, usado pelo TestaTudo.bat.
+
+Diretório TRAB1-1: Contém os artefatos gerados para uso do módulo LISTA.
+
+Diretório TRAB1-2: Contém os artefatos gerados para uso do módulo MATRIZ.
+
+Diretório batches: Contém arquivos .bat de uso do módulo.
+
+Diretório executável: Contém o executável do módulo.
+
+Diretório lib: Contém bibliotecas utilizadas pelo módulo.
+
+Diretório scripts: Contém scripts de testes do módulo.
+
+Diretório src: Contém o código fonte do módulo, separado em implementação e definição.
+
+= Arquivos
+
+Arquivo TestaTudo.bat: Executa os testes de todos os módulos e cria uma pasta chamada resultadoDosTestes contendo os arquivos de log e estatisticas (acumulado).
+
+Arquivo LimpaTudo.bat: Remove dados de log e estatisticas gerados pelo teste.
+
+Arquivo TestaLista.bat: Executa teste do módulo LISTA. Gera arquivo de log e estatisticas.
+
+Arquivo TestaMatriz.bat: Executa teste do módulo MATRIZ. Gera arquivo de log e estatisticas.
+
+== Execução de testes ==
+
+Testar todos os módulos: rodar TestaTudo.bat, contido no diretório raiz.
+Testar módulo LISTA: rodar TestaLista.bat contido em TRAB1-1\batches
+Testar módulo MATRIZ: rodar TestaMatriz.bat contido em TRAB1-2\batches
