@@ -54,6 +54,7 @@
 #include    <stdlib.h>
 
 #include    "TST_ESPC.H"
+#include    "LISTA.H"
 
 #include    "generico.h"
 #include    "lerparm.h"
@@ -65,6 +66,7 @@
 #define     CRIAR_MAT_CMD       "=criar"
 #define     INIT_MAT_CMD        "=init"
 #define     OBTER_VAL_CMD       "=obter"
+#define     ATRIBUIR_VAL_CMD    "=atribuir"
 #define     DESTROI_CMD         "=destruir"
 
 #define     IR_NORTE_CMD       "=irnorte"
@@ -82,10 +84,17 @@
 
 
 
-/*****  Código das funções exportadas pelo módulo  *****/
 
-static MAT_tpMatriz * Matrizes[10];
-static int iMat = 0;
+/*****  Código das funções exportadas pelo módulo  *****/
+const int VALORES_SIZE = 9 ;
+
+int IndiceDoValor( LIS_tppLista Valor );
+void PreencherArrayDeValores();
+
+static MAT_tpMatriz * Matrizes[10] ;
+static LIS_tppLista VALORES[9] ;
+
+static int iMat = 0 ;
 
 /***********************************************************************
 *
@@ -110,9 +119,12 @@ static int iMat = 0;
       MAT_tpCondRet CondRetEsperada = MAT_CondRetFaltouMemoria ;
                                       /* inicializa para qualquer coisa */
 
-      char ValorEsperado = '?'  ;
-      char ValorObtido   = '!'  ;
-      char ValorDado     = '\0' ;
+      int IndiceValorEsperado = -1;
+	  int IndiceValorObtido = -1;
+	  int IndiceValorDado = -1;
+	  
+	  LIS_tppLista ValorObtido = NULL;
+
 	  int Linhas = 0 ;
 	  int Colunas = 0 ;
 
@@ -120,6 +132,8 @@ static int iMat = 0;
 
       TST_tpCondRet Ret ;
 
+
+	  PreencherArrayDeValores();
 
       /* Testar MAT Criar matriz */
 
@@ -146,16 +160,16 @@ static int iMat = 0;
          else if ( strcmp( ComandoTeste , OBTER_VAL_CMD ) == 0 )
          {
 
-            NumLidos = LER_LerParametros( "ci" ,
-                               &ValorEsperado , &CondRetEsperada ) ;
+            NumLidos = LER_LerParametros( "ii" ,
+                               &IndiceValorEsperado , &CondRetEsperada ) ;
             if ( NumLidos != 2 )
             {
                return TST_CondRetParm ;
             } /* if */
 
             CondRetObtido = MAT_ObterValorCorr( Matrizes[iMat] , &ValorObtido ) ;
-
-            Ret = TST_CompararInt( CondRetEsperada , CondRetObtido ,
+            
+			Ret = TST_CompararInt( CondRetEsperada , CondRetObtido ,
                                    "Retorno errado ao obter valor corrente." ) ;
 
             if ( Ret != TST_CondRetOK )
@@ -163,10 +177,34 @@ static int iMat = 0;
                return Ret ;
             } /* if */
 
-            return TST_CompararChar( ValorEsperado , ValorObtido ,
+			
+			IndiceValorObtido = IndiceDoValor(ValorObtido) ;
+
+            return TST_CompararInt( IndiceValorEsperado , IndiceValorObtido ,
                                      "Conteúdo do nó está errado." ) ;
 
          } /* fim ativa: Testar MAT Obter valor corrente */
+
+
+		/* Testar MAT Atribuir valor corrente */
+
+         else if ( strcmp( ComandoTeste , ATRIBUIR_VAL_CMD ) == 0 )
+         {
+
+            NumLidos = LER_LerParametros( "ii" ,
+							&IndiceValorDado , &CondRetEsperada ) ;
+            if ( NumLidos != 2 )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+            CondRetObtido = MAT_AtribuirValorCorr( Matrizes[iMat] , VALORES[IndiceValorDado] ) ;
+
+            return TST_CompararInt( CondRetEsperada , CondRetObtido ,
+                                   "Retorno errado ao obter valor corrente." ) ;
+
+         } /* fim ativa: Testar MAT Atribuir valor corrente */
+
 
       /* Testar MAT Destruir matriz */
 
@@ -378,3 +416,37 @@ static int iMat = 0;
 
 /********** Fim do módulo de implementação: Módulo de teste específico **********/
 
+int IndiceDoValor( LIS_tppLista Valor )
+{
+	int i;
+
+	if ( Valor == NULL )
+	{
+		return -1;
+	}
+
+	for ( i = 0 ; i < VALORES_SIZE ; i++ )
+	{
+		if ( VALORES[i] == Valor )
+		{
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+void PreencherArrayDeValores()
+{
+	int i;
+
+	if ( VALORES[0] != NULL )
+	{
+		return;
+	}
+
+	for ( i = 0 ; i < VALORES_SIZE ; i++ )
+	{
+		LIS_CriarLista( &VALORES[i] );
+	}
+}

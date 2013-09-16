@@ -4,9 +4,7 @@
 *  Arquivo gerado:              LISTA.c
 *  Letras identificadoras:      LIS
 *
-*	Autores: hg - Hugo Roque
-*            nf = Nino Fabrizio
-*		     rc = Robert Correa
+*	Autor: rc - Robert Correa
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações

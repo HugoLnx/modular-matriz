@@ -22,6 +22,12 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\src\ArcaboucoTeste.lib" />
+    <Library Include="..\src\lista.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\lista\lista.vcxproj">
+      <Project>{c4a415db-7689-488d-8243-3e17ae332c30}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{DE57FC54-DEA2-4E20-A67E-6C992C397BCF}</ProjectGuid>
@@ -68,6 +74,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <PreventDllBinding>false</PreventDllBinding>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

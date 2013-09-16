@@ -11,16 +11,15 @@
 *  Gestor:  DI/PUC-Rio
 *  Autores: avs - Arndt von Staa
 *           hg - Hugo Roque
-*           ?? = Nino Fabrizio
-*		    ?? = Robert Correa
+*           nf = Nino Fabrizio
 *
 *  $HA Histórico de evolução:
-*     Versão  Autor    Data     Observações
-*       4.00   
-*       3.00   avs   28/02/2003 Uniformização da interface das funções e
-*                               de todas as condições de retorno.
-*       2.00   avs   03/08/2002 Eliminação de código duplicado, reestruturação
-*       1.00   avs   15/08/2001 Início do desenvolvimento
+*     Versão  Autor      Data         Observações
+*       4.00   hg e nf   09/15/2013   Adaptação do módulo para manipular matrizes
+*       3.00   avs       28/02/2003   Uniformização da interface das funções e
+*                                     de todas as condições de retorno.
+*       2.00   avs       03/08/2002   Eliminação de código duplicado, reestruturação
+*       1.00   avs       15/08/2001   Início do desenvolvimento
 *
 *  $ED Descrição do módulo
 *     Este módulo implementa um conjunto simples de funções para criar e
@@ -30,7 +29,7 @@
 *     O modulo permite a manipulação de múltiplas matrizes, porém as funções
 *     só manipulam uma matriz de cada vez.
 *     Ao iniciar a execução do programa não existe matriz.
-*     A matriz poderá estar vazia. Neste caso a raiz e o nó corrente
+*     A matriz poderá estar vazia. Neste caso a origem e o nó corrente
 *     serão nulos, embora a cabeça esteja definida.
 *     O nó corrente será nulo se e somente se a matriz estiver vazia.
 *
@@ -41,6 +40,8 @@
 #else
    #define MATRIZ_EXT extern
 #endif
+
+#include "LISTA.H"
 
 typedef struct tgMatriz MAT_tpMatriz ;
 
@@ -56,28 +57,19 @@ typedef struct tgMatriz MAT_tpMatriz ;
          MAT_CondRetOK = 0 ,
                /* Executou correto */
 
-         MAT_CondRetNaoCriouRaiz = 1 ,
-               /* Não criou nó raiz */
+         MAT_CondRetNaoCriouOrigem = 1 ,
+               /* Não criou nó origem */
 
-         MAT_CondRetErroEstrutura = 2 ,
-               /* Estrutura da matriz está errada */
+         MAT_CondRetNaoEhNo = 2 ,
+               /* Não é nó na direção desejada */
 
-         MAT_CondRetNaoEhFolha = 3 ,
-               /* Não é folha relativa à direção de inserção desejada */
-
-         MAT_CondRetMatrizNaoExiste = 4 ,
+         MAT_CondRetMatrizNaoExiste = 3 ,
                /* Matriz não existe */
 
-         MAT_CondRetMatrizVazia = 5 ,
+         MAT_CondRetNaoTemCorrente = 4 ,
                /* Matriz está vazia */
 
-         MAT_CondRetNohEhRaiz = 6 ,
-               /* Nó corrente é raiz */
-
-         MAT_CondRetNaoPossuiFilho = 7 ,
-               /* Nó corrente não possui filho na direção desejada */
-
-         MAT_CondRetFaltouMemoria = 8
+         MAT_CondRetFaltouMemoria = 5
                /* Faltou memória ao alocar dados */
 
    } MAT_tpCondRet ;
@@ -149,18 +141,109 @@ typedef struct tgMatriz MAT_tpMatriz ;
 *  $FV Valor retornado
 *     MAT_CondRetOK
 *     MAT_CondRetMatrizNaoExiste
-*     MAT_CondRetMatrizVazia
-*     MAT_CondRetNaoPossuiFilho   - nó corrente não possui filho à esquerda
+*     MAT_CondRetNaoTemCorrente
+*     MAT_CondRetNaoEhNo
 *
 ***********************************************************************/
 
    MAT_tpCondRet MAT_IrNoNorte( MAT_tpMatriz * pMatriz ) ;
+
+   
+/***********************************************************************
+*
+*  $FC Função: MAT Ir para nó ao sul
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetNaoTemCorrente
+*     MAT_CondRetNaoEhNo
+*
+***********************************************************************/
    MAT_tpCondRet MAT_IrNoSul( MAT_tpMatriz * pMatriz ) ;
+
+   
+/***********************************************************************
+*
+*  $FC Função: MAT Ir para nó à este
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetNaoTemCorrente
+*     MAT_CondRetNaoEhNo
+*
+***********************************************************************/
    MAT_tpCondRet MAT_IrNoEste( MAT_tpMatriz * pMatriz ) ;
+
+   
+/***********************************************************************
+*
+*  $FC Função: MAT Ir para nó à oeste
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetNaoTemCorrente
+*     MAT_CondRetNaoEhNo
+*
+***********************************************************************/
    MAT_tpCondRet MAT_IrNoOeste( MAT_tpMatriz * pMatriz ) ;
+
+   
+/***********************************************************************
+*
+*  $FC Função: MAT Ir para nó à nordeste
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetNaoTemCorrente
+*     MAT_CondRetNaoEhNo
+*
+***********************************************************************/
    MAT_tpCondRet MAT_IrNoNordeste( MAT_tpMatriz * pMatriz ) ;
+
+   
+/***********************************************************************
+*
+*  $FC Função: MAT Ir para nó à sudeste
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetNaoTemCorrente
+*     MAT_CondRetNaoEhNo
+*
+***********************************************************************/
    MAT_tpCondRet MAT_IrNoSudeste( MAT_tpMatriz * pMatriz ) ;
+
+   
+/***********************************************************************
+*
+*  $FC Função: MAT Ir para nó à sudoeste
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetNaoTemCorrente
+*     MAT_CondRetNaoEhNo
+*
+***********************************************************************/
    MAT_tpCondRet MAT_IrNoSudoeste( MAT_tpMatriz * pMatriz ) ;
+
+   
+/***********************************************************************
+*
+*  $FC Função: MAT Ir para nó à noroeste
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetNaoTemCorrente
+*     MAT_CondRetNaoEhNo
+*
+***********************************************************************/
    MAT_tpCondRet MAT_IrNoNoroeste( MAT_tpMatriz * pMatriz ) ;
 
 
@@ -176,12 +259,27 @@ typedef struct tgMatriz MAT_tpMatriz ;
 *  $FV Valor retornado
 *     MAT_CondRetOK
 *     MAT_CondRetMatrizNaoExiste
-*     MAT_CondRetMatrizVazia
+*     MAT_CondRetNaoTemCorrente
 *
 ***********************************************************************/
 
-   MAT_tpCondRet MAT_ObterValorCorr( MAT_tpMatriz * pMatriz , char * ValorParm ) ;
+   MAT_tpCondRet MAT_ObterValorCorr( MAT_tpMatriz * pMatriz , LIS_tppLista * ValorParm ) ;
 
+/***********************************************************************
+*
+*  $FC Função: MAT Atribuir valor corrente
+*
+*  $EP Parâmetros
+*     $P ValorParm - o valor que será atribuido ao nó corrente.
+*
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetMatrizNaoExiste
+*     MAT_CondRetNaoTemCorrente
+*
+***********************************************************************/
+   
+   MAT_tpCondRet MAT_AtribuirValorCorr( MAT_tpMatriz * pMatriz , LIS_tppLista ValorParm ) ;
 
 #undef MATRIZ_EXT
 

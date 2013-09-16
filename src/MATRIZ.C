@@ -9,21 +9,21 @@
 *  Gestor:  DI/PUC-Rio
 *  Autores: avs - Arndt von Staa
 *           hg - Hugo Roque
-*           ?? = Nino Fabrizio
-*		    ?? = Robert Correa
+*           nf - Nino Fabrizio
 *
 *  $HA Histórico de evolução:
-*     Versão  Autor    Data     Observações
-*       4.00   ???   ??/??/???? Adaptação do módulo para manipular matrizes
-*       3.00   avs   28/02/2003 Uniformização da interface das funções e
+*     Versão  Autor     Data     Observações
+*       4.00   hg e nf  15/09/2013 Adaptação do módulo para manipular matrizes
+*       3.00   avs      28/02/2003 Uniformização da interface das funções e
 *                               de todas as condições de retorno.
-*       2.00   avs   03/08/2002 Eliminação de código duplicado, reestruturação
-*       1.00   avs   15/08/2001 Início do desenvolvimento
+*       2.00   avs      03/08/2002 Eliminação de código duplicado, reestruturação
+*       1.00   avs      15/08/2001 Início do desenvolvimento
 *
 ***************************************************************************/
 
-#include   <malloc.h>
-#include   <stdio.h>
+#include <malloc.h>
+#include <stdio.h>
+#include "LISTA.H"
 
 #define MATRIZ_OWN
 #include "MATRIZ.H"
@@ -46,7 +46,7 @@
                /* Ponteiro para nó adjacente ao norte
                *
                *$EED Assertivas estruturais
-               *   se é o nó X é a raiz, então pNorte = NULL
+               *   se é o nó X é a origem, então pNorte = NULL
 			   *   se pNorte do nó X != NULL então pSul de pNorte aponta para nó X */
 
          struct tgNoMatriz * pSul ;
@@ -65,14 +65,14 @@
                /* Ponteiro para nó adjacente à oeste
                *
                *$EED Assertivas estruturais
-               *   se é o nó X é a raiz, então pOeste = NULL
+               *   se é o nó X é a origem, então pOeste = NULL
 			   *   se pOeste do nó X != NULL então pEste de pOeste aponta para nó X */
 
 		 struct tgNoMatriz * pNordeste ;
                /* Ponteiro para nó adjacente à nordeste
                *
                *$EED Assertivas estruturais
-               *   se é o nó X é a raiz, então pNordeste = NULL
+               *   se é o nó X é a origem, então pNordeste = NULL
 			   *   se pNordeste do nó X != NULL então pSudoeste de pNordeste aponta para nó X */
 
 
@@ -87,7 +87,7 @@
                /* Ponteiro para nó adjacente à noroeste
                *
                *$EED Assertivas estruturais
-               *   se é o nó X é a raiz, então pNoroeste = NULL
+               *   se é o nó X é a origem, então pNoroeste = NULL
 			   *   se pNoroeste do nó X != NULL então pSudeste de pNoroeste aponta para nó X */
 
 
@@ -95,11 +95,11 @@
                /* Ponteiro para nó adjacente à sudoeste
                *
                *$EED Assertivas estruturais
-               *   se é o nó X é a raiz, então pSudoeste = NULL
+               *   se é o nó X é a origem, então pSudoeste = NULL
 			   *   se pSudoeste do nó X != NULL então pNordeste de pSudoeste aponta para nó X */
 
 
-         char Valor ;
+         LIS_tppLista Valor ;
                /* Valor do nó */
 
    } tpNoMatriz ;
@@ -113,14 +113,13 @@
 *     A cabeça da matriz é o ponto de acesso para uma determinada matriz.
 *     Por intermédio da referência para o nó corrente e do ponteiro
 *     pai pode-se navegar a matriz sem necessitar de uma pilha.
-*     Pode-se, inclusive, operar com a matriz em forma de co-rotina.
 *
 ***********************************************************************/
 
    typedef struct tgMatriz {
 
-         tpNoMatriz * pNoRaiz ;
-               /* Ponteiro para a raiz da matriz */
+         tpNoMatriz * pNoOrigem ;
+               /* Ponteiro para a origem da matriz */
 
          tpNoMatriz * pNoCorr ;
                /* Ponteiro para o nó corrente da matriz */
@@ -156,24 +155,19 @@
 
    static tpNoMatriz * CriarNo() ;
 
-   static MAT_tpCondRet CriarNoRaiz( MAT_tpMatriz * pMatriz ) ;
+   static MAT_tpCondRet CriarNoOrigem( MAT_tpMatriz * pMatriz ) ;
 
    static void DestroiMatriz( tpNoMatriz * pNo ) ;
 
    tpNoMatriz * GetVizinho( tpNoMatriz * pNo , tpDirecao dir ) ;
 
-   void SetNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir ) ;
-
-   MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoRaiz , int QntLinhas ) ;
-
+   MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoOrigem , int QntLinhas ) ;
 
    MAT_tpCondRet AddColuna( MAT_tpMatriz * pMatriz ) ;
 
    void ApontarDeVoltaEmTodasAsDirecoes( tpNoMatriz * pNo ) ;
    
    MAT_tpCondRet IrPara( MAT_tpMatriz * pMatriz , tpDirecao direcao );
-   
-   tpDirecao DirecaoReversa( tpDirecao dir ) ;
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -199,7 +193,7 @@
       } /* if */
 
 
-      pMatriz->pNoRaiz = NULL ;
+      pMatriz->pNoOrigem = NULL ;
       pMatriz->pNoCorr = NULL ;
 
 	  *ppMatriz = pMatriz ;
@@ -216,8 +210,6 @@
    MAT_tpCondRet MAT_InicializarMatriz(MAT_tpMatriz * pMatriz , int Linhas , int Colunas )
    {
 	   int i ;
-	   tpNoMatriz * pNoNovo ;
-	   tpNoMatriz * pNoAnterior ;
 	   MAT_tpCondRet Cond ;
 
 	   if( pMatriz == NULL )
@@ -225,13 +217,13 @@
 		   return MAT_CondRetMatrizNaoExiste ;
 	   }
 
-	   Cond = CriarNoRaiz( pMatriz ) ;
+	   Cond = CriarNoOrigem( pMatriz ) ;
 	   if ( Cond != MAT_CondRetOK )
 	   {
 		   return Cond ;
 	   }
 
-	   Cond = ConstruirPrimeiraColuna( pMatriz->pNoRaiz , Linhas) ;
+	   Cond = ConstruirPrimeiraColuna( pMatriz->pNoOrigem , Linhas) ;
 	   if ( Cond != MAT_CondRetOK )
 	   {
 		   return Cond ;
@@ -261,12 +253,12 @@
 		} /* if */
 
 		pMatriz = *ppMatriz ;
-		if ( pMatriz->pNoRaiz == NULL )
+		if ( pMatriz->pNoOrigem == NULL )
 		{
-			return MAT_CondRetNaoCriouRaiz;
+			return MAT_CondRetNaoCriouOrigem;
 		} /* if */
          
-		DestroiMatriz( pMatriz->pNoRaiz ) ;
+		DestroiMatriz( pMatriz->pNoOrigem ) ;
 		free( pMatriz ) ;
 		*ppMatriz = NULL ;
 
@@ -280,7 +272,7 @@
 *  Função: MAT Obter valor corrente
 *  ****/
 
-   MAT_tpCondRet MAT_ObterValorCorr( MAT_tpMatriz * pMatriz , char * ValorParm )
+   MAT_tpCondRet MAT_ObterValorCorr( MAT_tpMatriz * pMatriz , LIS_tppLista * ValorParm )
    {
 
       if ( pMatriz == NULL )
@@ -289,13 +281,36 @@
       } /* if */
       if ( pMatriz->pNoCorr == NULL )
       {
-         return MAT_CondRetMatrizVazia ;
+         return MAT_CondRetNaoTemCorrente ;
       } /* if */
       * ValorParm = pMatriz->pNoCorr->Valor ;
 
       return MAT_CondRetOK ;
 
    } /* Fim função: MAT Obter valor corrente */
+
+   
+/***************************************************************************
+*
+*  Função: MAT Atribuir para valor corrente
+*  ****/
+
+   MAT_tpCondRet MAT_AtribuirValorCorr( MAT_tpMatriz * pMatriz , LIS_tppLista ValorParm )
+   {
+
+      if ( pMatriz == NULL )
+      {
+         return MAT_CondRetMatrizNaoExiste ;
+      } /* if */
+      if ( pMatriz->pNoCorr == NULL )
+      {
+         return MAT_CondRetNaoTemCorrente ;
+      } /* if */
+      pMatriz->pNoCorr->Valor =ValorParm ;
+
+      return MAT_CondRetOK ;
+
+   } /* Fim função: MAT Atribuir valor corrente */
 
 
 /*****  Código das funções encapsuladas no módulo  *****/
@@ -340,16 +355,16 @@
 
 /***********************************************************************
 *
-*  $FC Função: MAT Criar nó raiz da matriz
+*  $FC Função: MAT Criar nó origem da matriz
 *
 *  $FV Valor retornado
 *     MAT_CondRetOK
 *     MAT_CondRetFaltouMemoria
-*     MAT_CondRetNaoCriouRaiz
+*     MAT_CondRetNaoCriouOrigem
 *
 ***********************************************************************/
 
-   MAT_tpCondRet CriarNoRaiz(MAT_tpMatriz * pMatriz )
+   MAT_tpCondRet CriarNoOrigem(MAT_tpMatriz * pMatriz )
    {
 
       MAT_tpCondRet CondRet ;
@@ -365,22 +380,22 @@
          } /* if */
       } /* if */
 
-      if ( pMatriz->pNoRaiz == NULL )
+      if ( pMatriz->pNoOrigem == NULL )
       {
          pNo = CriarNo() ;
          if ( pNo == NULL )
          {
             return MAT_CondRetFaltouMemoria ;
          } /* if */
-         pMatriz->pNoRaiz = pNo ;
+         pMatriz->pNoOrigem = pNo ;
          pMatriz->pNoCorr = pNo ;
 
          return MAT_CondRetOK ;
       } /* if */
 
-      return MAT_CondRetNaoCriouRaiz ;
+      return MAT_CondRetNaoCriouOrigem ;
 
-   } /* Fim função: MAT Criar nó raiz da matriz */
+   } /* Fim função: MAT Criar nó origem da matriz */
 
 
 /***********************************************************************
@@ -411,8 +426,8 @@
 			pNo = pNoExtremidade ;
 	   }
 	   
-   } /* Fim função: MAT Destruir a estrutura da matriz */
-   
+   } /* Fim função: MAT Destruir a estrutura da matriz */   
+
 
    MAT_tpCondRet MAT_IrNoNorte( MAT_tpMatriz * pMatriz )
    {
@@ -458,7 +473,7 @@
 *
 *  $FC Função: MAT Recupera o ponteiro para um nó adjacente
 *
-*  Exemplo de uso: getVizinho(noRaiz, ESTE)
+*  Exemplo de uso: GetVizinho(noOrigem, ESTE)
 *
 ***********************************************************************/
 
@@ -475,53 +490,8 @@
 		case SUDOESTE: return pNo->pSudoeste ;
 		case NOROESTE: return pNo->pNoroeste ;
 		}
+		return NULL;
    }  /* Fim função: MAT Recupera o ponteiro para um nó adjacente*/
-   
-   
-/***********************************************************************
-*
-*  $FC Função: MAT Troca o ponteiro de um nó adjacente.
-*
-*  Exemplo de uso: SetNovoVizinho(noRaiz, pNoNovo, ESTE)
-*
-***********************************************************************/
-
-   void SetNovoVizinho( tpNoMatriz * pNo , tpNoMatriz * pNoNovo , tpDirecao dir )
-   {
-	   switch( dir )
-		{
-		case NORTE:    pNo->pNorte    = pNoNovo ; break ;
-		case SUL:      pNo->pSul      = pNoNovo ; break ;
-		case ESTE:     pNo->pEste     = pNoNovo ; break ;
-		case NORDESTE: pNo->pNordeste = pNoNovo ; break ;
-		case SUDESTE:  pNo->pSudeste  = pNoNovo ; break ;
-		case SUDOESTE: pNo->pSudoeste = pNoNovo ; break ;
-		case NOROESTE: pNo->pNoroeste = pNoNovo ; break ;
-		}
-   }  /* Fim função: MAT Troca o ponteiro de um nó adjacente */
-
-/***********************************************************************
-*
-*  $FC Função: MAT Descobre a direção oposta.
-*
-*  Exemplo de uso: DirecaoReversa(ESTE) => OESTE
-*
-***********************************************************************/
-
-   tpDirecao DirecaoReversa( tpDirecao dir )
-   {
-	   switch( dir )
-	   {
-			case NORTE: return SUL ;
-			case SUL: return NORTE ;
-			case ESTE: return OESTE ;
-			case NORDESTE: return SUDOESTE ;
-			case SUDESTE: return NOROESTE ;
-			case SUDOESTE: return NORDESTE ;
-			case NOROESTE: return SUDESTE ;
-	   }
-   }  /* Fim função: MAT Descobre a direção oposta */
-
 
 /***********************************************************************
 *
@@ -533,18 +503,18 @@
 *  todos os nós adjacentes nas direções norte e sul
 *
 *  $EAE Assertivas de entradas esperadas
-*     - pNoMatriz deve ser a raiz.
+*     - pNoMatriz deve ser a origem.
 *     - pNoMatriz nao deve apontar para outro nó.
 *
 ***********************************************************************/
 
-   MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoRaiz , int QntLinhas )
+   MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoOrigem , int QntLinhas )
    {
 	   int i ;
 	   tpNoMatriz * pNoNovo ;
 	   tpNoMatriz * pNoAnterior ;
 	   
-	   pNoAnterior = pNoRaiz ;
+	   pNoAnterior = pNoOrigem ;
 	   for( i = 0 ; i < QntLinhas - 1 ; i++ )
 	   {
 		   pNoNovo = CriarNo() ;
@@ -571,16 +541,16 @@
 *  referenciando os nós adjacentes em todas as 8 direções.
 *
 *  $EAE Assertivas de entradas esperadas
-*     - pMatriz deve ter raiz.
+*     - pMatriz deve ter origem.
 *
 ***********************************************************************/
    MAT_tpCondRet AddColuna( MAT_tpMatriz * pMatriz )
    {
-	   tpNoMatriz * pRaiz = pMatriz->pNoRaiz ;
+	   tpNoMatriz * pOrigem = pMatriz->pNoOrigem ;
 	   tpNoMatriz * pNoNovo ;
 	   tpNoMatriz * pNoExtremidade ;
 
-	   pNoExtremidade = pMatriz->pNoRaiz ;
+	   pNoExtremidade = pMatriz->pNoOrigem ;
 	   while( pNoExtremidade->pEste != NULL )
 	   {
 		   pNoExtremidade = pNoExtremidade->pEste ;
@@ -673,6 +643,7 @@
 /***************************************************************************
 *
 *  Função: MAT Ir para nó genérico
+*  Muda o nó corrente da matriz para o nó na direção apontada
 *  ****/
 
    MAT_tpCondRet IrPara( MAT_tpMatriz * pMatriz , tpDirecao direcao )
@@ -684,12 +655,12 @@
       } /* if */
       if ( pMatriz->pNoCorr == NULL )
       {
-         return MAT_CondRetMatrizVazia ;
+         return MAT_CondRetNaoTemCorrente ;
       } /* if */
 
       if ( GetVizinho( pMatriz->pNoCorr , direcao ) == NULL )
       {
-		  return MAT_CondRetNaoEhFolha ;
+		  return MAT_CondRetNaoEhNo ;
       } /* if */
 
 	  pMatriz->pNoCorr = GetVizinho( pMatriz->pNoCorr , direcao ) ;

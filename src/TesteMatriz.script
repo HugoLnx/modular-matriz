@@ -1,38 +1,30 @@
-// Script:    TesteMatrizSimb.script
-// Autor:     Arndt von Staa
-// Data:      20/fev/2006
-// Propósito: Ilustrar arquivo de script, 
-//            Testa a construção de uma matriz usando parâmetros simbólicos
-//            Não verifica se as operações modificaram corretamente as referências
-//            Este script é muito superficial !!!
-//
-
-
-
-
 // Script:    TesteMatriz.script
-// Autor:     Arndt von Staa
-// Data:      12/ago/2003
-// Propósito: Ilustrar arquivo de script, testar construção de matriz
-//            Este script é muito superficial
+// Autor:     Hugo Roque / Nino Fabrizio
+// Data:      15/set/2013
+// Propósito: Testar se a matriz está sendo criada corretamente
+// e se os possíveis erros estão sendo lançados nos momentos
+// adequados.
 //
 
 == Declarar as condicoes de retorno
 =declararparm  OK           int 0
-=declararparm  NaoRaiz      int 1 
-=declararparm  Estrutura    int 2
-=declararparm  NaoFolha     int 3
-=declararparm  NaoMatriz    int 4
-=declararparm  NaoCorr      int 5
-=declararparm  EhRaiz       int 6
-=declararparm  NaoFilho     int 7
-=declararparm  Memoria      int 8
+=declararparm  NaoOrigem    int 1 
+=declararparm  NaoFolha     int 2
+=declararparm  NaoMatriz    int 3
+=declararparm  NaoCorr      int 4
+=declararparm  Memoria      int 5
 
 == Declarar os conteúdos dos nós
-=declararparm  CharErro     char  '!'
-=declararparm  CharA        char  'a'
-=declararparm  CharB        char  'b'
-=declararparm  CharC        char  'c'
+=declararparm  ValorErro    int -1
+=declararparm  Valor0_0     int 0
+=declararparm  Valor0_1     int 1
+=declararparm  Valor0_2     int 2
+=declararparm  Valor1_0     int 3
+=declararparm  Valor1_1     int 4
+=declararparm  Valor1_2     int 5
+=declararparm  Valor2_0     int 6
+=declararparm  Valor2_1     int 7
+=declararparm  Valor2_2     int 8
 
 == Verificar erros nas operações inválidas quando a está matriz inexistente
 =destruir              NaoMatriz
@@ -44,7 +36,8 @@
 =irsudeste             NaoMatriz
 =irsudoeste            NaoMatriz
 =irnoroeste            NaoMatriz
-=obter      CharErro   NaoMatriz
+=obter      ValorErro  NaoMatriz
+=atribuir   ValorErro  NaoMatriz
 =init 2 2 NaoMatriz
 
 == Verificar comando recuperar
@@ -64,8 +57,8 @@
 == Criar matriz
 =criar      OK
 
-== Verificar erros relativos à inexistência da raiz
-=destruir              NaoRaiz
+== Verificar erros relativos à inexistência da origem
+=destruir              NaoOrigem
 
 == Verificar erros relativos à inexistência do corrente
 =irnorte               NaoCorr
@@ -76,48 +69,87 @@
 =irsudeste             NaoCorr
 =irsudoeste            NaoCorr
 =irnoroeste            NaoCorr
-=obter      CharErro   NaoCorr
+=obter     ValorErro   NaoCorr
+=atribuir  ValorErro   NaoCorr
 
 == Inicializar matriz
 =init 3 3 OK
 
+== Atribuir valores aos nós
+=atribuir Valor0_0 OK
+
+=ireste            OK
+=atribuir Valor0_1 OK
+
+=ireste            OK
+=atribuir Valor0_2 OK
+
+=irsul             OK
+=atribuir Valor1_2 OK
+
+=irsul             OK
+=atribuir Valor2_2 OK
+
+=iroeste           OK
+=atribuir Valor2_1 OK
+
+=iroeste           OK
+=atribuir Valor2_0 OK
+
+=irnorte           OK
+=atribuir Valor1_0 OK
+
+=ireste            OK
+=atribuir Valor1_1 OK
+
+=irnoroeste        OK
+
 == Verificar ponteiros da posição (0, 0)
-=irnorte    NaoFolha
-=iroeste    NaoFolha
-=irnordeste NaoFolha
-=irsudoeste NaoFolha
-=irnoroeste NaoFolha
+=obter Valor0_0 OK
+=irnorte        NaoFolha
+=iroeste        NaoFolha
+=irnordeste     NaoFolha
+=irsudoeste     NaoFolha
+=irnoroeste     NaoFolha
+			    
+=irsul          OK
+=irnorte        OK
+=obter Valor0_0 OK
+			    
+=irsudeste      OK
+=irnoroeste     OK
+=obter Valor0_0 OK
 
-=irsul      OK
-=irnorte    OK
-
-=irsudeste  OK
-=ireste     OK
-
-=irnoroeste OK
+=ireste         OK
 
 
 == Verificar ponteiros da posição (0, 1)
+=obter Valor0_1 OK
 =irnorte    NaoFolha
 =irnordeste NaoFolha
 =irnoroeste NaoFolha
 
 =irsul      OK
 =irnorte    OK
+=obter Valor0_1 OK
 
 =iroeste    OK
 =ireste     OK
+=obter Valor0_1 OK
 
 =irsudeste  OK
 =irnoroeste OK
+=obter Valor0_1 OK
 
 =irsudoeste OK
 =irnordeste OK
+=obter Valor0_1 OK
 
 =ireste     OK
 
 
 == Verificar ponteiros da posição (0, 2)
+=obter Valor0_2 OK
 =irnorte    NaoFolha
 =ireste     NaoFolha
 =irnordeste NaoFolha
@@ -126,34 +158,42 @@
 
 =iroeste OK
 =ireste  OK
+=obter Valor0_2 OK
 
 =irsudoeste OK
 =irnordeste OK
+=obter Valor0_2 OK
 
 =irsul   OK
 
 
 == Verificar ponteiros da posição (1, 2)
+=obter Valor1_2 OK
 =ireste     NaoFolha
 =irnordeste NaoFolha
 =irsudeste  NaoFolha
 
 =irnorte OK
 =irsul   OK
+=obter Valor1_2 OK
 
 =iroeste OK
 =ireste  OK
+=obter Valor1_2 OK
 
 =irnoroeste OK
 =irsudeste  OK
+=obter Valor1_2 OK
 
 =irsudoeste OK
 =irnordeste OK
+=obter Valor1_2 OK
 
 =irsul   OK
 
 
 == Verificar ponteiros da posição (2, 2)
+=obter Valor2_2 OK
 =irsul      NaoFolha
 =ireste     NaoFolha
 =irnordeste NaoFolha
@@ -162,32 +202,40 @@
 
 =irnorte OK
 =irsul   OK
+=obter Valor2_2 OK
 
 =irnoroeste OK
 =irsudeste  OK
+=obter Valor2_2 OK
 
 =iroeste OK
 
 == Verificar ponteiros da posição (2, 1)
+=obter Valor2_1 OK
 =irsul      NaoFolha
 =irsudeste  NaoFolha
 =irsudoeste NaoFolha
 
 =irnorte    OK
 =irsul      OK
+=obter Valor2_1 OK
 
 =ireste     OK
 =iroeste    OK
+=obter Valor2_1 OK
 
 =irnordeste OK
 =irsudoeste OK
+=obter Valor2_1 OK
 
 =irnoroeste OK
 =irsudeste  OK
+=obter Valor2_1 OK
 
 =iroeste    OK
 
 == Verificar ponteiros da posição (2, 0)
+=obter Valor2_0 OK
 =irsul      NaoFolha
 =iroeste    NaoFolha
 =irsudeste  NaoFolha
@@ -196,28 +244,35 @@
 
 =ireste      OK
 =iroeste     OK
+=obter Valor2_0 OK
 
 =irnordeste OK
 =irsudoeste OK
+=obter Valor2_0 OK
 
 =irnorte    OK
 
 == Verificar ponteiros da posição (1, 0)
+=obter Valor1_0 OK
 =iroeste    NaoFolha
 =irsudoeste NaoFolha
 =irnoroeste NaoFolha
 
 =irsul      OK
 =irnorte    OK
+=obter Valor1_0 OK
 
 =ireste     OK
 =iroeste    OK
+=obter Valor1_0 OK
 
 =irnordeste OK
 =irsudoeste OK
+=obter Valor1_0 OK
 
 =irsudeste  OK
 =irnoroeste OK
+=obter Valor1_0 OK
 
 =irnorte    OK
 

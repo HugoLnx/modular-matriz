@@ -5,18 +5,15 @@
 *  Letras identificadoras:      TLIS
 *
 *  Nome da base de software:    Arcabouço para a automação de testes de programas redigidos em C
-*  Arquivo da base de software: D:\AUTOTEST\PROJETOS\LISTA.BSW
 *
 *  Projeto: INF 1301 / 1628 Automatização dos testes de módulos C
 *  Gestor:  LES/DI/PUC-Rio
-*  Autores: avs
+*  Autores: rc
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
-*     4       avs   01/fev/2006 criar linguagem script simbólica
-*     3       avs   08/dez/2004 uniformização dos exemplos
-*     2       avs   07/jul/2003 unificação de todos os módulos em um só projeto
-*     1       avs   16/abr/2003 início desenvolvimento
+*     1       rc    12/set/2013 Adaptação da função CriarLista para ser testavel e testes para inserção de somente valores char.
+*     2       rc    15/set/2013 Implementação e adaptação do restante das funções de teste para testar somente dado o tipo char.
 *
 ***************************************************************************/
 
