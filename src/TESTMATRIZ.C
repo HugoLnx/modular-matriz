@@ -26,26 +26,19 @@
 *  $EIU Interface com o usuário pessoa
 *     Comandos de teste específicos para testar o módulo matriz:
 *
-*     =criar        - chama a função MAT_CriarMatriz( )
-*     =insdir <Char>
-*                   - chama a função MAT_InserirDireita( <Char> )
-*                     Obs. notação: <Char>  é o valor do parâmetro
-*                     que se encontra no comando de teste.
-*
-*     "=insesq" <Char>
-*                   - chama a função MAT_InserirEsquerda( <Char> )
-*     "=irnorte"      - chama a função MAT_IrNorte( )
-*     "=irsul"      - chama a função MAT_IrSul( )
-*     "=ireste"      - chama a função MAT_IrEste( )
-*     "=iroeste"      - chama a função MAT_IrOeste( )
+*     "=criar"           - chama a função MAT_CriarMatriz( )
+*     "=irnorte"         - chama a função MAT_IrNorte( )
+*     "=irsul"           - chama a função MAT_IrSul( )
+*     "=ireste"          - chama a função MAT_IrEste( )
+*     "=iroeste"         - chama a função MAT_IrOeste( )
 *     "=irnordeste"      - chama a função MAT_IrNordeste( )
-*     "=irsudeste"      - chama a função MAT_IrSudeste( )
+*     "=irsudeste"       - chama a função MAT_IrSudeste( )
 *     "=irsudoeste"      - chama a função MAT_IrSudoeste( )
 *     "=irnoroeste"      - chama a função MAT_IrNoroeste( )
-*     "=obter" <Char>
-*                   - chama a função MAT_ObterValorCorr( ) e compara
-*                     o valor retornado com o valor <Char>
-*     "=destroi"    - chama a função MAT_DestruirMatriz( )
+*     "=atribuir" <Char> - chama a função MAT_AtribuirValorCorr(  )
+*     "=destroi"         - chama a função MAT_DestruirMatriz( )
+*     "=obter" <Char>    - chama a função MAT_ObterValorCorr( ) e compara
+*                          o valor retornado com o valor <Char>
 *
 ***************************************************************************/
 
@@ -81,18 +74,16 @@
 /* Tabela dos nomes dos comandos de teste específicos do teste */
 #define     VALIDAR_EST_MAT_CMD "=validarEstrutura"
 #define     SELECIONAR_CMD       "=selecionar"
-
-
+#define     VALORES_SIZE 9
+#define     MATRIZES_SIZE 10
 
 
 /*****  Código das funções exportadas pelo módulo  *****/
-const int VALORES_SIZE = 9 ;
-
 int IndiceDoValor( LIS_tppLista Valor );
 void PreencherArrayDeValores();
 
-static MAT_tpMatriz * Matrizes[10] ;
-static LIS_tppLista VALORES[9] ;
+static MAT_tpMatriz * Matrizes[MATRIZES_SIZE] ;
+static LIS_tppLista VALORES[VALORES_SIZE] ;
 
 static int iMat = 0 ;
 
@@ -400,7 +391,7 @@ static int iMat = 0 ;
                return TST_CondRetParm ;
             } /* if */
 
-			if ( iMat < 0 || iMat > 9 )
+			if ( iMat < 0 || iMat > MATRIZES_SIZE - 1 )
 			{
 				TST_NotificarFalha("Só é possível fazer seleção nos indices de 0 à 9") ;
 				return TST_CondRetErro ;
