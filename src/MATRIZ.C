@@ -164,11 +164,11 @@
 /*****  Código das funções exportadas pelo módulo  *****/
 
 
+
 /***************************************************************************
 *
 *  Função: MAT Criar matriz
 *  ****/
-
    MAT_tpCondRet MAT_CriarMatriz( MAT_tpMatriz ** ppMatriz )
    {
 	  MAT_tpMatriz * pMatriz ;
@@ -194,11 +194,12 @@
 
    } /* Fim função: MAT Criar matriz */
 
+
+
    /***************************************************************************
 *
 *  Função: MAT Inicializar matriz
 *  ****/
-
    MAT_tpCondRet MAT_InicializarMatriz(MAT_tpMatriz * pMatriz , int Linhas , int Colunas )
    {
 	   int i ;
@@ -230,11 +231,12 @@
    }  /* Fim função: MAT Inicializar matriz */
 
 
+
+
 /***************************************************************************
 *
 *  Função: MAT Destruir matriz
 *  ****/
-
    MAT_tpCondRet MAT_DestruirMatriz( MAT_tpMatriz ** ppMatriz )
    {
 		MAT_tpMatriz * pMatriz ;
@@ -259,11 +261,11 @@
    } /* Fim função: MAT Destruir matriz */
 
 
+
 /***************************************************************************
 *
 *  Função: MAT Obter valor corrente
 *  ****/
-
    MAT_tpCondRet MAT_ObterValorCorr( MAT_tpMatriz * pMatriz , LIS_tppLista * ValorParm )
    {
 
@@ -282,11 +284,11 @@
    } /* Fim função: MAT Obter valor corrente */
 
    
+
 /***************************************************************************
 *
 *  Função: MAT Atribuir para valor corrente
 *  ****/
-
    MAT_tpCondRet MAT_AtribuirValorCorr( MAT_tpMatriz * pMatriz , LIS_tppLista ValorParm )
    {
 
@@ -303,6 +305,99 @@
       return MAT_CondRetOK ;
 
    } /* Fim função: MAT Atribuir valor corrente */
+
+   
+
+/***************************************************************************
+*
+*  Função: MAT Ir para nó ao norte.
+*  ****/
+   MAT_tpCondRet MAT_IrNoNorte( MAT_tpMatriz * pMatriz )
+   {
+	   return IrPara( pMatriz , NORTE );
+   } /* Fim função: MAT Ir para nó ao norte*/
+
+
+
+/***************************************************************************
+*
+*  Função: MAT Ir para nó ao sul.
+*  ****/
+   MAT_tpCondRet MAT_IrNoSul( MAT_tpMatriz * pMatriz )
+   {
+	   return IrPara( pMatriz , SUL );
+   } /* Fim função: MAT Ir para nó ao sul*/
+
+
+
+/***************************************************************************
+*
+*  Função: MAT Ir para nó à este.
+*  ****/
+   MAT_tpCondRet MAT_IrNoEste( MAT_tpMatriz * pMatriz )
+   {
+	   return IrPara( pMatriz , ESTE );
+   } /* Fim função: MAT Ir para à nó este*/
+
+
+
+/***************************************************************************
+*
+*  Função: MAT Ir para nó à oeste.
+*  ****/
+   MAT_tpCondRet MAT_IrNoOeste( MAT_tpMatriz * pMatriz )
+   {
+	   return IrPara( pMatriz , OESTE );
+   } /* Fim função: MAT Ir para à nó oeste*/
+   
+
+
+
+/***************************************************************************
+*
+*  Função: MAT Ir para nó à nordeste.
+*  ****/
+   MAT_tpCondRet MAT_IrNoNordeste( MAT_tpMatriz * pMatriz )
+   {
+	   return IrPara( pMatriz , NORDESTE );
+   } /* Fim função: MAT Ir para nó à nordeste*/
+   
+
+
+
+/***************************************************************************
+*
+*  Função: MAT Ir para nó à sudeste.
+*  ****/
+   MAT_tpCondRet MAT_IrNoSudeste( MAT_tpMatriz * pMatriz )
+   {
+	   return IrPara( pMatriz , SUDESTE );
+   } /* Fim função: MAT Ir para nó à sudeste*/
+   
+
+
+
+/***************************************************************************
+*
+*  Função: MAT Ir para nó à sudoeste.
+*  ****/
+   MAT_tpCondRet MAT_IrNoSudoeste( MAT_tpMatriz * pMatriz )
+   {
+	   return IrPara( pMatriz , SUDOESTE );
+   } /* Fim função: MAT Ir para nó à sudoeste */
+
+
+
+
+/***************************************************************************
+*
+*  Função: MAT Ir para nó à noroeste.
+*  ****/
+   MAT_tpCondRet MAT_IrNoNoroeste( MAT_tpMatriz * pMatriz )
+   {
+	   return IrPara( pMatriz , NOROESTE );
+   } /* Fim função: MAT Ir para nó à noroeste*/
+
 
 
 /*****  Código das funções encapsuladas no módulo  *****/
@@ -390,17 +485,22 @@
    } /* Fim função: MAT Criar nó origem da matriz */
 
 
+
 /***********************************************************************
 *
 *  $FC Função: MAT Destruir a estrutura da matriz
-*
-*  $EAE Assertivas de entradas esperadas
-*     pNo != NULL
+*  
+*  $ED Descrição da função
+*  Libera a memória de todos os nós que compõe a estrutura
+*  da matriz.
+*  
+*  $EP Parâmetros
+*     pNoOrigem - ponteiro para o nó origem da matriz.
 *
 ***********************************************************************/
-
-   void DestroiMatriz( tpNoMatriz * pNo )
+   void DestroiMatriz( tpNoMatriz * pNoOrigem )
    {
+	   tpNoMatriz * pNo = pNoOrigem;
 	   tpNoMatriz * pNoExtremidade = pNo ;
 	   tpNoMatriz * pProxNoExtremidade ;
 	   tpNoMatriz * pProxNo ;
@@ -420,201 +520,25 @@
 	   
    } /* Fim função: MAT Destruir a estrutura da matriz */
 
-   
-/***************************************************************************
-*
-*  $FC Função: MAT Ir para nó ao norte.
-*  
-*  $ED Descrição da função
-*  Muda o nó corrente da matriz para o nó na direção norte
-*  
-*  $EP Parâmetros
-*     pMatriz - ponteiro para matriz que manipulada.
-*
-*  $FV Valor retornado
-*     MAT_CondRetOK
-*     MAT_CondRetMatrizNaoExiste
-*     MAT_CondRetNaoTemCorrente
-*     MAT_CondRetNaoEhNo
-*  ****/
-   MAT_tpCondRet MAT_IrNoNorte( MAT_tpMatriz * pMatriz )
-   {
-	   return IrPara( pMatriz , NORTE );
-   } /* Fim função: MAT Ir para nó ao norte*/
 
 
-
-/***************************************************************************
-*
-*  $FC Função: MAT Ir para nó ao sul.
-*  
-*  $ED Descrição da função
-*  Muda o nó corrente da matriz para o nó na direção sul
-*  
-*  $EP Parâmetros
-*     pMatriz - ponteiro para matriz que manipulada.
-*
-*  $FV Valor retornado
-*     MAT_CondRetOK
-*     MAT_CondRetMatrizNaoExiste
-*     MAT_CondRetNaoTemCorrente
-*     MAT_CondRetNaoEhNo
-*  ****/
-   MAT_tpCondRet MAT_IrNoSul( MAT_tpMatriz * pMatriz )
-   {
-	   return IrPara( pMatriz , SUL );
-   } /* Fim função: MAT Ir para nó ao sul*/
-
-
-
-/***************************************************************************
-*
-*  $FC Função: MAT Ir para nó à este.
-*  
-*  $ED Descrição da função
-*  Muda o nó corrente da matriz para o nó na direção este.
-*  
-*  $EP Parâmetros
-*     pMatriz - ponteiro para matriz que manipulada.
-*
-*  $FV Valor retornado
-*     MAT_CondRetOK
-*     MAT_CondRetMatrizNaoExiste
-*     MAT_CondRetNaoTemCorrente
-*     MAT_CondRetNaoEhNo
-*  ****/
-   MAT_tpCondRet MAT_IrNoEste( MAT_tpMatriz * pMatriz )
-   {
-	   return IrPara( pMatriz , ESTE );
-   } /* Fim função: MAT Ir para à nó este*/
-
-
-
-/***************************************************************************
-*
-*  $FC Função: MAT Ir para nó à oeste.
-*  
-*  $ED Descrição da função
-*  Muda o nó corrente da matriz para o nó na direção oeste
-*  
-*  $EP Parâmetros
-*     pMatriz - ponteiro para matriz que manipulada.
-*
-*  $FV Valor retornado
-*     MAT_CondRetOK
-*     MAT_CondRetMatrizNaoExiste
-*     MAT_CondRetNaoTemCorrente
-*     MAT_CondRetNaoEhNo
-*  ****/
-   MAT_tpCondRet MAT_IrNoOeste( MAT_tpMatriz * pMatriz )
-   {
-	   return IrPara( pMatriz , OESTE );
-   } /* Fim função: MAT Ir para à nó oeste*/
-   
-
-
-
-/***************************************************************************
-*
-*  $FC Função: MAT Ir para nó à nordeste.
-*  
-*  $ED Descrição da função
-*  Muda o nó corrente da matriz para o nó na direção nordeste
-*  
-*  $EP Parâmetros
-*     pMatriz - ponteiro para matriz que manipulada.
-*
-*  $FV Valor retornado
-*     MAT_CondRetOK
-*     MAT_CondRetMatrizNaoExiste
-*     MAT_CondRetNaoTemCorrente
-*     MAT_CondRetNaoEhNo
-*  ****/
-   MAT_tpCondRet MAT_IrNoNordeste( MAT_tpMatriz * pMatriz )
-   {
-	   return IrPara( pMatriz , NORDESTE );
-   } /* Fim função: MAT Ir para nó à nordeste*/
-   
-
-
-
-/***************************************************************************
-*
-*  $FC Função: MAT Ir para nó à sudeste.
-*  
-*  $ED Descrição da função
-*  Muda o nó corrente da matriz para o nó na direção sudeste
-*  
-*  $EP Parâmetros
-*     pMatriz - ponteiro para matriz que manipulada.
-*
-*  $FV Valor retornado
-*     MAT_CondRetOK
-*     MAT_CondRetMatrizNaoExiste
-*     MAT_CondRetNaoTemCorrente
-*     MAT_CondRetNaoEhNo
-*  ****/
-   MAT_tpCondRet MAT_IrNoSudeste( MAT_tpMatriz * pMatriz )
-   {
-	   return IrPara( pMatriz , SUDESTE );
-   } /* Fim função: MAT Ir para nó à sudeste*/
-   
-
-
-
-/***************************************************************************
-*
-*  $FC Função: MAT Ir para nó à sudoeste.
-*  
-*  $ED Descrição da função
-*  Muda o nó corrente da matriz para o nó na direção sudoeste
-*  
-*  $EP Parâmetros
-*     pMatriz - ponteiro para matriz que manipulada.
-*
-*  $FV Valor retornado
-*     MAT_CondRetOK
-*     MAT_CondRetMatrizNaoExiste
-*     MAT_CondRetNaoTemCorrente
-*     MAT_CondRetNaoEhNo
-*  ****/
-   MAT_tpCondRet MAT_IrNoSudoeste( MAT_tpMatriz * pMatriz )
-   {
-	   return IrPara( pMatriz , SUDOESTE );
-   } /* Fim função: MAT Ir para nó à sudoeste */
-
-
-
-
-/***************************************************************************
-*
-*  $FC Função: MAT Ir para nó à noroeste.
-*  
-*  $ED Descrição da função
-*  Muda o nó corrente da matriz para o nó na direção noroeste
-*  
-*  $EP Parâmetros
-*     pMatriz - ponteiro para matriz que manipulada.
-*
-*  $FV Valor retornado
-*     MAT_CondRetOK
-*     MAT_CondRetMatrizNaoExiste
-*     MAT_CondRetNaoTemCorrente
-*     MAT_CondRetNaoEhNo
-*  ****/
-   MAT_tpCondRet MAT_IrNoNoroeste( MAT_tpMatriz * pMatriz )
-   {
-	   return IrPara( pMatriz , NOROESTE );
-   } /* Fim função: MAT Ir para nó à noroeste*/
 
 /***********************************************************************
 *
-*  $FC Função: MAT Recupera o ponteiro para um nó adjacente
+*  $FC Função: MAT Get nó adjacente
+*  
+*  $ED Descrição da função
+*     Recupera o ponteiro para um nó adjacente
+*     Exemplo de uso: GetAdjacente(noOrigem, ESTE)
+*  
+*  $EP Parâmetros
+*     pNo - ponteiro para nó que será usado como referência.
+*     dir - representa a direção à qual será buscado o nó.
 *
-*  Exemplo de uso: GetAdjacente(noOrigem, ESTE)
-*
+*  $FV Valor retornado
+*    Ponteiro para nó adjacente na direção passada por
+*    parâmetro.
 ***********************************************************************/
-
    tpNoMatriz * GetAdjacente( tpNoMatriz * pNo , tpDirecao dir )
    {
 		switch( dir )
@@ -631,6 +555,8 @@
 		return NULL;
    }  /* Fim função: MAT Recupera o ponteiro para um nó adjacente*/
 
+
+
 /***********************************************************************
 *
 *  $FC Função: MAT Constroi a primeira coluna da matriz.
@@ -640,12 +566,14 @@
 *  criar a primeira coluna com o número de linhas correto e referenciando
 *  todos os nós adjacentes nas direções norte e sul
 *
-*  $EAE Assertivas de entradas esperadas
-*     - pNoMatriz deve ser a origem.
-*     - pNoMatriz nao deve apontar para outro nó.
+*  $EP Parâmetros
+*     pNoOrigem - ponteiro para o nó origem da matriz.
+*     QntLinhas - quantidade de linhas que a coluna terá.
 *
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetFaltouMemoria
 ***********************************************************************/
-
    MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoOrigem , int QntLinhas )
    {
 	   int i ;
@@ -678,9 +606,12 @@
 *  Adiciona mais uma coluna à matriz, mantendo o número de linhas e
 *  referenciando os nós adjacentes em todas as 8 direções.
 *
-*  $EAE Assertivas de entradas esperadas
-*     - pMatriz deve ter origem.
+*  $EP Parâmetros
+*     pMatriz - ponteiro para matriz que será manipulada.
 *
+*  $FV Valor retornado
+*     MAT_CondRetOK
+*     MAT_CondRetFaltouMemoria
 ***********************************************************************/
    MAT_tpCondRet AddColuna( MAT_tpMatriz * pMatriz )
    {
@@ -716,6 +647,7 @@
 
 	   return MAT_CondRetOK ;
    }  /* Fim função: MAT Adiciona Coluna */
+
 
 
 /***********************************************************************

@@ -81,7 +81,6 @@ typedef struct tgMatriz MAT_tpMatriz ;
 *     MAT_CondRetFaltouMemoria
 *
 ***********************************************************************/
-
    MAT_tpCondRet MAT_CriarMatriz( MAT_tpMatriz ** ppMatriz ) ;
 
 
@@ -102,9 +101,9 @@ typedef struct tgMatriz MAT_tpMatriz ;
 *     MAT_CondRetFaltouMemoria
 *
 ***********************************************************************/
-
-
    MAT_tpCondRet MAT_InicializarMatriz( MAT_tpMatriz * pMatriz , int Linhas , int Colunas ) ;
+
+
 
 /***********************************************************************
 *
@@ -123,12 +122,18 @@ typedef struct tgMatriz MAT_tpMatriz ;
 *     MAT_CondRetMatrizNaoExiste
 *
 ***********************************************************************/
-
    MAT_tpCondRet MAT_DestruirMatriz( MAT_tpMatriz ** ppMatriz ) ;
 
-/***********************************************************************
+
+/***************************************************************************
 *
-*  $FC Função: MAT Ir para nó ao norte
+*  $FC Função: MAT Ir para nó ao norte.
+*  
+*  $ED Descrição da função
+*  Muda o nó corrente da matriz para o nó na direção norte
+*  
+*  $EP Parâmetros
+*     pMatriz - ponteiro para matriz que manipulada.
 *
 *  $FV Valor retornado
 *     MAT_CondRetOK
@@ -137,13 +142,18 @@ typedef struct tgMatriz MAT_tpMatriz ;
 *     MAT_CondRetNaoEhNo
 *
 ***********************************************************************/
-
    MAT_tpCondRet MAT_IrNoNorte( MAT_tpMatriz * pMatriz ) ;
 
-   
-/***********************************************************************
+
+/***************************************************************************
 *
-*  $FC Função: MAT Ir para nó ao sul
+*  $FC Função: MAT Ir para nó ao sul.
+*  
+*  $ED Descrição da função
+*  Muda o nó corrente da matriz para o nó na direção sul
+*  
+*  $EP Parâmetros
+*     pMatriz - ponteiro para matriz que manipulada.
 *
 *  $FV Valor retornado
 *     MAT_CondRetOK
@@ -154,10 +164,16 @@ typedef struct tgMatriz MAT_tpMatriz ;
 ***********************************************************************/
    MAT_tpCondRet MAT_IrNoSul( MAT_tpMatriz * pMatriz ) ;
 
-   
-/***********************************************************************
+
+/***************************************************************************
 *
-*  $FC Função: MAT Ir para nó à este
+*  $FC Função: MAT Ir para nó à este.
+*  
+*  $ED Descrição da função
+*  Muda o nó corrente da matriz para o nó na direção este.
+*  
+*  $EP Parâmetros
+*     pMatriz - ponteiro para matriz que manipulada.
 *
 *  $FV Valor retornado
 *     MAT_CondRetOK
@@ -168,10 +184,16 @@ typedef struct tgMatriz MAT_tpMatriz ;
 ***********************************************************************/
    MAT_tpCondRet MAT_IrNoEste( MAT_tpMatriz * pMatriz ) ;
 
-   
-/***********************************************************************
+
+/***************************************************************************
 *
-*  $FC Função: MAT Ir para nó à oeste
+*  $FC Função: MAT Ir para nó à oeste.
+*  
+*  $ED Descrição da função
+*  Muda o nó corrente da matriz para o nó na direção oeste
+*  
+*  $EP Parâmetros
+*     pMatriz - ponteiro para matriz que manipulada.
 *
 *  $FV Valor retornado
 *     MAT_CondRetOK
@@ -182,10 +204,16 @@ typedef struct tgMatriz MAT_tpMatriz ;
 ***********************************************************************/
    MAT_tpCondRet MAT_IrNoOeste( MAT_tpMatriz * pMatriz ) ;
 
-   
-/***********************************************************************
+
+/***************************************************************************
 *
-*  $FC Função: MAT Ir para nó à nordeste
+*  $FC Função: MAT Ir para nó à nordeste.
+*  
+*  $ED Descrição da função
+*  Muda o nó corrente da matriz para o nó na direção nordeste
+*  
+*  $EP Parâmetros
+*     pMatriz - ponteiro para matriz que manipulada.
 *
 *  $FV Valor retornado
 *     MAT_CondRetOK
@@ -196,10 +224,16 @@ typedef struct tgMatriz MAT_tpMatriz ;
 ***********************************************************************/
    MAT_tpCondRet MAT_IrNoNordeste( MAT_tpMatriz * pMatriz ) ;
 
-   
-/***********************************************************************
+
+/***************************************************************************
 *
-*  $FC Função: MAT Ir para nó à sudeste
+*  $FC Função: MAT Ir para nó à sudeste.
+*  
+*  $ED Descrição da função
+*  Muda o nó corrente da matriz para o nó na direção sudeste
+*  
+*  $EP Parâmetros
+*     pMatriz - ponteiro para matriz que manipulada.
 *
 *  $FV Valor retornado
 *     MAT_CondRetOK
@@ -210,10 +244,16 @@ typedef struct tgMatriz MAT_tpMatriz ;
 ***********************************************************************/
    MAT_tpCondRet MAT_IrNoSudeste( MAT_tpMatriz * pMatriz ) ;
 
-   
-/***********************************************************************
+
+/***************************************************************************
 *
-*  $FC Função: MAT Ir para nó à sudoeste
+*  $FC Função: MAT Ir para nó à sudoeste.
+*  
+*  $ED Descrição da função
+*  Muda o nó corrente da matriz para o nó na direção sudoeste
+*  
+*  $EP Parâmetros
+*     pMatriz - ponteiro para matriz que manipulada.
 *
 *  $FV Valor retornado
 *     MAT_CondRetOK
@@ -224,17 +264,23 @@ typedef struct tgMatriz MAT_tpMatriz ;
 ***********************************************************************/
    MAT_tpCondRet MAT_IrNoSudoeste( MAT_tpMatriz * pMatriz ) ;
 
-   
-/***********************************************************************
+
+/***************************************************************************
 *
-*  $FC Função: MAT Ir para nó à noroeste
+*  $FC Função: MAT Ir para nó à noroeste.
+*  
+*  $ED Descrição da função
+*  Muda o nó corrente da matriz para o nó na direção noroeste
+*  
+*  $EP Parâmetros
+*     pMatriz - ponteiro para matriz que manipulada.
 *
 *  $FV Valor retornado
 *     MAT_CondRetOK
 *     MAT_CondRetMatrizNaoExiste
 *     MAT_CondRetNaoTemCorrente
 *     MAT_CondRetNaoEhNo
-*
+*  
 ***********************************************************************/
    MAT_tpCondRet MAT_IrNoNoroeste( MAT_tpMatriz * pMatriz ) ;
 
