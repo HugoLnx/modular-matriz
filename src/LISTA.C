@@ -106,7 +106,7 @@
 *  Função: LIS  &Destruir lista
 *  ****/
 
-   void LIS_DestruirLista( LIS_tppLista pLista )
+   LIS_tpCondRet LIS_DestruirLista( LIS_tppLista pLista )
    {
 
       #ifdef _DEBUG
@@ -117,6 +117,8 @@
 
       free( pLista ) ;
 
+	  return LIS_CondRetOK;
+
    } /* Fim função: LIS  &Destruir lista */
 
 /***************************************************************************
@@ -124,7 +126,7 @@
 *  Função: LIS  &Esvaziar lista
 *  ****/
 
-   void LIS_EsvaziarLista( LIS_tppLista pLista )
+   LIS_tpCondRet LIS_EsvaziarLista( LIS_tppLista pLista )
    {
 
       tpElemLista * pElem ;
@@ -143,6 +145,8 @@
       } /* while */
 
       LimparCabeca( pLista ) ;
+
+	  return LIS_CondRetOK;
 
    } /* Fim função: LIS  &Esvaziar lista */
 /***************************************************************************
@@ -312,9 +316,9 @@
 		  return LIS_CondRetListaVazia ;
       } /* if */
 
-	  *valor = pLista->pElemCorr->valor;
+	  *valor = pLista->pElemCorr->valor ;
 
-	  return LIS_CondRetOK;
+	  return LIS_CondRetOK ;
    } /* Fim função: LIS  &Obter o valor contido no elemento */
 
 /***************************************************************************
@@ -322,7 +326,7 @@
 *  Função: LIS  &Ir para o elemento inicial
 *  ****/
 
-   void LIS_IrInicioLista( LIS_tppLista pLista )
+   LIS_tpCondRet LIS_IrInicioLista( LIS_tppLista pLista )
    {
 
       #ifdef _DEBUG
@@ -331,6 +335,8 @@
 
       pLista->pElemCorr = pLista->pOrigemLista ;
 
+	  return LIS_CondRetOK ;
+
    } /* Fim função: LIS  &Ir para o elemento inicial */
 
    /***************************************************************************
@@ -338,7 +344,7 @@
 *  Função: LIS  &Ir para o elemento final
 *  ****/
 
-   void LIS_IrFinalLista( LIS_tppLista pLista )
+   LIS_tpCondRet LIS_IrFinalLista( LIS_tppLista pLista )
    {
 
       #ifdef _DEBUG
@@ -346,6 +352,8 @@
       #endif
 
       pLista->pElemCorr = pLista->pFimLista ;
+
+	  return LIS_CondRetOK ;
 
    } /* Fim função: LIS  &Ir para o elemento final */
 
@@ -499,9 +507,6 @@
 *
 *  $FC Função: LIS  -Liberar elemento da lista
 *
-*  $ED Descrição da função
-*     Elimina os espaços apontados pelo valor do elemento e o
-*     próprio elemento.
 *
 ***********************************************************************/
 
@@ -530,5 +535,5 @@
 
    } /* Fim função: LIS  -Limpar a cabeça da lista */
 
-/********** Fim do módulo de implementação: LIS  Lista duplamente encadeada **********/
+/********** Fim do módulo de implementação: LIS  Lista duplamente encadeada de char **********/
 

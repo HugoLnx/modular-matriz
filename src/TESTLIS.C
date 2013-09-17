@@ -74,15 +74,15 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 *
 *     =resetteste
 *           - anula o vetor de listas. Provoca vazamento de memória
-*     =criarlista                   inxLista
-*     =destruirlista                inxLista
-*     =esvaziarlista                inxLista
+*     =criarlista                   inxLista  CondRetEsp
+*     =destruirlista                inxLista  CondRetEsp
+*     =esvaziarlista                inxLista  CondRetEsp
 *     =inselemantes                 inxLista  char  CondRetEsp
 *     =inselemapos                  inxLista  char  CondRetEsp
-*     =obtervalorelem               inxLista  char  CondretPonteiro
+*     =obtervalorelem               inxLista  char  CondRetEsp
 *     =excluirelem                  inxLista  CondRetEsp
-*     =irinicio                     inxLista
-*     =irfinal                      inxLista
+*     =irinicio                     inxLista  CondRetEsp
+*     =irfinal                      inxLista  CondRetEsp
 *     =avancarelem                  inxLista  numElem CondRetEsp
 *     =procurarelem                 inxLista  char    CondRetEsp
 *
@@ -141,19 +141,19 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
          else if ( strcmp( ComandoTeste , DESTRUIR_LISTA_CMD ) == 0 )
          {
 
-            numLidos = LER_LerParametros( "i" ,
-                               &inxLista ) ;
+            numLidos = LER_LerParametros( "ii" ,
+				&inxLista, &CondRetEsp ) ;
 
-            if ( ( numLidos != 1 )
+            if ( ( numLidos != 2 )
               || ( ! ValidarInxLista( inxLista , NAO_VAZIO )))
             {
                return TST_CondRetParm ;
             } /* if */
 
-            LIS_DestruirLista( vtListas[ inxLista ] ) ;
+            CondRet = LIS_DestruirLista( vtListas[ inxLista ] ) ;
             vtListas[ inxLista ] = NULL ;
 
-            return TST_CondRetOK ;
+           return TST_CompararInt( CondRetEsp, CondRet, "Erro ao destruir lista" ) ;
 
          } /* fim ativa: Testar Destruir lista */
      
@@ -262,9 +262,10 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
          else if ( strcmp( ComandoTeste , IR_INICIO_CMD ) == 0 )
          {
 
-            numLidos = LER_LerParametros( "i" , &inxLista ) ;
+            numLidos = LER_LerParametros( "ii" ,
+				&inxLista, &CondRetEsp ) ;
 
-            if ( ( numLidos != 1 )
+            if ( ( numLidos != 2 )
               || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
             {
                return TST_CondRetParm ;
@@ -272,7 +273,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 
             LIS_IrInicioLista( vtListas[ inxLista ] ) ;
 
-            return TST_CondRetOK ;
+			return TST_CompararInt(CondRetEsp, LIS_IrInicioLista( vtListas[ inxLista ] ), "Erro ao ir para o inicio da lista" );
 
          } /* fim ativa: Testar ir para o elemento inicial */
 
@@ -281,17 +282,16 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
          else if ( strcmp( ComandoTeste , IR_FIM_CMD ) == 0 )
          {
 
-            numLidos = LER_LerParametros( "i" , &inxLista ) ;
+            numLidos = LER_LerParametros( "ii" , 
+				&inxLista ,  &CondRetEsp) ;
 
-            if ( ( numLidos != 1 )
+            if ( ( numLidos != 2 )
               || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
             {
                return TST_CondRetParm ;
             } /* if */
 
-            LIS_IrFinalLista( vtListas[ inxLista ] ) ;
-
-            return TST_CondRetOK ;
+            return TST_CompararInt(CondRetEsp, LIS_IrFinalLista( vtListas[ inxLista ] ), "Erro ao ir para o final da lista" );
 
          } /* fim ativa: LIS  &Ir para o elemento final */
 
@@ -300,18 +300,16 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
          else if ( strcmp( ComandoTeste , ESVAZIAR_LISTA_CMD ) == 0 )
          {
 
-            numLidos = LER_LerParametros( "i" ,
-                               &inxLista ) ;
+            numLidos = LER_LerParametros( "ii" ,
+				&inxLista , &CondRetEsp ) ;
 
-            if ( ( numLidos != 1 )
+            if ( ( numLidos != 2 )
               || ( ! ValidarInxLista( inxLista , NAO_VAZIO )))
             {
                return TST_CondRetParm ;
             } /* if */
 
-            LIS_EsvaziarLista( vtListas[ inxLista ] ) ;
-
-            return TST_CondRetOK ;
+			return TST_CompararInt(CondRetEsp, LIS_EsvaziarLista( vtListas[ inxLista ] ), "Erro ao esvaziar a lista" ) ;
 
          } /* fim ativa: Testar Esvaziar lista lista */
 

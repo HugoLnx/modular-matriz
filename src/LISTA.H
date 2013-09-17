@@ -106,7 +106,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   void LIS_DestruirLista( LIS_tppLista pLista ) ;
+   LIS_tpCondRet LIS_DestruirLista( LIS_tppLista pLista ) ;
 
 /***********************************************************************
 *
@@ -120,7 +120,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   void LIS_EsvaziarLista( LIS_tppLista pLista ) ;
+   LIS_tpCondRet LIS_EsvaziarLista( LIS_tppLista pLista ) ;
 
 /***********************************************************************
 *
@@ -221,7 +221,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   void LIS_IrInicioLista( LIS_tppLista pLista ) ;
+   LIS_tpCondRet LIS_IrInicioLista( LIS_tppLista pLista ) ;
 
 /***********************************************************************
 *
@@ -236,7 +236,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   void LIS_IrFinalLista( LIS_tppLista pLista ) ;
+   LIS_tpCondRet LIS_IrFinalLista( LIS_tppLista pLista ) ;
 
    /***********************************************************************
 *

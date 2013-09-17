@@ -22,13 +22,13 @@
 
 // CondRetOK
 
-=criarlista lista0 OK
-=criarlista lista1 OK
-=criarlista lista2 OK
+=criarlista	   lista0			OK
+=criarlista    lista1			OK
+=criarlista    lista2			OK
 
-=destruirlista lista0
-=destruirlista lista1
-=destruirlista lista2
+=destruirlista lista0			OK
+=destruirlista lista1			OK
+=destruirlista lista2			OK
 
 // FIM CondRetOK
 
@@ -45,7 +45,7 @@
 =inselemantes    lista0   'c'   OK
 =inselemantes    lista0   'd'   OK
 
-=destruirlista   lista0
+=destruirlista   lista0			OK
 
 // FIM CondRetOK
 
@@ -66,7 +66,7 @@
 =obtervalorelem  lista0   'b'   OK
 =recuperar
 
-=destruirlista   lista0
+=destruirlista   lista0			OK
 
 // FIM Nao Consegue Obter
 
@@ -80,11 +80,11 @@
 =inselemantes    lista0   'b'   OK
 =inselemantes    lista0   'c'   OK
 
-=esvaziarlista   lista0
+=esvaziarlista   lista0			OK
 
 =excluirelem     lista0         ListaVazia
 
-=destruirlista   lista0
+=destruirlista   lista0			OK
 
 //*********************************
 
@@ -97,7 +97,7 @@
 =inselemantes    lista0   'c'   OK
 =inselemantes    lista0   'd'   OK
 
-=destruirlista   lista0
+=destruirlista   lista0			OK
 
 //*********************************
 
@@ -114,7 +114,7 @@
 
 =obtervalorelem  lista0   'd'   OK
 
-=destruirlista   lista0
+=destruirlista   lista0			OK
 
 =inselemantes    lista0   'z'   OK
 =recuperar
@@ -132,7 +132,7 @@
 =inselemapos     lista1   'g'   OK
 =inselemapos     lista1   'h'   OK
 
-=destruirlista   lista1
+=destruirlista   lista1			OK
 
 // FIM CondRetOK
 
@@ -154,10 +154,10 @@
 
 //CondRetListaVazia
 
-=destruirlista   lista2
+=destruirlista   lista2			OK
 =criarlista      lista2         OK
 =excluirelem     lista2         ListaVazia
-=destruirlista   lista2
+=destruirlista   lista2			OK
 // FIM CondRetListaVazia
 
 //*********************************
@@ -173,14 +173,14 @@
 
 =obtervalorelem  lista2   '4'   OK
 
-=irinicio		 lista2
+=irinicio		 lista2			OK
 
 =obtervalorelem  lista2   '4'   OK
 =recuperar
 
 =obtervalorelem  lista2   '1'   OK
 
-=destruirlista   lista2
+=destruirlista   lista2			OK
 
 //*********************************
 
@@ -193,13 +193,13 @@
 =inselemantes    lista2   '3'   OK
 =inselemantes    lista2   '4'   OK
 
-=irfinal		 lista2
+=irfinal		 lista2			OK
 
 =obtervalorelem  lista2   '4'   OK
 =recuperar
 
 =obtervalorelem  lista2   '1'   OK
-=destruirlista   lista2
+=destruirlista   lista2			OK
 
 
 //*********************************
@@ -222,7 +222,7 @@
 // FIM CondRetFimLista
 
 // CondRetListaVazia
-=destruirlista   lista2
+=destruirlista   lista2			OK
 // FIM CondRetListaVazia
 
 //*********************************
@@ -239,7 +239,7 @@
 
 // LIS_CondRetNaoEncontrou
 =procurarelem    lista2   '5'   NaoAchou
-=destruirlista   lista2
+=destruirlista   lista2			OK
 // FIM LIS_CondRetNaoEncontrou
 
 // LIS_CondRetListaVazia
