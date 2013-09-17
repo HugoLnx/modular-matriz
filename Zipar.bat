@@ -28,6 +28,8 @@ mkdir deploy\TRAB1-2\src\implementacao
 
 copy ferramentas\compilebanner.exe deploy\ferramentas
 copy ferramentas\exbestat.exe deploy\ferramentas
+copy ferramentas\exe2txt.bat deploy\ferramentas
+copy ferramentas\txt2exe.bat deploy\ferramentas
 copy Debug\lista.exe deploy\TRAB1-1\executavel
 rename deploy\TRAB1-1\executavel\lista.exe TRAB1-1.EXE
 copy src\ArcaboucoTeste.lib deploy\TRAB1-1\lib
@@ -52,6 +54,7 @@ copy batches\LimpaTudo.bat deploy\TRAB1-2\batches
 copy batches\TestaTudo.bat deploy\
 copy batches\LimpaTudo.bat deploy\
 
+call ferramentas\exe2txt.bat deploy
 
 copy LEIAME.txt deploy\
 
