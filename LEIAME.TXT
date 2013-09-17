@@ -9,7 +9,7 @@ Este texto descreve brevemente o funcionamento e uso dos módulos LISTA e MATRIZ 
 --------->compilebanner.exe.txt
 --------->exbestat.exe.txt
 --------->exe2txt.bat
---------->bat2exe.bat
+--------->txt2exe
 
 ->relatorios
 --------->RELATORIO-hugo
@@ -89,6 +89,10 @@ Arquivo LimpaTudo.bat: Remove dados de log e estatisticas gerados pelo teste.
 Arquivo TestaLista.bat: Executa teste do módulo LISTA. Gera arquivo de log e estatisticas.
 
 Arquivo TestaMatriz.bat: Executa teste do módulo MATRIZ. Gera arquivo de log e estatisticas.
+
+Arquivo exe2txt.bat: Adiciona extensão .txt dos arquivos executáveis.
+
+Arquivo txt2exe: Remove extensão .txt dos arquivo executáveis.
 
 == Execução de testes ==
 
