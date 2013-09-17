@@ -5,15 +5,18 @@ Este texto descreve brevemente o funcionamento e uso dos módulos LISTA e MATRIZ 
 == Estrutura de diretórios ==
 
 ->ferramentas
---------->compilebanner.exe
---------->exbestat.exe
+--------->7za.exe.txt
+--------->compilebanner.exe.txt
+--------->exbestat.exe.txt
+--------->exe2txt.bat
+--------->bat2exe.bat
 
 ->TRAB1-1
 --------->batches
 ----------------->LimpaTudo.bat
 ----------------->TestaLista.bat
 --------->executavel
------------------>TRAB1-1.exe
+----------------->TRAB1-1.EXE.TXT
 --------->lib
 ----------------->ArcaboucoTeste.lib
 --------->scripts
@@ -30,7 +33,7 @@ Este texto descreve brevemente o funcionamento e uso dos módulos LISTA e MATRIZ 
 ----------------->LimpaTudo.bat
 ----------------->TestaMatrz.bat
 --------->executavel
------------------>TRAB1-2.exe
+----------------->TRAB1-2.EXE.TXT
 --------->lib
 ----------------->ArcaboucoTeste.lib
 ----------------->lista.lib
