@@ -44,7 +44,7 @@ Este texto descreve brevemente o funcionamento e uso dos módulos LISTA e MATRIZ 
 ------------------------->MATRIZ.H
 ----------------->implementacao
 ------------------------->MATRIZ.C
-------------------------->TESTMATRIZ.C
+------------------------->TESTMAT.C
 
 ->LimpaTudo.bat
 
