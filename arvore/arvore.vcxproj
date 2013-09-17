@@ -12,7 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\MATRIZ.C" />
-    <ClCompile Include="..\src\TESTMATRIZ.C" />
+    <ClCompile Include="..\src\TESTMAT.C" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\MATRIZ.H" />
