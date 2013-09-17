@@ -1,0 +1,15 @@
+Data		Horas Trabalhadas	Tipo de Tarefa					Descrição
+03/set/2013	2			estudar						Como eu já tinha experiência com git, mostrei ao Nino e Robert como funciona.
+04/set/2013	4			estudar						Estudando como funciona o arcabouço (com base nos testes  a árvore), entendendo o código da árvore já visando o que dá para melhorar, o que vai ter que mudar, etc. Estudando também o Visual Studio que eu nunca tinha usado antes.
+05/set/2013	1.5			codificar módulo				Adicionei novos atributos à structure da Árvore para que ela suportasse nós adjacentes em 8 direções. Porém mantive os ponteiros de nós filhos e pai, para que o código continuasse funcionando e pudéssemos migrar gradualmente sem perder a certeza de que nossas alterações não quebraram o build; Renomeei tudo que era árvore para matriz.
+05/set/2013	0.5			codificar módulo / regidir script de teste	Alterei o destruir para retornar um erro quando tentamos destruir uma matriz que não foi criada ainda e fiz um teste. (Primeiro código e teste simples que implementei)
+05/set/2013	1			codificar módulo				Fiz uma alteração simples nas funções para que fosse possível criar e manipular várias matrizes.
+05/set/2013	2			revisar código do módulo			Refatorei o inserir para não repetir código, sempre executando os testes para ter uma segurança mínima de que meu código não tinha quebrado nada.
+06/set/2013	1.5			codificar módulo				Criação da primeira coluna da matriz, já setando os ponteiros corretamente.
+07/set/2013	3			codificar módulo				Criação de uma função auxiliar que adiciona mais uma coluna à matriz setando todos os ponteiros corretamente. Com essa função auxiliar terminei de criar a função que inicializa a matriz apartir de um número de linhas e colunas.
+07/set/2013	2			codificar módulo				Alterei a função de destruir para destruir a estrutura de uma matriz.
+11/set/2013	0.5			estudar						Robert me mostrou como configurar o Visual Studio para rodar o script de teste direto do visual studio e como debugar os testes.
+15/set/2013	1			codificar módulo				Adaptei o módulo de matriz para trabalhar com uma lista e não um char; Criei uma função para atribuir uma lista ao nó corrente.
+15/set/2013	1.5			codificar módulo				Adaptei o testmatriz.c para usar as listas como valores; Criei o comando de atribuir e adaptei o de obter usar listas como valores.
+15/set/2013	4			revisar código do módulo			Removi parâmetros de algumas funções que não precisavam mais; Removi funções, constantes e variáveis que não eram utilizadas; Revisei comentários do módulo de matriz; Renomeei algumas constantes e removi algumas outras que deixaram de ser necessárias no decorrer do desenvolvimento.
+16/set/2013	4			revisar código do módulo			Revisão do código; Revisão do padrão de documentação; Alteração de .bat que zipa trabalho para entrega.

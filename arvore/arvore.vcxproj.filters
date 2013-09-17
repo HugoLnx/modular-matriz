@@ -21,7 +21,7 @@
     <ClCompile Include="..\src\MATRIZ.C">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\TESTMATRIZ.C">
+    <ClCompile Include="..\src\TESTMAT.C">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
