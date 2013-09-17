@@ -1,0 +1,7 @@
+Data		Horas Trabalhadas	Tipo de Tarefa			Descrição
+03/set/2013	2			estudar				Hugo mostrou como usar o git e o que é versionamento de código.
+07/set/2013	2.5			redigir script de teste 	Redução do script de teste para o que podia ser testado no momento; Criação de uma função temporária que testa a estrutura da matriz; Foi necessário fazer essa pequena gambiarra por que a parte de navegação ainda não estava pronta.
+07/set/2013	1			redigir script de teste		Adaptação do testmatriz.c para poder lidar com 10 matrizes ao invés de uma única.
+15/set/2013	1			codificar módulo		Refatorando os métodos Ir, para não repetir código, encapsulando a lógica genérica em uma única função que recebe a direção; Criação de funções simples para navegação pela matriz.
+15/set/2013	4			redigir script de teste		Criei comandos de teste para navegação; Removi comando único para validar estrutura e substitui pelos comandos de navegação no script de teste; Completei algumas verificações de erros que estavam faltando.
+15/set/2013	1.5			redigir script de teste		Usei os novos comandos =atribuir e =obter no script de teste, testando seus casos de erro e utilizando para verificar se a navegação realmente estava direcionando para os nós certos.
