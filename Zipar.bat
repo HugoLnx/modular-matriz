@@ -57,9 +57,12 @@ copy batches\LimpaTudo.bat deploy\
 call ferramentas\exe2txt.bat deploy
 
 copy LEIAME.txt deploy\
-copy RELATORIO-hugo.txt deploy\
-copy RELATORIO-nino.txt deploy\
-copy RELATORIO-robert.txt deploy\
+
+mkdir deploy\relatorios
+
+copy RELATORIO-hugo.txt deploy\relatorios\
+copy RELATORIO-nino.txt deploy\relatorios\
+copy RELATORIO-robert.txt deploy\relatorios\
 
 
 del deploy.zip

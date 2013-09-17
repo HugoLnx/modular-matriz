@@ -1,0 +1,16 @@
+﻿Data			Horas   Trabalhadas	Tipo Tarefa						Descrição da tarefa realizada
+09/set/2013		2			estudar							Definimos usar o git como controle de versão. Como o Hugo possuia mais experiência com esse versionador, me ensinou como utilizar
+09/set/2013		3			estudar							Estudar como o arcabouço funciona. Instalar, e rodar o teste simples. 
+11/set/2013		2			estudar							Estudei como debugar todo o código de teste do arcabouço, desta forma fica mais fácil checar o código e até mesmo entender e validar a lógica que está sendo implantada. Além de debugar os testes, consegui fazer com que a cada build realizado rode o teste do módulo, facilitando o uso. Mostrei como fazer para Hugo e Nino.
+12/set/2013		2			codificar módulo					Adaptei o código do módulo LISTA pra trabalhar somente com dados do tipo char e ter apenas as funcionalidades de criar e inserir nós, no inicio e no final da lista
+12/set/2013		1			redigir script de teste					Adaptei script de teste do módulo LISTA pra trabalhar somente com as funções implementadas(criar e inserir)
+12/set/2013		0.4			realizar os testes					Chequei se tudo está ok com a implementação do módulo e teste e script de teste
+15/set/2013		4			codificar módulo					Implementei o restante do módulo LISTA para possibilitar manipulação, ou seja, remover nós, ir para o inicio e fim, obter valor, destruir lista, etc
+15/set/2013		2.5			redigir script de teste					Aprimorei script de teste para trabalhar com restante das funções.
+15/set/2013		1			revisar código do módulo				Revisei implementação para checar se está tudo ok
+15/set/2013		0.5			revisar script de teste					Revisei script de teste, observando se para cada condição de retorno contido nas funções exportadas existem testes para elas.
+15/set/2013		0.5			revisar especificações					Chequei se as especificações de todos os artefatos do módulo LISTA estão OK. Confirmei com Nino e Hugo de que já poderiam utilizar o módulo LISTA na MATRIZ
+15/set/2013		0.5			revisar código do módulo				Removi código e comentários desnecessário do módulo LISTA.
+15/set/2013		0.5			diagnosticar e corrigir os problemas encontrados	Corrigi pequenos erros de implementação dos teste do módulo LISTA
+16/set/2013		1.5			estudar							Estudei como funciona arquivos .bat. Criei arquivos TestaLista.bat, TestaMatriz.bat, LimpaTudo e TesteTudo.bat. Além disso, criei o Zipar.bat que é responsavél por pegar todos os dados importantes do projeto, organizar e zipar para enviar para o professor.
+16/set/2013		1			especificar os módulos					Criei o arquivo LEIAME.TXT

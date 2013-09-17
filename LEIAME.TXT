@@ -11,6 +11,11 @@ Este texto descreve brevemente o funcionamento e uso dos módulos LISTA e MATRIZ 
 --------->exe2txt.bat
 --------->bat2exe.bat
 
+->relatorios
+--------->RELATORIO-hugo
+--------->RELATORIO-nino
+--------->RELATORIO-robert
+
 ->TRAB1-1
 --------->batches
 ----------------->LimpaTudo.bat
@@ -50,12 +55,16 @@ Este texto descreve brevemente o funcionamento e uso dos módulos LISTA e MATRIZ 
 
 ->TestaTudo.bat
 
+->LEIAME.TXT
+
 
 == Arquivos e diretórios detalhados ==
 
 = Diretórios
 
-Diretório ferramentas: contém ferramentas de apoio a geração e acumulo de dado de estátisticas a partir dos resultados de testes dos módulos LISTA e Matriz, usado pelo TestaTudo.bat.
+Diretório ferramentas: Contém ferramentas de apoio a geração e acumulo de dado de estátisticas a partir dos resultados de testes dos módulos LISTA e Matriz, usado pelo TestaTudo.bat.
+
+Diretório relatorios: Contém relatórios dos integrantes do grupo.
 
 Diretório TRAB1-1: Contém os artefatos gerados para uso do módulo LISTA.
 
