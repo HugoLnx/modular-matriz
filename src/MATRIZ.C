@@ -145,11 +145,11 @@
 
 /***** Protótipos das funções encapuladas no módulo *****/
 
-   static tpNoMatriz * CriarNo() ;
+   tpNoMatriz * CriarNo() ;
 
-   static MAT_tpCondRet CriarNoOrigem( MAT_tpMatriz * pMatriz ) ;
+   MAT_tpCondRet CriarNoOrigem( MAT_tpMatriz * pMatriz ) ;
 
-   static void DestroiMatriz( tpNoMatriz * pNo ) ;
+   void EsvaziarMatriz( MAT_tpMatriz * pMatriz ) ;
 
    tpNoMatriz * GetAdjacente( tpNoMatriz * pNo , tpDirecao dir ) ;
 
@@ -210,6 +210,11 @@
 		   return MAT_CondRetMatrizNaoExiste ;
 	   }
 
+	   if ( pMatriz->pNoOrigem != NULL )
+	   {
+		   EsvaziarMatriz( pMatriz ) ;
+	   }
+
 	   Cond = CriarNoOrigem( pMatriz ) ;
 	   if ( Cond != MAT_CondRetOK )
 	   {
@@ -224,7 +229,11 @@
 
 	   for ( i = 0 ; i < Colunas - 1 ; i++ )
 	   {
-		   AddColuna( pMatriz ) ;
+		   Cond = AddColuna( pMatriz ) ;
+		   if ( Cond != MAT_CondRetOK )
+			{
+				return Cond ;
+			}
 	   }
 
 	   return MAT_CondRetOK ;
@@ -252,7 +261,7 @@
 			return MAT_CondRetNaoCriouOrigem;
 		} /* if */
          
-		DestroiMatriz( pMatriz->pNoOrigem ) ;
+		EsvaziarMatriz( pMatriz ) ;
 		free( pMatriz ) ;
 		*ppMatriz = NULL ;
 
@@ -488,19 +497,19 @@
 
 /***********************************************************************
 *
-*  $FC Função: MAT Destruir a estrutura da matriz
+*  $FC Função: MAT Esvaziar matriz
 *  
 *  $ED Descrição da função
-*  Libera a memória de todos os nós que compõe a estrutura
+*  Libera a memória de todos os nós que compõe a estrutura da matriz.
 *  da matriz.
 *  
 *  $EP Parâmetros
-*     pNoOrigem - ponteiro para o nó origem da matriz.
+*     pMatriz - ponteiro para a matriz que será esvaziada.
 *
 ***********************************************************************/
-   void DestroiMatriz( tpNoMatriz * pNoOrigem )
+   void EsvaziarMatriz( MAT_tpMatriz * pMatriz )
    {
-	   tpNoMatriz * pNo = pNoOrigem;
+	   tpNoMatriz * pNo = pMatriz->pNoOrigem;
 	   tpNoMatriz * pNoExtremidade = pNo ;
 	   tpNoMatriz * pProxNoExtremidade ;
 	   tpNoMatriz * pProxNo ;
@@ -517,6 +526,9 @@
 			pNoExtremidade = pProxNoExtremidade ;
 			pNo = pNoExtremidade ;
 	   }
+	   
+	   pMatriz->pNoOrigem = NULL;
+	   pMatriz->pNoCorr = NULL;
 	   
    } /* Fim função: MAT Destruir a estrutura da matriz */
 

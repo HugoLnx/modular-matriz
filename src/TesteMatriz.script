@@ -281,6 +281,13 @@
 =criar OK
 =init 10 10 OK
 =destruir OK
+
+== É possivel criar e inicializar a mesma matriz duas vezes
+=criar OK
+=criar OK
+=init 10 10 OK
+=init 5  5 OK
+=destruir OK
 =selecionar 0
 
 == Destroi a matriz
