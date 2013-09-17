@@ -550,6 +550,7 @@
 *  $FV Valor retornado
 *    Ponteiro para nó adjacente na direção passada por
 *    parâmetro.
+*
 ***********************************************************************/
    tpNoMatriz * GetAdjacente( tpNoMatriz * pNo , tpDirecao dir )
    {
@@ -585,6 +586,7 @@
 *  $FV Valor retornado
 *     MAT_CondRetOK
 *     MAT_CondRetFaltouMemoria
+*
 ***********************************************************************/
    MAT_tpCondRet ConstruirPrimeiraColuna( tpNoMatriz * pNoOrigem , int QntLinhas )
    {
@@ -624,6 +626,7 @@
 *  $FV Valor retornado
 *     MAT_CondRetOK
 *     MAT_CondRetFaltouMemoria
+*
 ***********************************************************************/
    MAT_tpCondRet AddColuna( MAT_tpMatriz * pMatriz )
    {
@@ -737,6 +740,7 @@
 *     MAT_CondRetMatrizNaoExiste
 *     MAT_CondRetNaoTemCorrente
 *     MAT_CondRetNaoEhNo
+*
 *  ****/
 
    MAT_tpCondRet IrPara( MAT_tpMatriz * pMatriz , tpDirecao direcao )
