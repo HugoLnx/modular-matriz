@@ -29,7 +29,6 @@
 #include    "Lista.h"
 
 
-static const char RESET_LISTA_CMD         [ ] = "=resetteste"     ;
 static const char CRIAR_LISTA_CMD         [ ] = "=criarlista"     ;
 static const char DESTRUIR_LISTA_CMD      [ ] = "=destruirlista"  ;
 static const char ESVAZIAR_LISTA_CMD      [ ] = "=esvaziarlista"  ;
@@ -72,8 +71,6 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 *
 *     Comandos disponíveis:
 *
-*     =resetteste
-*           - anula o vetor de listas. Provoca vazamento de memória
 *     =criarlista                   inxLista  CondRetEsp
 *     =destruirlista                inxLista  CondRetEsp
 *     =esvaziarlista                inxLista  CondRetEsp
@@ -97,23 +94,9 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
       TST_tpCondRet CondRet;
 	  LIS_tppLista ppLista = NULL;
 
-      /* Efetuar reset de teste de lista */
-
-         if ( strcmp (ComandoTeste , RESET_LISTA_CMD ) == 0 )
-         {
-			int i;
-            for(i = 0 ; i < DIM_VT_LISTA ; i++)
-            {
-               vtListas[ i ] = NULL;
-            } /* for */
-
-            return TST_CondRetOK;
-
-         } /* fim ativa: Efetuar reset de teste de lista */
-
       /* Testar CriarLista */
 
-         else if ( strcmp ( ComandoTeste , CRIAR_LISTA_CMD ) == 0 )
+         if ( strcmp ( ComandoTeste , CRIAR_LISTA_CMD ) == 0 )
          {
 
             numLidos = LER_LerParametros( "ii", 
