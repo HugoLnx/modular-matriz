@@ -47,7 +47,7 @@ copy src\lista.lib deploy\TRAB1-2\lib
 copy src\TesteMatriz.script deploy\TRAB1-2\scripts
 copy src\MATRIZ.H deploy\TRAB1-2\src\definicao
 copy src\MATRIZ.C deploy\TRAB1-2\src\implementacao
-copy src\TESTMATRIZ.C deploy\TRAB1-2\src\implementacao
+copy src\TESTMAT.C deploy\TRAB1-2\src\implementacao
 copy batches\TestaMatriz.bat deploy\TRAB1-2\batches
 copy batches\LimpaTudo.bat deploy\TRAB1-2\batches
 
